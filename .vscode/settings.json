@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"stdio.h": "c",
+		"uchar.h": "c"
+	},
+	"editor.insertSpaces": false,
+	"files.exclude": {
+		"**/*.o": true
+	}
+}
