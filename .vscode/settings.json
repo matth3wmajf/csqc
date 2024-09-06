@@ -1,10 +1,25 @@
 {
-	"files.associations": {
-		"stdio.h": "c",
-		"uchar.h": "c"
-	},
-	"editor.insertSpaces": false,
 	"files.exclude": {
 		"**/*.o": true
+	},
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.tabSize": 4,
+	"editor.trimAutoWhitespace": true,
+	"editor.renderWhitespace": "boundary",
+	"editor.renderControlCharacters": true,
+	"files.associations": {
+		"cstdlib": "c",
+		"stdlib.h": "c",
+		"string.h": "c",
+		"istream": "c",
+		"ostream": "c",
+		"array": "c",
+		"functional": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"utility": "c",
+		"cstdint": "c",
+		"vector.h": "c"
 	}
 }

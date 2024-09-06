@@ -1,18 +1,15 @@
-CC = cc
-CFLAGS = -Wall -Wextra -O2 -Iinclude
+CFLAGS = -Iinclude
 
-SOURCES = $(wildcard source/*.c)
-OBJECTS = $(SOURCES:source/%.c=source/%.o)
+SOURCES := $(wildcard source/*.c)
+OBJECTS := $(SOURCES:.c=.o)
 
 all: csqlang
 
-csqlang: $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
-
-source/%.o: source/%.c
+$(OBJECTS): %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
-	rm -rf $(OBJECTS) csqlang
+csqlang: $(OBJECTS)
+	$(CC) $(CFLAGS) $^ -o $@
 
-.PHONY: all clean
+clean:
+	@rm -f $(OBJECTS) csqlang
