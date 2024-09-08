@@ -134,6 +134,68 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			/* Move past the closing quote. */
 			l_i++;
 		}
+
+		/* Handle string literals. */
+		if(input_source_buffer[l_i] == '"')
+		{
+			/* Move past the opening quote. */
+			l_i++;
+
+			/* Initialize a dynamic buffer for the string literal. */
+			char *l_string_buffer = NULL;
+			uintmax_t l_string_length = 0;
+
+			while (input_source_buffer[l_i] != '"' && input_source_buffer[l_i] != '\0')
+			{
+				char l_character;
+				if (input_source_buffer[l_i] == '\\')
+				{
+					/* Handle escape sequences. */
+					l_i++;
+					switch (input_source_buffer[l_i])
+					{
+						case 'n': l_character = '\n'; break;
+						case 't': l_character = '\t'; break;
+						case 'r': l_character = '\r'; break;
+						case '\\': l_character = '\\'; break;
+						case '"': l_character = '"'; break;
+						default: 
+							/* Invalid escape sequence, terminate the scanning process. */
+							free(l_string_buffer);
+							return -1;
+					}
+				}
+				else
+				{
+					l_character = input_source_buffer[l_i];
+				}
+
+				/* Append the character to the string buffer. */
+				l_string_buffer = realloc(l_string_buffer, l_string_length + 1);
+				l_string_buffer[l_string_length++] = l_character;
+
+				l_i++;
+			}
+
+			if (input_source_buffer[l_i] != '"')
+			{
+				/* Unterminated string literal, terminate the scanning process. */
+				free(l_string_buffer);
+				return -1;
+			}
+
+			/* Resize the buffer of scanned tokens. */
+			(*output_token_buffer_size)++;
+			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_STRING_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = l_string_buffer;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = l_string_length;
+
+			/* Move past the closing quote. */
+			l_i++;
+		}
 	}
 
 	return 0;
