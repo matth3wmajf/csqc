@@ -77,6 +77,63 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 				break;
 			}
 		}
+
+		/* Handle character literals. */
+		if(input_source_buffer[l_i] == '\'')
+		{
+			/* Move past the opening single quote. */
+			l_i++;
+			char l_character;
+
+			/* Backslash detected! */
+			if(input_source_buffer[l_i] == '\\')
+			{
+				/* Move past the backslash. */
+				l_i++;
+				
+				/* Handle escape sequences. */
+				switch (input_source_buffer[l_i])
+				{
+					case 'n': l_character = '\n'; break;
+					case 't': l_character = '\t'; break;
+					case 'r': l_character = '\r'; break;
+					case '\\': l_character = '\\'; break;
+					case '\'': l_character = '\''; break;
+					
+					/* Invalid escape sequence, terminate the scanning process. */
+					default: return -1;
+				}
+			}
+			else
+			{
+				l_character = input_source_buffer[l_i];
+			}
+
+			/* Move to the closing quote. */
+			l_i++;
+
+			if (input_source_buffer[l_i] != '\'')
+			{
+				/*
+				*	Unterminated character literal, terminate the scanning
+				*	process.
+				*/
+				return -1;
+			}
+
+			/* Resize the buffer of scanned tokens. */
+			(*output_token_buffer_size)++;
+			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_CHARACTER_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = malloc(sizeof(char));
+			*(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = l_character;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = sizeof(char);
+
+			/* Move past the closing quote. */
+			l_i++;
+		}
 	}
 
 	return 0;

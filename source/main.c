@@ -70,7 +70,7 @@ int main(int argc, const char *argv[])
 
 	for(uintmax_t l_i = 0; l_i < l_token_buffer_size; l_i++)
 	{
-		printf("debug: Detected a token with value \"%s\"!\n", l_token_buffer[l_i].token_buffer);
+		printf("debug: Detected a token with value \"%.*s\"!\n", (int)l_token_buffer[l_i].token_buffer_size, l_token_buffer[l_i].token_buffer);
 	}
 
 	free(g_input_file_buffer);
