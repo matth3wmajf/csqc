@@ -4,16 +4,24 @@
 
 #include <csquared/token.h>
 
-/* The keywords, the symbols, and their respective enumerations. */
+/*
+ *	The keywords, the symbols, and their respective enumerations.
+ *	This time, we re-ordered the symbol array and it's respective enumeraton
+ *	so that the scanner considers double-equals to be a single symbol, before
+ *	considering the double-equals to be two separate symbols.
+ *	This same logic applies to most other symbols, such as `<` and `<<`.
+ */
 const char *g_keywords[] = {"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "int", "long", "register", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"};
-const char *g_symbols[] = {"+", "-", "*", "/", "=", "==", "!=", "<", ">", "<=", ">=", "&&", "||", "!", "&", "|", "^", "~", "<<", ">>", "(", ")", "{", "}", "[", "]", ";", ",", "."};
+const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", "."};
 typedef enum {AUTO, BREAK, CASE, CHAR, CONST, CONTINUE, DEFAULT, DO, DOUBLE, ELSE, ENUM, EXTERN, FLOAT, FOR, GOTO, IF, INT, LONG, REGISTER, RETURN, SHORT, SIGNED, SIZEOF, STATIC, STRUCT, SWITCH, TYPEDEF, UNION, UNSIGNED, VOID, VOLATILE, WHILE} keyword_t;
-typedef enum {ADD, SUB, MUL, DIV, ASSIGN, EQUAL, NOT_EQUAL, LESS_THAN, GREATER_THAN, LESS_EQUAL, GREATER_EQUAL, LOGICAL_AND, LOGICAL_OR, LOGICAL_NOT, BITWISE_AND, BITWISE_OR, BITWISE_XOR, BITWISE_NOT, LEFT_SHIFT, RIGHT_SHIFT, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE, CLOSE_BRACE, OPEN_BRACKET, CLOSE_BRACKET, SEMICOLON, COMMA, PERIOD} symbol_t;
+typedef enum {EQUAL, NOT_EQUAL, LESS_EQUAL, GREATER_EQUAL, LOGICAL_AND, LOGICAL_OR, LEFT_SHIFT, RIGHT_SHIFT, ADD, SUB, MUL, DIV, ASSIGN, LESS_THAN, GREATER_THAN, LOGICAL_NOT, BITWISE_AND, BITWISE_OR, BITWISE_XOR, BITWISE_NOT, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE, CLOSE_BRACE, OPEN_BRACKET, CLOSE_BRACKET, SEMICOLON, COMMA, PERIOD} symbol_t;
 
 /* Analyze the inputted source code, and output an array of tokens. */
 int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
 {
-	for(uintmax_t l_i = 0; l_i < *input_source_buffer_size;)
+	uintmax_t l_i = 0;
+
+	while(l_i < *input_source_buffer_size)
 	{
 		/* Skip whitespace. */
 		if(is_whitespace(input_source_buffer[l_i]))
@@ -44,6 +52,29 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 
 				/* Break out of the loop. */
 				continue;
+			}
+		}
+
+		/* Check for symbols. */
+		for(uintmax_t l_j = 0; l_j < sizeof(g_symbols) / sizeof(g_symbols[0]); l_j++)
+		{
+			if(l_i + strlen(g_symbols[l_j]) <= *input_source_buffer_size && 
+			strncmp(g_symbols[l_j], input_source_buffer + l_i, strlen(g_symbols[l_j])) == 0)
+			{
+				/* Resize the buffer of scanned tokens. */
+				(*output_token_buffer_size)++;
+				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+
+				/* Add the token to the buffer. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_SYMBOL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = (char *)g_symbols[l_j];
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = strlen(g_symbols[l_j]);
+
+				/* Skip over the symbol. */
+				l_i += strlen(g_symbols[l_j]);
+
+				/* Break out of the loop. */
+				break;
 			}
 		}
 	}
