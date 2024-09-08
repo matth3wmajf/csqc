@@ -1,4 +1,4 @@
-CFLAGS = -Iinclude
+CFLAGS = -Iinclude -g
 
 SOURCES := $(wildcard source/*.c)
 OBJECTS := $(SOURCES:.c=.o)

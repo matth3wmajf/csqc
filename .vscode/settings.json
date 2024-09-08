@@ -20,6 +20,11 @@
 		"type_traits": "c",
 		"utility": "c",
 		"cstdint": "c",
-		"vector.h": "c"
+		"vector.h": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"malloc.h": "c",
+		"stdint.h": "c",
+		"random": "c"
 	}
 }
