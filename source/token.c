@@ -196,6 +196,36 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			/* Move past the closing quote. */
 			l_i++;
 		}
+
+		/* Inside the main scanning loop */
+		if(is_alphabet(input_source_buffer[l_i]) || input_source_buffer[l_i] == '_')
+		{
+			/* Store the start of the identifier's name in memory. */
+			uintmax_t l_start = l_i;
+
+			/*
+			 *	Keep adding characters to the identifier's name until a
+			 *	non-identifier character is encountered.
+			 */
+			while (l_i < *input_source_buffer_size && is_valid_identifier_character(input_source_buffer[l_i]))
+			{
+				l_i++;
+			}
+
+			/* Calculate the length of the identifier. */
+			uintmax_t l_length = l_i - l_start;
+
+			/* Resize the buffer of scanned tokens. */
+			(*output_token_buffer_size)++;
+			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_IDENTIFIER;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = malloc(l_length + 1);
+			strncpy((*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer, input_source_buffer + l_start, l_length);
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer[l_length] = '\0';
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = l_length;
+		}
 	}
 
 	return 0;
