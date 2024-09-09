@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <malloc.h>
 
-#include <csquared/token.h>
+#include <csquared/scanner.h>
 
 /*
  *	The keywords, the symbols, and their respective enumerations.
@@ -11,13 +11,11 @@
  *	considering the double-equals to be two separate symbols.
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
-const char *g_keywords[] = {"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "int", "long", "register", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"};
+const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "dword", "qword", "register", "return", "word", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"};
 const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", "."};
-typedef enum {AUTO, BREAK, CASE, CHAR, CONST, CONTINUE, DEFAULT, DO, DOUBLE, ELSE, ENUM, EXTERN, FLOAT, FOR, GOTO, IF, INT, LONG, REGISTER, RETURN, SHORT, SIGNED, SIZEOF, STATIC, STRUCT, SWITCH, TYPEDEF, UNION, UNSIGNED, VOID, VOLATILE, WHILE} keyword_t;
-typedef enum {EQUAL, NOT_EQUAL, LESS_EQUAL, GREATER_EQUAL, LOGICAL_AND, LOGICAL_OR, LEFT_SHIFT, RIGHT_SHIFT, ADD, SUB, MUL, DIV, ASSIGN, LESS_THAN, GREATER_THAN, LOGICAL_NOT, BITWISE_AND, BITWISE_OR, BITWISE_XOR, BITWISE_NOT, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE, CLOSE_BRACE, OPEN_BRACKET, CLOSE_BRACKET, SEMICOLON, COMMA, PERIOD} symbol_t;
 
 /* Analyze the inputted source code, and output an array of tokens. */
-int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
+int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
 {
 	uintmax_t l_i = 0;
 
@@ -39,13 +37,17 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			{
 				/* Resize the buffer of scanned tokens. */
 				(*output_token_buffer_size)++;
-
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-				/* Add the token to the buffer. */
+				/* Set the token type. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_KEYWORD;
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = (char *)g_keywords[l_j];
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = strlen(g_keywords[l_j]);
+
+				/* Add the plaintext version of the token to the buffer. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_keywords[l_j];
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = strlen(g_keywords[l_j]);
+
+				/* Add the token to the buffer. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.keyword = l_j;
 
 				/* Skip over the keyword. */
 				l_i += strlen(g_keywords[l_j]);
@@ -65,10 +67,15 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 				(*output_token_buffer_size)++;
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-				/* Add the token to the buffer. */
+				/* Set the token type. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_SYMBOL;
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = (char *)g_symbols[l_j];
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = strlen(g_symbols[l_j]);
+
+				/* Add the plaintext to the buffer. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_symbols[l_j];
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = strlen(g_symbols[l_j]);
+
+				/* Add the token to the buffer. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.symbol = l_j;
 
 				/* Skip over the symbol. */
 				l_i += strlen(g_symbols[l_j]);
@@ -125,11 +132,16 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			(*output_token_buffer_size)++;
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-			/* Add the token to the buffer. */
+			/* Set the token type. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_CHARACTER_LITERAL;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = malloc(sizeof(char));
-			*(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = l_character;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = sizeof(char);
+
+			/* Add the plaintext to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = malloc(sizeof(char));
+			*(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_character;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = sizeof(char);
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.character_literal = l_character;
 
 			/* Move past the closing quote. */
 			l_i++;
@@ -188,16 +200,22 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			(*output_token_buffer_size)++;
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-			/* Add the token to the buffer. */
+			/* Set the token type. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_STRING_LITERAL;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = l_string_buffer;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = l_string_length;
+
+			/* Add the plaintext to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_string_buffer;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_string_length;
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.string_literal = l_string_buffer;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_string_length;
 
 			/* Move past the closing quote. */
 			l_i++;
 		}
 
-		/* Inside the main scanning loop */
+		/* Handle identifiers. */
 		if(is_alphabet(input_source_buffer[l_i]) || input_source_buffer[l_i] == '_')
 		{
 			/* Store the start of the identifier's name in memory. */
@@ -219,12 +237,79 @@ int scan(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t
 			(*output_token_buffer_size)++;
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-			/* Add the token to the buffer. */
+			/* Set the token type. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_IDENTIFIER;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer = malloc(l_length + 1);
-			strncpy((*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer, input_source_buffer + l_start, l_length);
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer[l_length] = '\0';
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_buffer_size = l_length;
+
+			/* Add the plaintext to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_length;
+
+			/* Add the token to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.identifier = input_source_buffer + l_start;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_length;
+		}
+
+		/*
+		 *	Handle numbers.
+		 *	At first, we are not certain whether the number is a floating
+		 *	point number, an integer, or whether it's signed or unsigned.
+		 *	We will determine this later inside this logic.
+		 */
+		if(is_digit(input_source_buffer[l_i]) || (input_source_buffer[l_i] == '.' && is_digit(input_source_buffer[l_i + 1])))
+		{
+			uintmax_t l_start = l_i;
+			bool l_is_float = false;
+			bool l_is_unsigned = false;
+
+			while(l_i < *input_source_buffer_size && (is_digit(input_source_buffer[l_i]) || input_source_buffer[l_i] == '.' || input_source_buffer[l_i] == 'e' || input_source_buffer[l_i] == 'E' || input_source_buffer[l_i] == '+' || input_source_buffer[l_i] == '-'))
+			{
+				if(input_source_buffer[l_i] == '.')
+					l_is_float = true;
+				l_i++;
+			}
+
+			if(input_source_buffer[l_i] == 'f' || input_source_buffer[l_i] == 'F')
+			{
+				l_is_float = true;
+				l_i++;
+			}
+			else if(input_source_buffer[l_i] == 'u' || input_source_buffer[l_i] == 'U')
+			{
+				l_is_unsigned = true;
+				l_i++;
+			}
+
+			uintmax_t l_length = l_i - l_start;
+
+			/* Resize the buffer of scanned tokens. */
+			(*output_token_buffer_size)++;
+			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+
+			/* Set the token type. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = l_is_float ? TOKEN_TYPE_FLOAT_LITERAL : (l_is_unsigned ? TOKEN_TYPE_UNSIGNED_INTEGER_LITERAL : TOKEN_TYPE_INTEGER_LITERAL);
+
+			/* Add the plaintext to the buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_length;
+
+			/*
+			 *	Add the token to the buffer.
+			 *	Yes, I know `sscanf` is a bit of a hack, but it's the method
+			 *	we're using now.
+			 *	We've got bigger things to worry about.
+			 */
+			if(l_is_float)
+			{
+				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%lf", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal));
+			}
+			else if(l_is_unsigned)
+			{
+				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%ju", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.unsigned_integer_literal));
+			}
+			else
+			{
+				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%jd", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.signed_integer_literal));
+			}
 		}
 	}
 

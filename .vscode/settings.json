@@ -25,6 +25,7 @@
 		"initializer_list": "c",
 		"malloc.h": "c",
 		"stdint.h": "c",
-		"random": "c"
+		"random": "c",
+		"scanner.h": "c"
 	}
 }
