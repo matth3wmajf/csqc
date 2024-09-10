@@ -11,7 +11,7 @@
  *	considering the double-equals to be two separate symbols.
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
-const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "dword", "qword", "register", "return", "word", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"};
+const char *g_keywords[] = {"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "int", "long", "register", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"};
 const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", "."};
 
 /* Analyze the inputted source code, and output an array of tokens. */

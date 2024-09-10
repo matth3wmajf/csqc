@@ -7,11 +7,13 @@
 #include <csquared/scanner.h>
 #include <csquared/parser.h>
 
+/* The input file's data. */
 char *g_input_file_name = NULL;
 FILE *g_input_file_handle = NULL;
 intmax_t g_input_file_size = -1;
 char *g_input_file_buffer = NULL;
 
+/* The output file's data. */
 char *g_output_file_name = NULL;
 FILE *g_output_file_handle = NULL;
 intmax_t g_output_file_size = -1;
@@ -83,7 +85,7 @@ int main(int argc, const char *argv[])
 			printf("debug: Detected an integer literal (literal: `%jd`)!\n", l_token_buffer[l_i].value.signed_integer_literal);
 			break;
 		case TOKEN_TYPE_FLOAT_LITERAL:
-			printf("debug: Detected a floating point literal (literal: `%e` or `%g`)!\n", l_token_buffer[l_i].value.float_literal, l_token_buffer[l_i].value.float_literal);
+			printf("debug: Detected a floating point literal (literal: `%g`)!\n", l_token_buffer[l_i].value.float_literal);
 			break;
 		case TOKEN_TYPE_STRING_LITERAL:
 			printf("debug: Detected a string literal (literal: `%.*s`)!\n", (int)l_token_buffer[l_i].value.buffer_size, l_token_buffer[l_i].value.string_literal);
