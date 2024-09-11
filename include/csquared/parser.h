@@ -74,19 +74,11 @@ static bool is_expression_token(token_t *token)
 typedef enum
 {
 	OBJECT_TYPE_NONE,
-	OBJECT_TYPE_DECLARATION,
-	OBJECT_TYPE_EXPRESSION,
-	OBJECT_TYPE_BINARY_EXPRESSION
+	OBJECT_TYPE_OPERATOR,
+	OBJECT_TYPE_CONSTANT,
+	OBJECT_TYPE_TERM,
+	OBJECT_TYPE_EXPRESSION
 } object_type_t;
-
-typedef enum
-{
-	STATE_INITIAL,
-	STATE_EXPRESSION,
-	STATE_TERM,
-	STATE_FACTOR,
-	STATE_DECLARATION
-} state_t;
 
 typedef struct object_t
 {
@@ -95,8 +87,6 @@ typedef struct object_t
 
 	union
 	{
-		
-
 		struct
 		{
 			union

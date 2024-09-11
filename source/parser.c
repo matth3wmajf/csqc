@@ -21,10 +21,7 @@ int parser(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, obje
 
 	while(l_i < *input_token_buffer_size)
 	{
-		if(is_number(&input_token_buffer[l_i]))
-		{
-			/* Figure out the logic for this... */
-		}
+		if()
 	}
 
 	return -1;
