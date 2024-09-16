@@ -17,15 +17,5 @@ const uintmax_t g_operator_buffer_size = sizeof(g_operator_buffer) / sizeof(g_op
 
 int parser(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size)
 {
-	uintmax_t l_i = 0;
-
-	while(l_i < *input_token_buffer_size)
-	{
-		if(is_number(&input_token_buffer[l_i]))
-		{
-			/* Figure out the logic for this... */
-		}
-	}
-
 	return -1;
 }

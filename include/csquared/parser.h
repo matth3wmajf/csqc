@@ -58,7 +58,7 @@ static inline bool is_identifier(token_t *token)
  */
 static inline bool is_number(token_t* token)
 {
-	return token->token_type == TOKEN_TYPE_INTEGER_LITERAL || token->token_type == TOKEN_TYPE_UNSIGNED_INTEGER_LITERAL || token->token_type == TOKEN_TYPE_FLOAT_LITERAL;
+	return token->token_type == TOKEN_TYPE_INT32_LITERAL || token->token_type == TOKEN_TYPE_UINT32_LITERAL || token->token_type == TOKEN_TYPE_INT64_LITERAL || token->token_type == TOKEN_TYPE_UINT64_LITERAL || token->token_type == TOKEN_TYPE_FLOAT_LITERAL_32 || token->token_type == TOKEN_TYPE_FLOAT_LITERAL_64;
 }
 
 /*

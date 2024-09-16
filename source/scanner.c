@@ -122,9 +122,9 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			if (input_source_buffer[l_i] != '\'')
 			{
 				/*
-				*	Unterminated character literal, terminate the scanning
-				*	process.
-				*/
+				 *	Unterminated character literal, terminate the scanning
+				 *	process.
+				 */
 				return -1;
 			}
 
@@ -157,10 +157,10 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			char *l_string_buffer = NULL;
 			uintmax_t l_string_length = 0;
 
-			while (input_source_buffer[l_i] != '"' && input_source_buffer[l_i] != '\0')
+			while(input_source_buffer[l_i] != '"' && input_source_buffer[l_i] != '\0')
 			{
 				char l_character;
-				if (input_source_buffer[l_i] == '\\')
+				if(input_source_buffer[l_i] == '\\')
 				{
 					/* Handle escape sequences. */
 					l_i++;
@@ -249,67 +249,216 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_length;
 		}
 
-		/*
-		 *	Handle numbers.
-		 *	At first, we are not certain whether the number is a floating
-		 *	point number, an integer, or whether it's signed or unsigned.
-		 *	We will determine this later inside this logic.
-		 */
+		/* Handle numbers. */
 		if(is_digit(input_source_buffer[l_i]) || (input_source_buffer[l_i] == '.' && is_digit(input_source_buffer[l_i + 1])))
 		{
+			/* Store the start of the number in memory. */
 			uintmax_t l_start = l_i;
-			bool l_is_float = false;
-			bool l_is_unsigned = false;
 
-			while(l_i < *input_source_buffer_size && (is_digit(input_source_buffer[l_i]) || input_source_buffer[l_i] == '.' || input_source_buffer[l_i] == 'e' || input_source_buffer[l_i] == 'E' || input_source_buffer[l_i] == '+' || input_source_buffer[l_i] == '-'))
+			/* Flag to determine whether the number is a floating point or an integer. */
+			bool l_is_floating_point = false;
+
+			/* Parse the integer or floating point part. */
+			while(l_i < *input_source_buffer_size && (is_digit(input_source_buffer[l_i]) || input_source_buffer[l_i] == '.'))
 			{
 				if(input_source_buffer[l_i] == '.')
-					l_is_float = true;
+				{
+					/* If there's a dot, mark it as a floating-point number. */
+					l_is_floating_point = true;
+				}
+
 				l_i++;
 			}
 
-			if(input_source_buffer[l_i] == 'f' || input_source_buffer[l_i] == 'F')
+			/* Store the number literal without the suffix first. */
+			uintmax_t l_number_length = l_i - l_start;
+			char *l_number_literal = malloc(l_number_length + 1);
+			if(l_number_literal == NULL)
 			{
-				l_is_float = true;
-				l_i++;
+				return -1;
 			}
-			else if(input_source_buffer[l_i] == 'u' || input_source_buffer[l_i] == 'U')
+
+			memcpy(l_number_literal, input_source_buffer + l_start, l_number_length);
+			l_number_literal[l_number_length] = '\0';
+
+			/* Now process any suffixes. */
+			uintmax_t l_suffix_start = l_i;
+
+			/* Check for integer suffixes (U, L, LL, UL, etc.) or floating-point suffixes (f, l). */
+			while(l_i < *input_source_buffer_size && (is_alphabet(input_source_buffer[l_i])))
 			{
-				l_is_unsigned = true;
 				l_i++;
 			}
 
-			uintmax_t l_length = l_i - l_start;
+			/* Extract the suffix if there is one. */
+			uintmax_t l_suffix_length = l_i - l_suffix_start;
+			char *l_suffix_literal = malloc(l_suffix_length + 1);
+			if (l_suffix_literal == NULL)
+			{
+				free(l_number_literal);
+				return -1;
+			}
+
+			memcpy(l_suffix_literal, input_source_buffer + l_suffix_start, l_suffix_length);
+			l_suffix_literal[l_suffix_length] = '\0';
 
 			/* Resize the buffer of scanned tokens. */
 			(*output_token_buffer_size)++;
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
-			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = l_is_float ? TOKEN_TYPE_FLOAT_LITERAL : (l_is_unsigned ? TOKEN_TYPE_UNSIGNED_INTEGER_LITERAL : TOKEN_TYPE_INTEGER_LITERAL);
+			/* Add the plaintext (number + suffix) to the token's buffer. */
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_number_literal;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_number_length + l_suffix_length;
 
-			/* Add the plaintext to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_length;
+			/* Set the vague token type. */
+			if(l_is_floating_point)
+			{
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT_LITERAL_32;
+			}
+			else if(!l_is_floating_point)
+			{
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INT32_LITERAL;
+			}
 
 			/*
-			 *	Add the token to the buffer.
-			 *	Yes, I know `sscanf` is a bit of a hack, but it's the method
-			 *	we're using now.
-			 *	We've got bigger things to worry about.
+			 *	Narrow down the token type based on the suffix.
+			 *	Also make sure the default type is set, that being a 32-bit
+			 *	integer literal.
 			 */
-			if(l_is_float)
+			uintmax_t l_j = 0;
+
+			while(l_j < l_suffix_length)
 			{
-				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%lf", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal));
+				if((l_suffix_literal[l_j] == 'f' || l_suffix_literal[l_j] == 'F') && l_is_floating_point)
+				{
+					/* It's a 32-bit float literal. */
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT_LITERAL | TOKEN_SUBTYPE_FLOAT;
+
+					l_j++;
+				}
+				else if((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && l_is_floating_point)
+				{
+					/* It's a 64-bit long double literal. */
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT_LITERAL | TOKEN_SUBTYPE_DOUBLE;
+
+					l_j++;
+				}
+				else if(((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && (l_suffix_literal[l_j + 1] == 'l' || l_suffix_literal[l_j + 1] == 'L')) && !l_is_floating_point)
+				{
+					/*
+					 *	We're dealing with a long long literal, which is
+					 *	guaranteed to be 64-bit.
+					 *	We must also preserve it's signedness, just like
+					 *	the long literal's handling above has done so.
+					 */
+					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
+
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(TOKEN_SUBTYPE_INT8 | TOKEN_SUBTYPE_INT16 | TOKEN_SUBTYPE_INT32 | TOKEN_SUBTYPE_INT64);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64;
+
+					l_j += 2;
+				}
+				else if ((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && !l_is_floating_point)
+				{
+					/*
+					 *	It's a long literal, however we're not sure yet if
+					 *	it's a 32-bit or 64-bit integer, and therefore, we
+					 *	must check the size of the long type.
+					 *	We must also preserve it's signedness, instead of
+					 *	overriding it.
+					 */
+					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
+
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(TOKEN_SUBTYPE_INT8 | TOKEN_SUBTYPE_INT16 | TOKEN_SUBTYPE_INT32 | TOKEN_SUBTYPE_INT64);
+
+#if defined(LONG_IS_64_BIT)
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64;
+#elif defined(LONG_IS_32_BIT)
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT32;
+#endif
+
+					l_j++;
+				}
+				else if((l_suffix_literal[l_j] == 'u' || l_suffix_literal[l_j] == 'U') && !l_is_floating_point)
+				{
+					/*
+					 *  Suffix contains a `u`, so it must be unsigned.
+					 *  Therefore, only change it's signedness attribute, but
+					 *  nothing else.
+					 */
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~TOKEN_SUBTYPE_SIGNED;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= TOKEN_SUBTYPE_UNSIGNED;
+
+					l_j++;
+				}
+				else if ((l_suffix_literal[l_j] == 's' || l_suffix_literal[l_j] == 'S') && !l_is_floating_point)
+				{
+					/* Same goes for this. */
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~TOKEN_SUBTYPE_UNSIGNED;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= TOKEN_SUBTYPE_SIGNED;
+
+					l_j++;
+				}
 			}
-			else if(l_is_unsigned)
+
+			/*
+			 *	If there's no suffix, but a floating point number was
+			 *	detected, then simply submit the token as a floating point
+			 *	literal, but without a known size.
+			 *	If there's no suffix, but an integer was detected, then simply
+			 *	submit the token as a 32-bit integer literal.
+			 */
+			if(l_suffix_length == 0 && l_is_floating_point)
 			{
-				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%ju", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.unsigned_integer_literal));
+				/* It's an unknown floating point literal. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT_LITERAL_64;
 			}
-			else
+			else if(l_suffix_length == 0 && !l_is_floating_point)
 			{
-				sscanf((*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer, "%jd", &((*output_token_buffer)[(*output_token_buffer_size) - 1].value.signed_integer_literal));
+				/* It's an unknown integer literal. */
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INT32_LITERAL;
 			}
+
+			/* Now, time to set the literal's value based on the precise type. */
+			switch((*output_token_buffer)[(*output_token_buffer_size) - 1].token_type)
+			{
+			case TOKEN_TYPE_INT8_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int8_literal = (int8_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_UINT8_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint8_literal = (uint8_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_INT16_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int16_literal = (int16_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_UINT16_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint16_literal = (uint16_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_INT32_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int32_literal = (int32_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_UINT32_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint32_literal = (uint32_t)strtol(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_INT64_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int64_literal = (int64_t)strtoll(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_UINT64_LITERAL:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
+				break;
+			case TOKEN_TYPE_FLOAT_LITERAL_32:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal_32 = (float)strtof(l_number_literal, NULL);
+				break;
+			case TOKEN_TYPE_FLOAT_LITERAL_64:
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal_64 = (double)strtod(l_number_literal, NULL);
+				break;
+			}
+
+			/* Free the suffix literal memory. */
+			free(l_suffix_literal);
+
+			/* Move past the number and suffix. */
+			free(l_number_literal);
 		}
 	}
 
