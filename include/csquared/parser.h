@@ -48,7 +48,7 @@ static inline bool is_type_qualifier(token_t *keyword)
 /* Is the token an identifier? */
 static inline bool is_identifier(token_t *token)
 {
-	return token->token_type == TOKEN_TYPE_IDENTIFIER;
+	return token->token_type == TOKEN_TYPE_PREFIX_IDENTIFIER;
 }
 
 /*
@@ -58,7 +58,7 @@ static inline bool is_identifier(token_t *token)
  */
 static inline bool is_number(token_t* token)
 {
-	return token->token_type == TOKEN_TYPE_INTEGER_LITERAL || token->token_type == TOKEN_TYPE_UNSIGNED_INTEGER_LITERAL || token->token_type == TOKEN_TYPE_FLOAT_LITERAL;
+	return token->token_type == TOKEN_TYPE_INT32_LITERAL || token->token_type == TOKEN_TYPE_UINT32_LITERAL || token->token_type == TOKEN_TYPE_INT64_LITERAL || token->token_type == TOKEN_TYPE_UINT64_LITERAL || token->token_type == TOKEN_TYPE_FLOAT32_LITERAL || token->token_type == TOKEN_TYPE_FLOAT64_LITERAL;
 }
 
 /*
@@ -68,7 +68,7 @@ static inline bool is_number(token_t* token)
  */
 static bool is_expression_token(token_t *token)
 {
-	return is_number(token) || (token->token_type == TOKEN_TYPE_SYMBOL && (token->value.symbol == ADD || token->value.symbol == SUB || token->value.symbol == MUL || token->value.symbol == DIV || token->value.symbol == OPEN_PAREN || token->value.symbol == CLOSE_PAREN));
+	return is_number(token) || (token->token_type == TOKEN_TYPE_PREFIX_SYMBOL && (token->value.symbol == ADD || token->value.symbol == SUB || token->value.symbol == MUL || token->value.symbol == DIV || token->value.symbol == OPEN_PAREN || token->value.symbol == CLOSE_PAREN));
 }
 
 typedef enum

@@ -1,3 +1,2 @@
-/csqlang
-/source/*.o
+/build/*
 /example.csq

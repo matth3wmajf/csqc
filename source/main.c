@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <malloc.h>
+#include <inttypes.h>
 
 #include <csquared/scanner.h>
 #include <csquared/parser.h>
@@ -71,32 +72,53 @@ int main(int argc, const char *argv[])
 		return -1;
 	}
 
-	for(uintmax_t l_i = 0; l_i < l_token_buffer_size; l_i++)
+	for (uintmax_t l_i = 0; l_i < l_token_buffer_size; l_i++)
 	{
-		switch(l_token_buffer[l_i].token_type)
+		switch (l_token_buffer[l_i].token_type)
 		{
-		case TOKEN_TYPE_UNSIGNED_INTEGER_LITERAL:
-			printf("debug: Detected an unsigned integer literal (literal: `%ju`)!\n", l_token_buffer[l_i].value.unsigned_integer_literal);
+		case TOKEN_TYPE_UINT8_LITERAL:
+			printf("debug: Detected an unsigned 8-bit integer literal (literal: `%hhu`)!\n", l_token_buffer[l_i].value.uint8_literal);
 			break;
-		case TOKEN_TYPE_CHARACTER_LITERAL:
+		case TOKEN_TYPE_INT8_LITERAL:
+			printf("debug: Detected a signed 8-bit integer literal (literal: `%hhd`)!\n", l_token_buffer[l_i].value.int8_literal);
+			break;
+		case TOKEN_TYPE_UINT16_LITERAL:
+			printf("debug: Detected an unsigned 16-bit integer literal (literal: `%hu`)!\n", l_token_buffer[l_i].value.uint16_literal);
+			break;
+		case TOKEN_TYPE_INT16_LITERAL:
+			printf("debug: Detected a signed 16-bit integer literal (literal: `%hd`)!\n", l_token_buffer[l_i].value.int16_literal);
+			break;
+		case TOKEN_TYPE_UINT32_LITERAL:
+			printf("debug: Detected an unsigned 32-bit integer literal (literal: `%u`)!\n", l_token_buffer[l_i].value.uint32_literal);
+			break;
+		case TOKEN_TYPE_INT32_LITERAL:
+			printf("debug: Detected a signed 32-bit integer literal (literal: `%d`)!\n", l_token_buffer[l_i].value.int32_literal);
+			break;
+		case TOKEN_TYPE_UINT64_LITERAL:
+			printf("debug: Detected an unsigned 64-bit integer literal (literal: `%" PRIu64 "`)!\n", l_token_buffer[l_i].value.uint64_literal);
+			break;
+		case TOKEN_TYPE_INT64_LITERAL:
+			printf("debug: Detected a signed 64-bit integer literal (literal: `%" PRId64 "`)!\n", l_token_buffer[l_i].value.int64_literal);
+			break;
+		case TOKEN_TYPE_FLOAT32_LITERAL:
+			printf("debug: Detected a 32-bit float literal (literal: `%f`)!\n", l_token_buffer[l_i].value.float_literal_32);
+			break;
+		case TOKEN_TYPE_FLOAT64_LITERAL:
+			printf("debug: Detected a 64-bit double literal (literal: `%f`)!\n", l_token_buffer[l_i].value.float_literal_64);
+			break;
+		case TOKEN_TYPE_CHARACTER8_LITERAL:
 			printf("debug: Detected a character literal (literal: `%c`)!\n", l_token_buffer[l_i].value.character_literal);
 			break;
-		case TOKEN_TYPE_INTEGER_LITERAL:
-			printf("debug: Detected an integer literal (literal: `%jd`)!\n", l_token_buffer[l_i].value.signed_integer_literal);
-			break;
-		case TOKEN_TYPE_FLOAT_LITERAL:
-			printf("debug: Detected a floating point literal (literal: `%g`)!\n", l_token_buffer[l_i].value.float_literal);
-			break;
-		case TOKEN_TYPE_STRING_LITERAL:
+		case TOKEN_TYPE_STRING8_LITERAL:
 			printf("debug: Detected a string literal (literal: `%.*s`)!\n", (int)l_token_buffer[l_i].value.buffer_size, l_token_buffer[l_i].value.string_literal);
 			break;
-		case TOKEN_TYPE_IDENTIFIER:
+		case TOKEN_TYPE_IDENTIFIER_LITERAL:
 			printf("debug: Detected an identifier (identifier: `%.*s`)!\n", (int)l_token_buffer[l_i].value.buffer_size, l_token_buffer[l_i].value.identifier);
 			break;
-		case TOKEN_TYPE_KEYWORD:
+		case TOKEN_TYPE_KEYWORD_LITERAL:
 			printf("debug: Detected a keyword (keyword: `%s`)!\n", g_keywords[l_token_buffer[l_i].value.keyword]);
 			break;
-		case TOKEN_TYPE_SYMBOL:
+		case TOKEN_TYPE_SYMBOL_LITERAL:
 			printf("debug: Detected a symbol (symbol: `%s`)!\n", g_symbols[l_token_buffer[l_i].value.symbol]);
 			break;
 		default:
@@ -105,20 +127,21 @@ int main(int argc, const char *argv[])
 		}
 	}
 
+
 	object_t *l_object_buffer = NULL;
 	uintmax_t l_object_buffer_size = 0;
 
-	int l_parse_status = parser(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
-	if(l_parse_status != 0)
-	{
-		fprintf(stderr, "error: Failed to successfully parse the file completely (error: `%d`)!\n", l_parse_status);
-		return -1;
-	}
-
-	for(uintmax_t l_i = 0; l_i < l_object_buffer_size; l_i++)
-	{
-		printf("debug: Detected an object (error: `%d`)!\n", l_object_buffer[l_i].object_type);
-	}
+//	int l_parse_status = parser(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
+//	if(l_parse_status != 0)
+//	{
+//		fprintf(stderr, "error: Failed to successfully parse the file completely (error: `%d`)!\n", l_parse_status);
+//		return -1;
+//	}
+//
+//	for(uintmax_t l_i = 0; l_i < l_object_buffer_size; l_i++)
+//	{
+//		printf("debug: Detected an object (error: `%d`)!\n", l_object_buffer[l_i].object_type);
+//	}
 
 	if(g_output_file_name != NULL)
 

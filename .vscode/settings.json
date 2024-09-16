@@ -26,6 +26,7 @@
 		"malloc.h": "c",
 		"stdint.h": "c",
 		"random": "c",
-		"scanner.h": "c"
+		"scanner.h": "c",
+		"parser.h": "c"
 	}
 }
