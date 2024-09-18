@@ -6,6 +6,8 @@
 #include <inttypes.h>
 
 #include <csquared/scanner.h>
+#include <csquared/logger.h>
+#include <csquared/escape.h>
 #include <csquared/parser.h>
 
 /* The input file's data. */
@@ -22,35 +24,35 @@ char *g_output_file_buffer = NULL;
 
 int main(int argc, const char *argv[])
 {
-	for(int i = 1; i < argc; i++)
+	for(uintmax_t l_i = 1; l_i < (uintmax_t)argc; l_i++)
 	{
-		if(strcmp(argv[i], "-c") == 0 && i + 1 < argc)
+		if(strcmp(argv[l_i], "-c") == 0 && l_i + 1 < (uintmax_t)argc)
 		{
-			g_input_file_name = (char *)argv[i + 1];
-			i++;
+			g_input_file_name = (char *)argv[l_i + 1];
+			l_i++;
 		}
-		else if(strcmp(argv[i], "-S") == 0 && i + 1 < argc)
+		else if(strcmp(argv[l_i], "-S") == 0 && l_i + 1 < (uintmax_t)argc)
 		{
-			g_output_file_name = (char *)argv[i + 1];
-			i++;
+			g_output_file_name = (char *)argv[l_i + 1];
+			l_i++;
 		}
 		else
 		{
-			fprintf(stderr, "error: Unknown or wrongly-formatted argument!\n");
+			loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Unknown or wrongly-typed argument!"}, {ESC_BOLD "subject" ESC_RESET, "Could not understand \"%s\"!"}}, 2, argv[l_i]);
 			return -1;
 		}
 	}
 
 	if(g_input_file_name == NULL)
 	{
-		fprintf(stderr, "error: No input file specified!\n");
+		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "The source code's filename has not been inputted!"}, {ESC_BOLD "subject" ESC_RESET, "Could not open file \"%s\"!"}}, 2, g_input_file_name);
 		return -1;
 	}
 
 	g_input_file_handle = fopen(g_input_file_name, "rb");
 	if(g_input_file_handle == NULL)
 	{
-		fprintf(stderr, "error: Could not open file for reading (file: `%s`)!\n", g_input_file_name);
+		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Failed to open the source code's file!"}, {ESC_BOLD "subject" ESC_RESET, "Could not open \"%s\" for reading!"}}, 2, g_input_file_name);
 		return -1;
 	}
 
@@ -68,7 +70,7 @@ int main(int argc, const char *argv[])
 	int l_scan_status = scanner(g_input_file_buffer, &g_input_file_size, &l_token_buffer, &l_token_buffer_size);
 	if(l_scan_status != 0)
 	{
-		fprintf(stderr, "error: Failed to successfully scan the file completely (%d)!\n", l_scan_status);
+		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Scanning the source code's file failed!"}, {ESC_BOLD "subject" ESC_RESET, "The scanner returned an error code of `%d`."}}, 2, l_scan_status);
 		return -1;
 	}
 
