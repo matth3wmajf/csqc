@@ -24,6 +24,7 @@ char *g_output_file_buffer = NULL;
 
 int main(int argc, const char *argv[])
 {
+	/* Loop for every command-line argument. */
 	for(uintmax_t l_i = 1; l_i < (uintmax_t)argc; l_i++)
 	{
 		if(strcmp(argv[l_i], "-c") == 0 && l_i + 1 < (uintmax_t)argc)
@@ -38,17 +39,26 @@ int main(int argc, const char *argv[])
 		}
 		else
 		{
+			/* If the command-line argument flag is unknown, then log an error & quit. */
 			loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Unknown or wrongly-typed argument!"}, {ESC_BOLD "subject" ESC_RESET, "Could not understand \"%s\"!"}}, 2, argv[l_i]);
 			return -1;
 		}
 	}
 
+	/*
+	 *	Check if the source code's filename is set. If not, log an error, and
+	 *	exit.
+	 */
 	if(g_input_file_name == NULL)
 	{
 		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "The source code's filename has not been inputted!"}, {ESC_BOLD "subject" ESC_RESET, "Could not open file \"%s\"!"}}, 2, g_input_file_name);
 		return -1;
 	}
 
+	/*
+	 *	Attempt to open the source code file with the intention of reading it,
+	 *	and if it failed to do so, then log an error & quit.
+	 */
 	g_input_file_handle = fopen(g_input_file_name, "rb");
 	if(g_input_file_handle == NULL)
 	{
@@ -56,17 +66,38 @@ int main(int argc, const char *argv[])
 		return -1;
 	}
 
+	/* Obtain the size of the source code's file. */
 	fseek(g_input_file_handle, 0, SEEK_END);
 	g_input_file_size = ftell(g_input_file_handle);
 	fseek(g_input_file_handle, 0, SEEK_SET);
 
+	/*
+	 *	Allocate enough memory to store the source code file's contents into
+	 *	memory.
+	 */
 	g_input_file_buffer = malloc(g_input_file_size);
 	fread(g_input_file_buffer, 1, g_input_file_size, g_input_file_handle);
 	fclose(g_input_file_handle);
 
+	/*
+	 *	Create a buffer which will contain our tokens.
+	 *	One thing you'll commonly see in this project, is the fact that
+	 *	buffers will consist of two things; the pointer to the first element
+	 *	of the buffer, and the size of the buffer.
+	 */
 	token_t *l_token_buffer = NULL;
 	uintmax_t l_token_buffer_size = 0;
 
+	/*
+	 *	Dispatch the scanner.
+	 *	The scanner scans our newly-loaded raw source code while outputting
+	 *	the tokens into the token buffer. We store the return code, as we want
+	 *	to ensure that no error occured during the scanning process.
+	 *	If the return code is zero, then everything went well, however if the
+	 *	return code is a negative integer, it means we've encountered some
+	 *	sort of error, and must therefore log an error & exit the program.
+	 *	You'll commonly see this approach to error handling here.
+	 */
 	int l_scan_status = scanner(g_input_file_buffer, &g_input_file_size, &l_token_buffer, &l_token_buffer_size);
 	if(l_scan_status != 0)
 	{
@@ -74,86 +105,36 @@ int main(int argc, const char *argv[])
 		return -1;
 	}
 
-	for (uintmax_t l_i = 0; l_i < l_token_buffer_size; l_i++)
-	{
-		switch (l_token_buffer[l_i].token_type)
-		{
-		case TOKEN_TYPE_UINT8_LITERAL:
-			printf("debug: Detected an unsigned 8-bit integer literal (literal: `%hhu`)!\n", l_token_buffer[l_i].value.uint8_literal);
-			break;
-		case TOKEN_TYPE_INT8_LITERAL:
-			printf("debug: Detected a signed 8-bit integer literal (literal: `%hhd`)!\n", l_token_buffer[l_i].value.int8_literal);
-			break;
-		case TOKEN_TYPE_UINT16_LITERAL:
-			printf("debug: Detected an unsigned 16-bit integer literal (literal: `%hu`)!\n", l_token_buffer[l_i].value.uint16_literal);
-			break;
-		case TOKEN_TYPE_INT16_LITERAL:
-			printf("debug: Detected a signed 16-bit integer literal (literal: `%hd`)!\n", l_token_buffer[l_i].value.int16_literal);
-			break;
-		case TOKEN_TYPE_UINT32_LITERAL:
-			printf("debug: Detected an unsigned 32-bit integer literal (literal: `%u`)!\n", l_token_buffer[l_i].value.uint32_literal);
-			break;
-		case TOKEN_TYPE_INT32_LITERAL:
-			printf("debug: Detected a signed 32-bit integer literal (literal: `%d`)!\n", l_token_buffer[l_i].value.int32_literal);
-			break;
-		case TOKEN_TYPE_UINT64_LITERAL:
-			printf("debug: Detected an unsigned 64-bit integer literal (literal: `%" PRIu64 "`)!\n", l_token_buffer[l_i].value.uint64_literal);
-			break;
-		case TOKEN_TYPE_INT64_LITERAL:
-			printf("debug: Detected a signed 64-bit integer literal (literal: `%" PRId64 "`)!\n", l_token_buffer[l_i].value.int64_literal);
-			break;
-		case TOKEN_TYPE_FLOAT32_LITERAL:
-			printf("debug: Detected a 32-bit float literal (literal: `%f`)!\n", l_token_buffer[l_i].value.float_literal_32);
-			break;
-		case TOKEN_TYPE_FLOAT64_LITERAL:
-			printf("debug: Detected a 64-bit double literal (literal: `%f`)!\n", l_token_buffer[l_i].value.float_literal_64);
-			break;
-		case TOKEN_TYPE_CHARACTER8_LITERAL:
-			printf("debug: Detected a character literal (literal: `%c`)!\n", l_token_buffer[l_i].value.character_literal);
-			break;
-		case TOKEN_TYPE_STRING8_LITERAL:
-			printf("debug: Detected a string literal (literal: `%.*s`)!\n", (int)l_token_buffer[l_i].value.buffer_size, l_token_buffer[l_i].value.string_literal);
-			break;
-		case TOKEN_TYPE_IDENTIFIER_LITERAL:
-			printf("debug: Detected an identifier (identifier: `%.*s`)!\n", (int)l_token_buffer[l_i].value.buffer_size, l_token_buffer[l_i].value.identifier);
-			break;
-		case TOKEN_TYPE_KEYWORD_LITERAL:
-			printf("debug: Detected a keyword (keyword: `%s`)!\n", g_keywords[l_token_buffer[l_i].value.keyword]);
-			break;
-		case TOKEN_TYPE_SYMBOL_LITERAL:
-			printf("debug: Detected a symbol (symbol: `%s`)!\n", g_symbols[l_token_buffer[l_i].value.symbol]);
-			break;
-		default:
-			printf("debug: Detected an unknown token (type: `%d`)!\n", l_token_buffer[l_i].token_type);
-			break;
-		}
-	}
+	/*
+	 *	Now that the source code has been scanned, free the buffer storing the
+	 *	file's contents, as we no longer need it.
+	 */
+	free(g_input_file_buffer);
 
-
+	/*
+	 *	Create a buffer for storing the objects that make up the
+	 *	abstract-syntax-tree.
+	 *	This buffer is to be given to the parser, as the parser will output
+	 *	data into this buffer.
+	 */
 	object_t *l_object_buffer = NULL;
 	uintmax_t l_object_buffer_size = 0;
 
-//	int l_parse_status = parser(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
-//	if(l_parse_status != 0)
-//	{
-//		fprintf(stderr, "error: Failed to successfully parse the file completely (error: `%d`)!\n", l_parse_status);
-//		return -1;
-//	}
-//
-//	for(uintmax_t l_i = 0; l_i < l_object_buffer_size; l_i++)
-//	{
-//		printf("debug: Detected an object (error: `%d`)!\n", l_object_buffer[l_i].object_type);
-//	}
+	/* Digest the array of tokens into an abstract-syntax-tree. */
+	int l_parse_status = parser(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
+	if(l_parse_status != 0)
+	{
+		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Parsing the tokens failed!"}, {ESC_BOLD "subject" ESC_RESET, "The parser returned an error code of `%d`."}}, 2, l_parse_status);
+		return -1;
+	}
 
-	if(g_output_file_name != NULL)
-
+	/* If the token buffer is still allocated, then de-allocate it. */
 	if(l_token_buffer != NULL)
 		free(l_token_buffer);
 
+	/* If the object buffer is still allocated, then de-allocate it. */
 	if(l_object_buffer != NULL)
 		free(l_object_buffer);
-
-	free(g_input_file_buffer);
 
 	return 0;
 }
