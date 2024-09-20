@@ -1,6 +1,9 @@
 # C²
 ## Introduction
-The C² language is a low-level programming language based on the C programming language, with the purpose of incorporating higher-level features, such as automated memory management, all while allowing for the use of C-style syntax, and optional low-level & unsafe code.
+The C² programming language is a hybrid programming language which combines the efficiency & control of low-level access while allowing for the simplicity of high-level abstractions.
+## Changes
+The C² language plans for several changes which make it unique from the regular C programming language.
+Our first change consists of the plans for the removal of the `short`, `int`, and `long` keywords, and the renaming of `char` to `byte`. The standard library may then define data types as buffers of the `byte` type. Not only does this simplify the amount of keywords that we store, but this also allows to possibly define & store data types that are larger than what the CPU can handle in one instruction.
 ## Roadmap
 - [x] Is the scanner implemented?
 - [ ] Is the parser implemented?

@@ -129,16 +129,25 @@ typedef struct
 	{
 		union
 		{
-			/* Vague token types. */
-			char character_literal;
-			int integer_literal;
-			float float_literal;
-			char *string_literal;
+			/* Character literal(s). */
+			char character8_literal;
+
+			/* String literal(s). */
+			char *string8_literal;
+
+			/* Identifier. */
 			char *identifier;
+
+			/* Keyword. */
 			keyword_t keyword;
+
+			/* Symbol. */
 			symbol_t symbol;
 
-			/* Discrete token types. */
+			/*
+			 *	Integer types, both signed & unsigned, includes the 8-bit,
+			 *	16-bit, 32-bit, and 64-bit sizes.
+			 */
 			int8_t int8_literal;
 			int16_t int16_literal;
 			int32_t int32_literal;
@@ -147,12 +156,14 @@ typedef struct
 			uint16_t uint16_literal;
 			uint32_t uint32_literal;
 			uint64_t uint64_literal;
+
+			/* Floating-point types, both 32-bit & 64-bit float literals. */
 			float float32_literal;
 			double float64_literal;
 		};
 
 		/* Only applies to string literals & identifiers. */
-		uintmax_t buffer_size;
+		uintmax_t size;
 	} value;
 } token_t;
 

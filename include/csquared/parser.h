@@ -6,9 +6,10 @@
 
 #include <csquared/scanner.h>
 
-typedef enum {PRIMITIVE_TYPE_CHAR, PRIMITIVE_TYPE_INT, PRIMITIVE_TYPE_FLOAT, PRIMITIVE_TYPE_DOUBLE, PRIMITIVE_TYPE_VOID, PRIMITIVE_TYPE_SHORT, PRIMITIVE_TYPE_LONG} primitive_type_t;
+typedef enum {PRIMITIVE_TYPE_CHAR, PRIMITIVE_TYPE_VOID} primitive_type_t;
 typedef enum {TYPE_QUALIFIER_CONST, TYPE_QUALIFIER_VOLATILE, TYPE_QUALIFIER_STATIC, TYPE_QUALIFIER_EXTERN, TYPE_QUALIFIER_INLINE, TYPE_QUALIFIER_REGISTER, TYPE_QUALIFIER_AUTO, TYPE_QUALIFIER_RESTRICT} type_qualifier_t;
-typedef enum {OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_EXPONENT, OPERATOR_MOD} operator_t;
+typedef enum {UNARY_OPERATOR_POSITIVE, UNARY_OPERATOR_NEGATIVE, UNARY_OPERATOR_LOGICAL_NOT, UNARY_OPERATOR_BITWISE_NOT, UNARY_OPERATOR_INCREMENT, UNARY_OPERATOR_DECREMENT, UNARY_OPERATOR_ADDRESS, UNARY_OPERATOR_DEREFERENCE} unary_operator_t;
+typedef enum {BINARY_OPERATOR_ADD, BINARY_OPERATOR_SUBTRACT, BINARY_OPERATOR_MULTIPLY, BINARY_OPERATOR_DIVIDE, BINARY_OPERATOR_EXPONENT, BINARY_OPERATOR_MOD} binary_operator_t;
 
 extern const char *g_primitive_type_buffer[];
 extern const uintmax_t g_primitive_type_buffer_size;
@@ -80,7 +81,7 @@ typedef enum
 	OBJECT_TYPE_EXPRESSION
 } object_type_t;
 
-typedef struct object_t
+typedef struct object
 {
 	/* Store the object's type. */
 	object_type_t object_type;
@@ -89,17 +90,36 @@ typedef struct object_t
 	{
 		struct
 		{
+			/*
+			 *	This union should be identical to the union for storing
+			 *	numerical literals found in the scanner's header file.
+			 */
 			union
 			{
-				intmax_t integer;
-				double floating;
+				
+				/*
+				 *	Integer types, both signed & unsigned, includes the 8-bit,
+				 *	16-bit, 32-bit, and 64-bit sizes.
+				 */
+				int8_t int8_literal;
+				int16_t int16_literal;
+				int32_t int32_literal;
+				int64_t int64_literal;
+				uint8_t uint8_literal;
+				uint16_t uint16_literal;
+				uint32_t uint32_literal;
+				uint64_t uint64_literal;
+
+				/* Floating-point types, both 32-bit & 64-bit float literals. */
+				float float32_literal;
+				double float64_literal;
 			} value;
 		} term;
 		struct
 		{
 			operator_t operator;
-			struct object_t *left_child;
-			struct object_t *right_child;
+			struct object *left_child;
+			struct object *right_child;
 		} expression;
 	};
 } object_t;
