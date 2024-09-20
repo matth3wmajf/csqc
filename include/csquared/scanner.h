@@ -147,8 +147,8 @@ typedef struct
 			uint16_t uint16_literal;
 			uint32_t uint32_literal;
 			uint64_t uint64_literal;
-			float float_literal_32;
-			double float_literal_64;
+			float float32_literal;
+			double float64_literal;
 		};
 
 		/* Only applies to string literals & identifiers. */

@@ -446,10 +446,10 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
 				break;
 			case TOKEN_TYPE_FLOAT32_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal_32 = (float)strtof(l_number_literal, NULL);
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float32_literal = (float)strtof(l_number_literal, NULL);
 				break;
 			case TOKEN_TYPE_FLOAT64_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float_literal_64 = (double)strtod(l_number_literal, NULL);
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float64_literal = (double)strtod(l_number_literal, NULL);
 				break;
 			}
 
