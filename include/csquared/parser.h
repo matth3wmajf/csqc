@@ -17,8 +17,14 @@ extern const uintmax_t g_primitive_type_buffer_size;
 extern const char *g_type_qualifier_buffer[];
 extern const uintmax_t g_type_qualifier_buffer_size;
 
-extern const char *g_operator_buffer[];
-extern const uintmax_t g_operator_buffer_size;
+extern const char *g_unary_operator_buffer[];
+extern const uintmax_t g_unary_operator_buffer_size;
+
+extern const char *g_binary_operator_buffer[];
+extern const uintmax_t g_binary_operator_buffer_size;
+
+extern char **g_typedef_buffer;
+extern uintmax_t g_typedef_buffer_size;
 
 /* Is the keyword token a primitive type? */
 static inline bool is_primitive_type(token_t *keyword)
@@ -44,7 +50,25 @@ static inline bool is_type_qualifier(token_t *keyword)
 			return true;
 		}
 	}
+
+	return false;
 }
+
+/* Is the token a type defined by `typedef`? */
+static inline bool is_typedef(token_t *token)
+{
+	for(int i = 0; i < g_typedef_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_typedef_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 
 /* Is the token an identifier? */
 static inline bool is_identifier(token_t *token)
@@ -115,12 +139,7 @@ typedef struct object
 				double float64_literal;
 			} value;
 		} term;
-		struct
-		{
-			operator_t operator;
-			struct object *left_child;
-			struct object *right_child;
-		} expression;
+		
 	};
 } object_t;
 

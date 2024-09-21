@@ -141,7 +141,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = sizeof(char);
 
 			/* Add the token to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.character_literal = l_character;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.character8_literal = l_character;
 
 			/* Move past the closing quote. */
 			l_i++;
@@ -208,7 +208,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_string_length;
 
 			/* Add the token to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.string_literal = l_string_buffer;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.string8_literal = l_string_buffer;
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_string_length;
 
 			/* Move past the closing quote. */
@@ -319,6 +319,8 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			{
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INT32_LITERAL;
 			}
+
+			
 
 			/*
 			 *	Narrow down the token type based on the suffix.

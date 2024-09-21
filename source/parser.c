@@ -16,11 +16,22 @@ const char *g_unary_operator_buffer[] = {"+", "-", "!", "~", "++", "--", "&", "*
 const uintmax_t g_unary_operator_buffer_size = sizeof(g_unary_operator_buffer) / sizeof(g_unary_operator_buffer[0]);
 
 const char *g_binary_operator_buffer[] = {"+", "-", "*", "/", "^", "%"};
-const uintmax_t g_binary_operator_buffer_size = sizeof(g_operator_buffer) / sizeof(g_operator_buffer[0]);
+const uintmax_t g_binary_operator_buffer_size = sizeof(g_binary_operator_buffer) / sizeof(g_binary_operator_buffer[0]);
+
+char **g_typedef_buffer = NULL;
+uintmax_t g_typedef_buffer_size = 0;
 
 int parser(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size)
 {
-	
+	uintmax_t l_i = 0;
 
-	return -1;
+	while(l_i < *input_token_buffer_size)
+	{
+		/*
+		 *	Can't figure out how to start the work on the parser, I'll find
+		 *	out someday (I hope).
+		 */
+	}
+
+	return 0;
 }
