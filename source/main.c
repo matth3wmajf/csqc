@@ -106,12 +106,6 @@ int main(int argc, const char *argv[])
 	}
 
 	/*
-	 *	Now that the source code has been scanned, free the buffer storing the
-	 *	file's contents, as we no longer need it.
-	 */
-	free(g_input_file_buffer);
-
-	/*
 	 *	Create a buffer for storing the objects that make up the
 	 *	abstract-syntax-tree.
 	 *	This buffer is to be given to the parser, as the parser will output
@@ -135,6 +129,9 @@ int main(int argc, const char *argv[])
 	/* If the object buffer is still allocated, then de-allocate it. */
 	if(l_object_buffer != NULL)
 		free(l_object_buffer);
+
+	/* Free the source code's file's buffer, as we no longer need it. */
+	free(g_input_file_buffer);
 
 	return 0;
 }

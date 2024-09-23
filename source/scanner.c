@@ -40,7 +40,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_KEYWORD;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_PREFIX_KEYWORD;
 
 				/* Add the plaintext version of the token to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_keywords[l_j];
@@ -68,7 +68,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_SYMBOL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_SYMBOL;
 
 				/* Add the plaintext to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_symbols[l_j];
@@ -133,7 +133,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_CHARACTER_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_CHARACTER_LITERAL;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = malloc(sizeof(char));
@@ -201,7 +201,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_STRING_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_STRING_LITERAL;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_string_buffer;
@@ -238,7 +238,7 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_IDENTIFIER;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_IDENTIFIER;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
@@ -313,11 +313,11 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			/* Set the vague token type. */
 			if(l_is_floating_point)
 			{
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT32_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL;
 			}
 			else if(!l_is_floating_point)
 			{
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INT32_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
 			}
 
 			
@@ -334,14 +334,14 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 				if((l_suffix_literal[l_j] == 'f' || l_suffix_literal[l_j] == 'F') && l_is_floating_point)
 				{
 					/* It's a 32-bit float literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_FLOAT;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_FLOAT);
 
 					l_j++;
 				}
 				else if((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && l_is_floating_point)
 				{
 					/* It's a 64-bit long double literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_DOUBLE;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_DOUBLE);
 
 					l_j++;
 				}
@@ -355,8 +355,8 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 					 */
 					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
 
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(TOKEN_SUBTYPE_INT8 | TOKEN_SUBTYPE_INT16 | TOKEN_SUBTYPE_INT32 | TOKEN_SUBTYPE_INT64);
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~((uint8_t)TOKEN_SUBTYPE_INT8 | (uint8_t)TOKEN_SUBTYPE_INT16 | (uint8_t)TOKEN_SUBTYPE_INT32 | (uint8_t)TOKEN_SUBTYPE_INT64);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64);
 
 					l_j += 2;
 				}
@@ -371,12 +371,12 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 					 */
 					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
 
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(TOKEN_SUBTYPE_INT8 | TOKEN_SUBTYPE_INT16 | TOKEN_SUBTYPE_INT32 | TOKEN_SUBTYPE_INT64);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~((uint8_t)TOKEN_SUBTYPE_INT8 | (uint8_t)TOKEN_SUBTYPE_INT16 | (uint8_t)TOKEN_SUBTYPE_INT32 | (uint8_t)TOKEN_SUBTYPE_INT64);
 
 					if(sizeof(long) == 8)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64;
+						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64);
 					else if(sizeof(long) == 4)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT32;
+						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT32);
 
 					l_j++;
 				}
@@ -412,45 +412,45 @@ int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, toke
 			if(l_suffix_length == 0 && l_is_floating_point)
 			{
 				/* It's an unknown floating point literal. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_FLOAT64_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL;
 			}
 			else if(l_suffix_length == 0 && !l_is_floating_point)
 			{
 				/* It's an unknown integer literal. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_INT32_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
 			}
 
 			/* Now, time to set the literal's value based on the precise type. */
-			switch((*output_token_buffer)[(*output_token_buffer_size) - 1].token_type)
+			switch((uint8_t)(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type)
 			{
-			case TOKEN_TYPE_INT8_LITERAL:
+			case (uint8_t)TOKEN_TYPE_INT8_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int8_literal = (int8_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_UINT8_LITERAL:
+			case (uint8_t)TOKEN_TYPE_UINT8_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint8_literal = (uint8_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_INT16_LITERAL:
+			case (uint8_t)TOKEN_TYPE_INT16_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int16_literal = (int16_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_UINT16_LITERAL:
+			case (uint8_t)TOKEN_TYPE_UINT16_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint16_literal = (uint16_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_INT32_LITERAL:
+			case (uint8_t)TOKEN_TYPE_INT32_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int32_literal = (int32_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_UINT32_LITERAL:
+			case (uint8_t)TOKEN_TYPE_UINT32_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint32_literal = (uint32_t)strtol(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_INT64_LITERAL:
+			case (uint8_t)TOKEN_TYPE_INT64_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int64_literal = (int64_t)strtoll(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_UINT64_LITERAL:
+			case (uint8_t)TOKEN_TYPE_UINT64_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
 				break;
-			case TOKEN_TYPE_FLOAT32_LITERAL:
+			case (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float32_literal = (float)strtof(l_number_literal, NULL);
 				break;
-			case TOKEN_TYPE_FLOAT64_LITERAL:
+			case (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL:
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float64_literal = (double)strtod(l_number_literal, NULL);
 				break;
 			}

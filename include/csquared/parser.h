@@ -20,6 +20,12 @@ extern const uintmax_t g_type_qualifier_buffer_size;
 extern const char *g_unary_operator_buffer[];
 extern const uintmax_t g_unary_operator_buffer_size;
 
+extern const char *g_preunary_operator_buffer[];
+extern const uintmax_t g_preunary_operator_buffer_size;
+
+extern const char *g_postunary_operator_buffer[];
+extern const uintmax_t g_postunary_operator_buffer_size;
+
 extern const char *g_binary_operator_buffer[];
 extern const uintmax_t g_binary_operator_buffer_size;
 
@@ -73,7 +79,97 @@ static inline bool is_typedef(token_t *token)
 /* Is the token an identifier? */
 static inline bool is_identifier(token_t *token)
 {
-	return token->token_type == TOKEN_TYPE_PREFIX_IDENTIFIER;
+	return token->token_type == (uint8_t)TOKEN_TYPE_IDENTIFIER_LITERAL;
+}
+
+/*
+ *	Is the token a symbol?
+ *	If so, then return `true`. Otherwise, return `false`.
+ */
+static inline bool is_symbol(token_t *token)
+{
+	return token->token_type == (uint8_t)TOKEN_TYPE_SYMBOL_LITERAL;
+}
+
+/* Is the token part of a unary or binary operator? */
+static inline bool is_operator(token_t *token)
+{
+	for(int i = 0; i < g_unary_operator_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_unary_operator_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	for(int i = 0; i < g_binary_operator_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_binary_operator_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static inline bool is_possible_preunary_operator(token_t *token)
+{
+	for(int i = 0; i < g_preunary_operator_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_preunary_operator_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static inline bool is_possible_postunary_operator(token_t *token)
+{
+	for(int i = 0; i < g_postunary_operator_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_postunary_operator_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static inline bool is_possible_unary_operator(token_t *token)
+{
+	return is_possible_preunary_operator(token) || is_possible_postunary_operator(token);
+}
+
+static inline bool is_possible_binary_operator(token_t *token)
+{
+	for(int i = 0; i < g_binary_operator_buffer_size; i++)
+	{
+		if(strncmp(token->plaintext_buffer, g_binary_operator_buffer[i], token->plaintext_buffer_size) == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static inline bool is_integer_literal(token_t *token)
+{
+	return (token->token_type & 0xF0) == (uint8_t)TOKEN_PREFIX_INTEGER_LITERAL;
+}
+
+static inline bool is_float_literal(token_t *token)
+{
+	return (token->token_type & 0xF0) == (uint8_t)TOKEN_PREFIX_FLOAT_LITERAL;
+}
+
+static inline bool is_possible_term(token_t *token)
+{
+	return is_identifier(token) || is_integer_literal(token) || is_float_literal(token);
 }
 
 /*
@@ -83,35 +179,36 @@ static inline bool is_identifier(token_t *token)
  */
 static inline bool is_number(token_t* token)
 {
-	return token->token_type == TOKEN_TYPE_INT32_LITERAL || token->token_type == TOKEN_TYPE_UINT32_LITERAL || token->token_type == TOKEN_TYPE_INT64_LITERAL || token->token_type == TOKEN_TYPE_UINT64_LITERAL || token->token_type == TOKEN_TYPE_FLOAT32_LITERAL || token->token_type == TOKEN_TYPE_FLOAT64_LITERAL;
-}
-
-/*
- *	Is the token part of a mathematical expression?
- *	Although it's true that things such as functions & function declarations
- *	contain parenthesis, this will not be considered by the parser.
- */
-static bool is_expression_token(token_t *token)
-{
-	return is_number(token) || (token->token_type == TOKEN_TYPE_PREFIX_SYMBOL && (token->value.symbol == ADD || token->value.symbol == SUB || token->value.symbol == MUL || token->value.symbol == DIV || token->value.symbol == OPEN_PAREN || token->value.symbol == CLOSE_PAREN));
+	return is_integer_literal(token) || is_float_literal(token);
 }
 
 typedef enum
 {
-	OBJECT_TYPE_NONE,
-	OBJECT_TYPE_OPERATOR,
-	OBJECT_TYPE_CONSTANT,
-	OBJECT_TYPE_TERM,
-	OBJECT_TYPE_EXPRESSION
+	/*
+	 *	The vague object types.
+	 *	For constants, we simply join the constant prefix, and the token type
+	 *	together.
+	 *	Unlike `token_type_t`, which is 8-bits, `object_type_t` is 16-bits.
+	 */
+	OBJECT_TYPE_PREFIX_CONSTANT = (0b0001 << 4),
+	OBJECT_TYPE_PREFIX_EXPRESSION = (0b0010 << 4)
 } object_type_t;
 
 typedef struct object
 {
-	/* Store the object's type. */
-	object_type_t object_type;
+	/*
+	 *	Store the object's type.
+	 *	Unlike `token_type_t`, which is 8-bits, `object_type_t` is meant to be
+	 *	16-bits, and therefore we set it's bit size to 16 here using bitfields.
+	 */
+	object_type_t object_type : 16;
 
 	union
 	{
+		/*
+		 *	Constants can be either literals, or identifiers of constants. But
+		 *	for now, we only support literals.
+		 */
 		struct
 		{
 			/*
@@ -138,8 +235,13 @@ typedef struct object
 				float float32_literal;
 				double float64_literal;
 			} value;
-		} term;
+		} constant;
 		
+		/* Expressions consist of identifiers of variables, or expressions. */
+		struct
+		{
+			
+		} expression;
 	};
 } object_t;
 
