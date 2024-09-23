@@ -1,3 +1,0 @@
-C:/Users/matthewmajf/Documents/csquared/CMakeFiles/csquared.dir
-C:/Users/matthewmajf/Documents/csquared/CMakeFiles/ALL_BUILD.dir
-C:/Users/matthewmajf/Documents/csquared/CMakeFiles/ZERO_CHECK.dir
