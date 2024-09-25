@@ -98,7 +98,7 @@ int main(int argc, const char *argv[])
 	 *	sort of error, and must therefore log an error & exit the program.
 	 *	You'll commonly see this approach to error handling here.
 	 */
-	int l_scan_status = scanner(g_input_file_buffer, &g_input_file_size, &l_token_buffer, &l_token_buffer_size);
+	int l_scan_status = scanner_main(g_input_file_buffer, &g_input_file_size, &l_token_buffer, &l_token_buffer_size);
 	if(l_scan_status != 0)
 	{
 		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Scanning the source code's file failed!"}, {ESC_BOLD "subject" ESC_RESET, "The scanner returned an error code of `%d`."}}, 2, l_scan_status);
@@ -115,7 +115,7 @@ int main(int argc, const char *argv[])
 	uintmax_t l_object_buffer_size = 0;
 
 	/* Digest the array of tokens into an abstract-syntax-tree. */
-	int l_parse_status = parser(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
+	int l_parse_status = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
 	if(l_parse_status != 0)
 	{
 		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Parsing the tokens failed!"}, {ESC_BOLD "subject" ESC_RESET, "The parser returned an error code of `%d`."}}, 2, l_parse_status);

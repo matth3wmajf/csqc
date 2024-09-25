@@ -15,7 +15,7 @@ const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue"
 const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", "."};
 
 /* Analyze the inputted source code, and output an array of tokens. */
-int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
+int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
 {
 	uintmax_t l_i = 0;
 

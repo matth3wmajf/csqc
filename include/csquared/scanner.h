@@ -172,4 +172,4 @@ typedef struct
 	} value;
 } token_t;
 
-int scanner(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size);
+int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size);
