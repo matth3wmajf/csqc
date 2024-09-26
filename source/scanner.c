@@ -12,7 +12,7 @@
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
 const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "register", "return", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
-const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", "."};
+const char *g_symbols[] = {"==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%"};
 
 /* Analyze the inputted source code, and output an array of tokens. */
 int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
@@ -40,7 +40,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_PREFIX_KEYWORD;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_KEYWORD_LITERAL;
 
 				/* Add the plaintext version of the token to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_keywords[l_j];
@@ -68,7 +68,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_SYMBOL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_SYMBOL_LITERAL;
 
 				/* Add the plaintext to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_symbols[l_j];
@@ -133,7 +133,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_CHARACTER_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_CHARACTER8_LITERAL;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = malloc(sizeof(char));
@@ -201,7 +201,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_STRING_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_STRING8_LITERAL;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_string_buffer;
@@ -238,7 +238,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_PREFIX_IDENTIFIER;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_IDENTIFIER_LITERAL;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
@@ -334,14 +334,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				if((l_suffix_literal[l_j] == 'f' || l_suffix_literal[l_j] == 'F') && l_is_floating_point)
 				{
 					/* It's a 32-bit float literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_FLOAT);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_FLOAT & 0x0F);
 
 					l_j++;
 				}
 				else if((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && l_is_floating_point)
 				{
 					/* It's a 64-bit long double literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL | TOKEN_SUBTYPE_DOUBLE);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_DOUBLE & 0x0F);
 
 					l_j++;
 				}
@@ -353,10 +353,9 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 *	We must also preserve it's signedness, just like
 					 *	the long literal's handling above has done so.
 					 */
-					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
+					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b00001000;
 
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~((uint8_t)TOKEN_SUBTYPE_INT8 | (uint8_t)TOKEN_SUBTYPE_INT16 | (uint8_t)TOKEN_SUBTYPE_INT32 | (uint8_t)TOKEN_SUBTYPE_INT64);
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64);
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4); 
 
 					l_j += 2;
 				}
@@ -371,15 +370,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 */
 					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
 
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~((uint8_t)TOKEN_SUBTYPE_INT8 | (uint8_t)TOKEN_SUBTYPE_INT16 | (uint8_t)TOKEN_SUBTYPE_INT32 | (uint8_t)TOKEN_SUBTYPE_INT64);
-
 					if(sizeof(long) == 8)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT64);
+						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4);
 					else if(sizeof(long) == 4)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_INTEGER_LITERAL | l_existing_signedness | TOKEN_SUBTYPE_INT32);
+						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT32 << 4);
 
 					l_j++;
 				}
+				
 				else if((l_suffix_literal[l_j] == 'u' || l_suffix_literal[l_j] == 'U') && !l_is_floating_point)
 				{
 					/*
@@ -387,16 +385,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 *  Therefore, only change it's signedness attribute, but
 					 *  nothing else.
 					 */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~TOKEN_SUBTYPE_SIGNED;
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= TOKEN_SUBTYPE_UNSIGNED;
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= (1 << 4);
 
 					l_j++;
 				}
 				else if ((l_suffix_literal[l_j] == 's' || l_suffix_literal[l_j] == 'S') && !l_is_floating_point)
 				{
-					/* Same goes for this. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~TOKEN_SUBTYPE_UNSIGNED;
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= TOKEN_SUBTYPE_SIGNED;
+					/* Same goes to this... */
+					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(1 << 4);
 
 					l_j++;
 				}
