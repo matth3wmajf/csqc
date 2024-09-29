@@ -159,14 +159,14 @@ int main(int argc, const char *argv[])
 	for(uintmax_t i = 0; i < l_token_buffer_size; i++)
 	{
 		/* Increase the size of the buffer of log entries by one. */
-		l_log_entry_buffer_size++;
+		l_log_entry_buffer_size += 1;
 		l_log_entry_buffer = realloc(l_log_entry_buffer, l_log_entry_buffer_size * sizeof(log_entry_t));
 
-		/* Define formatted*/
+		/* The buffer to store the formatted string. */
 		char *l_formatted_buffer = NULL;
 		uintmax_t l_formatted_buffer_size = 0;
 
-		switch (l_token_buffer[i].token_type)
+		switch((uint8_t)l_token_buffer[i].token_type)
 		{
 		case TOKEN_TYPE_INT8_LITERAL:
 			l_formatted_buffer_size = snprintf(NULL, 0, "%d", l_token_buffer[i].value.int8_literal) + 1;
@@ -245,7 +245,7 @@ int main(int argc, const char *argv[])
 			break;
 		}
 
-		l_log_entry_buffer[l_log_entry_buffer_size - 1].key = ESC_BOLD "token" ESC_RESET;
+		l_log_entry_buffer[l_log_entry_buffer_size - 1].key = ESC_BOLD "value" ESC_RESET;
 		l_log_entry_buffer[l_log_entry_buffer_size - 1].value = l_formatted_buffer;
 	}
 

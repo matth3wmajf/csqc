@@ -6,11 +6,6 @@
 
 #include <csquared/scanner.h>
 
-typedef enum {PRIMITIVE_TYPE_CHAR, PRIMITIVE_TYPE_VOID} primitive_type_t;
-typedef enum {TYPE_QUALIFIER_CONST, TYPE_QUALIFIER_VOLATILE, TYPE_QUALIFIER_STATIC, TYPE_QUALIFIER_EXTERN, TYPE_QUALIFIER_INLINE, TYPE_QUALIFIER_REGISTER, TYPE_QUALIFIER_AUTO, TYPE_QUALIFIER_RESTRICT} type_qualifier_t;
-typedef enum {UNARY_OPERATOR_POSITIVE, UNARY_OPERATOR_NEGATIVE, UNARY_OPERATOR_LOGICAL_NOT, UNARY_OPERATOR_BITWISE_NOT, UNARY_OPERATOR_INCREMENT, UNARY_OPERATOR_DECREMENT, UNARY_OPERATOR_ADDRESS, UNARY_OPERATOR_DEREFERENCE} unary_operator_t;
-typedef enum {BINARY_OPERATOR_ADD, BINARY_OPERATOR_SUBTRACT, BINARY_OPERATOR_MULTIPLY, BINARY_OPERATOR_DIVIDE, BINARY_OPERATOR_EXPONENT, BINARY_OPERATOR_MOD} binary_operator_t;
-
 extern const char *g_primitive_type_buffer[];
 extern const uintmax_t g_primitive_type_buffer_size;
 
@@ -22,6 +17,18 @@ extern const uintmax_t g_unary_operator_buffer_size;
 
 extern const char *g_preunary_operator_buffer[];
 extern const uintmax_t g_preunary_operator_buffer_size;
+
+extern const char *g_parenthesis_buffer[];
+extern const uintmax_t g_parenthesis_buffer_size;
+
+extern const char *g_braces_buffer[];
+extern const uintmax_t g_braces_buffer_size;
+
+extern const char *g_brackets_buffer[];
+extern const uintmax_t g_brackets_buffer_size;
+
+extern const char *g_semicolon_buffer[];
+extern const uintmax_t g_semicolon_buffer_size;
 
 extern const char *g_postunary_operator_buffer[];
 extern const uintmax_t g_postunary_operator_buffer_size;
@@ -181,6 +188,30 @@ static inline bool is_number(token_t* token)
 {
 	return is_integer_literal(token) || is_float_literal(token);
 }
+
+/* The type of phase of processing the parser is currently in. */
+typedef enum
+{
+	PHASE_TYPE_CONSTANT_EXPRESSION,
+	PHASE_TYPE_CONDITIONAL_EXPRESSION,
+	PHASE_TYPE_LOGICAL_OR_EXPRESSION,
+	PHASE_TYPE_LOGICAL_AND_EXPRESSION,
+	PHASE_TYPE_INCLUSIVE_OR_EXPRESSION,
+	PHASE_TYPE_EXCLUSIVE_OR_EXPRESSION,
+	PHASE_TYPE_AND_EXPRESSION,
+	PHASE_TYPE_EQUALITY_EXPRESSION,
+	PHASE_TYPE_RELATIONAL_EXPRESSION,
+	PHASE_TYPE_SHIFT_EXPRESSION,
+	PHASE_TYPE_ADDITIVE_EXPRESSION,
+	PHASE_TYPE_MULTIPLICATIVE_EXPRESSION,
+	PHASE_TYPE_CAST_EXPRESSION,
+	PHASE_TYPE_UNARY_EXPRESSION,
+	PHASE_TYPE_POSTFIX_EXPRESSION,
+	PHASE_TYPE_PRIMARY_EXPRESSION,
+	PHASE_TYPE_EXPRESSION,
+	PHASE_TYPE_ASSIGNMENT_EXPRESSION,
+	PHASE_TYPE_ERROR
+} phase_type_t;
 
 typedef enum
 {
