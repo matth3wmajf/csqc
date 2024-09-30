@@ -52,6 +52,10 @@ The logic for our variant of Backus-Naur form is as follows:
 ```bnf
 <string-literal> ::= "\"" <character>* "\""
 ```
+## Type names
+```bnf
+<type-name> ::= specifier-qualifier+ abstract-declarator?
+```
 ## Expressions
 ```bnf
 <constant-expression> ::= <conditional-expression>

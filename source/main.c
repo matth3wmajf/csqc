@@ -22,41 +22,6 @@ FILE *g_output_file_handle = NULL;
 intmax_t g_output_file_size = -1;
 char *g_output_file_buffer = NULL;
 
-void print_object(object_t *object) {
-    switch (object->object_type) {
-        case OBJECT_PREFIX_CST:
-            printf("Constant: ");
-            switch (object->object_type & 0xFF) {
-                // Add cases for all integer and float types
-                case TOKEN_TYPE_INT8_LITERAL: printf("%d\n", object->constant.value.int8_literal); break;
-                case TOKEN_TYPE_INT16_LITERAL: printf("%d\n", object->constant.value.int16_literal); break;
-                case TOKEN_TYPE_INT32_LITERAL: printf("%d\n", object->constant.value.int32_literal); break;
-                case TOKEN_TYPE_INT64_LITERAL: printf("%lld\n", object->constant.value.int64_literal); break;
-                // ... Cases for other integer types ...
-                case TOKEN_TYPE_FLOAT32_LITERAL: printf("%f\n", object->constant.value.float32_literal); break;
-                case TOKEN_TYPE_FLOAT64_LITERAL: printf("%lf\n", object->constant.value.float64_literal); break;
-                // ... Cases for other float types ...
-            }
-            break;
-        case OBJECT_PREFIX_EXP | OBJECT_SUBTYPE_BINARY_ADD:
-            printf("Addition Expression: ");
-            print_object(&object->expression.operand_buffer[0]);
-            printf(" + ");
-            print_object(&object->expression.operand_buffer[1]);
-            printf("\n");
-            break;
-        // ... Cases for other expression types ...
-        default:
-            printf("Unknown object type\n");
-    }
-}
-
-void print_objects(object_t *object_buffer, uintmax_t object_buffer_size) {
-    for (uintmax_t i = 0; i < object_buffer_size; i++) {
-        print_object(&object_buffer[i]);
-    }
-}
-
 int main(int argc, const char *argv[])
 {
 	/* Loop for every command-line argument. */
