@@ -37,26 +37,30 @@ The logic for our variant of Backus-Naur form is as follows:
 <float-literal> ::= <digit>+ "." <digit>+ ("f" | "F" | "l" | "L")*
 <numeric-literal> ::= <integer-literal> | <float-literal>
 ```
-## Primitive types & type qualifiers
-```bnf
-<primitive-type> ::= "void" | "byte"
-<type-qualifier> ::= "const" | "volatile" | "static" | "extern" | "inline" | "register" | "auto" | "restrict" | "signed" | "unsigned"
-```
-## Identifiers
+### Identifiers
 ```bnf
 <letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_"
 <letter-or-digit> ::= <letter> | <digit>
 <identifier> ::= <letter> <letter-or-digit>*
 ```
-## String literals
+### String literals
 ```bnf
 <string-literal> ::= "\"" <character>* "\""
 ```
-## Type names
+### Types
 ```bnf
-<type-name> ::= specifier-qualifier+ abstract-declarator?
+<type-name> ::= <specifier-qualifier>+ <abstract-declarator>?
+<specifier-qualifier> ::= <type-specifier> | <type-qualifier>
+<type-specifier> ::= "void" | "byte" | "signed" | "unsigned" | <struct-or-union-specifier> | <enum-specifier> | <typedef-name>
+<abstract-declarator> ::= <pointer> | <pointer> <direct-abstract-declarator> | <direct-abstract-declarator>
+<direct-abstract-declarator> ::= "(" <abstract-declarator> ")" | <direct-abstract-declarator>? "[" <constant-expression>? "]" | <direct-abstract-declarator>? "(" <parameter-type-list>? ")"
+<enum-specifier> ::= "enum" <identifier> "{" <enumerator-list> "}" | "enum" "{" <enumerator-list> "}" | "enum" <identifier>
+<struct-or-union-specifier> ::= <struct-or-union> <identifier> "{" <struct-declaration>+ "}" | <struct-or-union> "{" <struct-declaration>+ "}" | <struct-or-union> <identifier>
+<struct-or-union> ::= "struct" | "union"
+<struct-declaration> ::= <specifier-qualifier>* <struct-declarator-list>
+<type-qualifier> ::= "const" | "volatile"
 ```
-## Expressions
+### Expressions
 ```bnf
 <constant-expression> ::= <conditional-expression>
 <conditional-expression> ::= <logical-or-expression> | <logical-or-expression> "?" <expression> ":" <conditional-expression>

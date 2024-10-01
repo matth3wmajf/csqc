@@ -6,11 +6,14 @@
 
 #include <csquared/scanner.h>
 
-extern const char *g_primitive_type_buffer[];
-extern const uintmax_t g_primitive_type_buffer_size;
-
 extern const char *g_type_qualifier_buffer[];
 extern const uintmax_t g_type_qualifier_buffer_size;
+
+extern const char *g_struct_or_union_buffer[];
+extern const uintmax_t g_struct_or_union_buffer_size;
+
+extern const char *g_type_specifier_buffer[];
+extern const uintmax_t g_type_specifier_buffer_size;
 
 extern const char *g_unary_operator_buffer[];
 extern const uintmax_t g_unary_operator_buffer_size;
@@ -39,34 +42,6 @@ extern const uintmax_t g_binary_operator_buffer_size;
 extern char **g_typedef_buffer;
 extern uintmax_t g_typedef_buffer_size;
 
-/* Is the keyword token a primitive type? */
-static inline bool is_primitive_type(token_t *keyword)
-{
-	for(int i = 0; i < g_primitive_type_buffer_size; i++)
-	{
-		if(strncmp(keyword->plaintext_buffer, g_primitive_type_buffer[i], keyword->plaintext_buffer_size) == 0)
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-/* Is the keyword token a type qualifier? */
-static inline bool is_type_qualifier(token_t *keyword)
-{
-	for(int i = 0; i < g_type_qualifier_buffer_size; i++)
-	{
-		if(strncmp(keyword->plaintext_buffer, g_type_qualifier_buffer[i], keyword->plaintext_buffer_size) == 0)
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
 /* Is the token a type defined by `typedef`? */
 static inline bool is_typedef(token_t *token)
 {
@@ -80,8 +55,6 @@ static inline bool is_typedef(token_t *token)
 
 	return false;
 }
-
-
 
 /* Is the token an identifier? */
 static inline bool is_identifier(token_t *token)
