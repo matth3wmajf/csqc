@@ -48,7 +48,67 @@ const uintmax_t g_assignment_operator_buffer_size = sizeof(g_assignment_operator
 char **g_typedef_buffer = NULL;
 uintmax_t g_typedef_buffer_size = 0;
 
-int parser_parse_ellipsis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+/* Function prototypes for handling symbols. */
+
+int parser_parse_symbol(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_ellipsis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_not_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_less_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_greater_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_logical_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_logical_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_left_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_right_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_add(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_subtract(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_multiply(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_divide(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_assign(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_less_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_greater_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_logical_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_bitwise_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_bitwise_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_bitwise_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_open_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_close_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_open_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_close_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_open_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_close_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_semicolon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_comma(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_period(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_modulus(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_conditional(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_symbol_colon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+
+/* Function prototypes for handling keywords. */
+
+int parser_parse_keyword(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+
+/* Functions for handling symbols. */
+
+int parser_parse_symbol(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL)
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_symbol_ellipsis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -66,7 +126,7 @@ int parser_parse_ellipsis(token_t *input_token_buffer, uintmax_t *input_token_bu
 	return 0;
 }
 
-int parser_parse_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -84,7 +144,7 @@ int parser_parse_equal_to(token_t *input_token_buffer, uintmax_t *input_token_bu
 	return 0;
 }
 
-int parser_parse_not_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_not_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -102,7 +162,7 @@ int parser_parse_not_equal_to(token_t *input_token_buffer, uintmax_t *input_toke
 	return 0;
 }
 
-int parser_parse_less_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_less_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -120,7 +180,7 @@ int parser_parse_less_than_or_equal_to(token_t *input_token_buffer, uintmax_t *i
 	return 0;
 }
 
-int parser_parse_greater_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_greater_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -138,7 +198,7 @@ int parser_parse_greater_than_or_equal_to(token_t *input_token_buffer, uintmax_t
 	return 0;
 }
 
-int parser_parse_logical_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_logical_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -156,7 +216,7 @@ int parser_parse_logical_and(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_logical_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_logical_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -174,7 +234,7 @@ int parser_parse_logical_or(token_t *input_token_buffer, uintmax_t *input_token_
 	return 0;
 }
 
-int parser_parse_left_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_left_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -192,7 +252,7 @@ int parser_parse_left_shift(token_t *input_token_buffer, uintmax_t *input_token_
 	return 0;
 }
 
-int parser_parse_right_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_right_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -210,7 +270,7 @@ int parser_parse_right_shift(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_add(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_add(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -228,7 +288,7 @@ int parser_parse_add(token_t *input_token_buffer, uintmax_t *input_token_buffer_
 	return 0;
 }
 
-int parser_parse_subtract(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_subtract(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -246,7 +306,7 @@ int parser_parse_subtract(token_t *input_token_buffer, uintmax_t *input_token_bu
 	return 0;
 }
 
-int parser_parse_multiply(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_multiply(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -264,7 +324,7 @@ int parser_parse_multiply(token_t *input_token_buffer, uintmax_t *input_token_bu
 	return 0;
 }
 
-int parser_parse_divide(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_divide(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -282,7 +342,7 @@ int parser_parse_divide(token_t *input_token_buffer, uintmax_t *input_token_buff
 	return 0;
 }
 
-int parser_parse_assign(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_assign(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -300,7 +360,7 @@ int parser_parse_assign(token_t *input_token_buffer, uintmax_t *input_token_buff
 	return 0;
 }
 
-int parser_parse_less_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_less_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -318,7 +378,7 @@ int parser_parse_less_than(token_t *input_token_buffer, uintmax_t *input_token_b
 	return 0;
 }
 
-int parser_parse_greater_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_greater_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -336,7 +396,7 @@ int parser_parse_greater_than(token_t *input_token_buffer, uintmax_t *input_toke
 	return 0;
 }
 
-int parser_parse_logical_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_logical_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -354,7 +414,7 @@ int parser_parse_logical_not(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_bitwise_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_bitwise_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -372,7 +432,7 @@ int parser_parse_bitwise_and(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_bitwise_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_bitwise_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -390,7 +450,7 @@ int parser_parse_bitwise_or(token_t *input_token_buffer, uintmax_t *input_token_
 	return 0;
 }
 
-int parser_parse_bitwise_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_bitwise_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -408,7 +468,7 @@ int parser_parse_bitwise_not(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_open_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_open_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -426,7 +486,7 @@ int parser_parse_open_parenthesis(token_t *input_token_buffer, uintmax_t *input_
 	return 0;
 }
 
-int parser_parse_close_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_close_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -444,7 +504,7 @@ int parser_parse_close_parenthesis(token_t *input_token_buffer, uintmax_t *input
 	return 0;
 }
 
-int parser_parse_open_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_open_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -462,7 +522,7 @@ int parser_parse_open_brace(token_t *input_token_buffer, uintmax_t *input_token_
 	return 0;
 }
 
-int parser_parse_close_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_close_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -480,7 +540,7 @@ int parser_parse_close_brace(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_open_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_open_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -498,7 +558,7 @@ int parser_parse_open_bracket(token_t *input_token_buffer, uintmax_t *input_toke
 	return 0;
 }
 
-int parser_parse_close_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_close_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -516,7 +576,7 @@ int parser_parse_close_bracket(token_t *input_token_buffer, uintmax_t *input_tok
 	return 0;
 }
 
-int parser_parse_semicolon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_semicolon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -534,7 +594,7 @@ int parser_parse_semicolon(token_t *input_token_buffer, uintmax_t *input_token_b
 	return 0;
 }
 
-int parser_parse_comma(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_comma(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -552,7 +612,7 @@ int parser_parse_comma(token_t *input_token_buffer, uintmax_t *input_token_buffe
 	return 0;
 }
 
-int parser_parse_period(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_period(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -570,7 +630,7 @@ int parser_parse_period(token_t *input_token_buffer, uintmax_t *input_token_buff
 	return 0;
 }
 
-int parser_parse_modulus(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_modulus(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -588,7 +648,7 @@ int parser_parse_modulus(token_t *input_token_buffer, uintmax_t *input_token_buf
 	return 0;
 }
 
-int parser_parse_conditional(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_conditional(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
@@ -606,11 +666,30 @@ int parser_parse_conditional(token_t *input_token_buffer, uintmax_t *input_token
 	return 0;
 }
 
-int parser_parse_colon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_symbol_colon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
 	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_COLON))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+/* Functions for handling keywords. */
+int parser_parse_keyword(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_KEYWORD_LITERAL)
 	{
 		l_index++;
 	}
