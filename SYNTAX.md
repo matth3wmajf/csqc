@@ -47,6 +47,25 @@ The logic for our variant of Backus-Naur form is as follows:
 ```bnf
 <string-literal> ::= "\"" <character>* "\""
 ```
+### Pointers
+```bnf
+<pointer> ::= "*" <type-qualifier>* <pointer>?
+```
+### Declarations
+```bnf
+<struct-declaration> ::= <specifier-qualifier>* <struct-declarator-list>
+<struct-declarator-list> ::= <struct-declarator> | <struct-declarator-list> "," <struct-declarator>
+<struct-declarator> ::= <declarator> | <declarator> ":" <constant-expression> | ":" <constant-expression>
+<declarator> ::= <pointer>? <direct-declarator>
+<direct-declarator> ::= <identifier> | "(" <declarator> ")" | <direct-declarator> "[" <constant-expression>? "]" | <direct-declarator> "(" <parameter-type-list> ")" | <direct-declarator> "(" <identifier>* ")"
+<declaration-specifier> ::= <storage-class-specifier> | <type-specifier> | <type-qualifier>
+```
+### Parameters
+```bnf
+<parameter-type-list> ::= <parameter-list> | <parameter-list> "," "..."
+<parameter-list> ::= <parameter-declaration> | <parameter-list> "," <parameter-declaration>
+<parameter-declaration> ::= <declaration-specifier>+ <declarator> | <declaration-specifier>+ <abstract-declarator> | <declaration-specifier>+
+```
 ### Types
 ```bnf
 <type-name> ::= <specifier-qualifier>+ <abstract-declarator>?
@@ -57,7 +76,6 @@ The logic for our variant of Backus-Naur form is as follows:
 <enum-specifier> ::= "enum" <identifier> "{" <enumerator-list> "}" | "enum" "{" <enumerator-list> "}" | "enum" <identifier>
 <struct-or-union-specifier> ::= <struct-or-union> <identifier> "{" <struct-declaration>+ "}" | <struct-or-union> "{" <struct-declaration>+ "}" | <struct-or-union> <identifier>
 <struct-or-union> ::= "struct" | "union"
-<struct-declaration> ::= <specifier-qualifier>* <struct-declarator-list>
 <type-qualifier> ::= "const" | "volatile"
 ```
 ### Expressions

@@ -242,8 +242,6 @@ int main(int argc, const char *argv[])
 		return -1;
 	}
 
-	print_objects(l_object_buffer, l_object_buffer_size);
-
 	/* If the token buffer is still allocated, then de-allocate it. */
 	if(l_token_buffer != NULL)
 		free(l_token_buffer);

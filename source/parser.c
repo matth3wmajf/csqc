@@ -48,171 +48,11 @@ const uintmax_t g_assignment_operator_buffer_size = sizeof(g_assignment_operator
 char **g_typedef_buffer = NULL;
 uintmax_t g_typedef_buffer_size = 0;
 
-int parser_parse_constant_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_conditional_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_logical_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_logical_and_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_inclusive_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_exclusive_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_and_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_equality_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_relational_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_shift_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_additive_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_multiplicative_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_cast_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_unary_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_postfix_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_primary_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_assignment_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_type_name(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_type_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_abstract_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_direct_abstract_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_enum_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_struct_or_union_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_struct_or_union(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_type_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-int parser_parse_identifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
-
-int parser_parse_constant_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_ellipsis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *	As the syntax below suggests, this function just links directly to the
-	 *	`conditional-expression` parser...
-	 *	<constant-expression> ::= <conditional-expression>
-	 */
-
 	uintmax_t l_index = *index;
 
-	int l_result0 = parser_parse_conditional_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result0 < 0)
-	{
-		/* Expected a `conditional-expression`! */
-		return -1;
-	}
-
-	/* ... */
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_conditional_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	As the syntax below suggests, this function will check if we're
-	 *	working with a logical or expression, or a logical or expression, but
-	 *	with a "?", an expression, a ":", and a conditional expression
-	 *	following it...
-	 *	<conditional-expression> ::= <logical-or-expression>
-	 *                             | <logical-or-expression> "?" <expression> ":" <conditional-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_logical_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_QUESTION_MARK))
-	{
-		l_index++;
-	}
-	else
-	{
-		*index = l_index;
-
-		/*
-		 *	Looks like the next token disqualifies us from us applying for the
-		 *	second possibility in the BNF rule, so we just return as success
-		 *	here, since our first possibility passed anyways.
-		 */
-		return 0;
-	}
-
-	int l_result1 = parser_parse_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		/*
-		 *	Looks like we were taking our route to the second possibility, but
-		 *	it turns out that we were lied to...
-		 */
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_COLON))
-	{
-		l_index++;
-	}
-	else
-	{
-		/* Expected a colon, but instead got something else... */
-		return -1;
-	}
-
-	int l_result2 = parser_parse_conditional_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		/*
-		 *	Looks like we were taking our route to the second possibility, but
-		 *	it turns out that we were lied to...
-		 */
-		return -1;
-	}
-
-	/*
-	 *	If the parsing was successful, then set the official index counter to
-	 *	the value of the bottom-most index value.
-	 */
-	*index = l_index;
-
-	/* Passed all checks for the second possibility, return success. */
-	return 0;
-}
-
-int parser_parse_logical_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	As the syntax below suggests, this function will check if we're
-	 *	working with a `logical and expression`, or a `logical-or-expression`
-	 *	followed by "||" and a `logical-and-expression`...
-	 *	<logical-or-expression> ::= <logical-and-expression>
-	 *	                          | <logical-or-expression> "||" <logical-and-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	/* Check for a `logical-and-expression`, and if it's there, then exit as successful. */
-	int l_result0 = parser_parse_logical_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	/*
-	 *	Check for a `logical-or-expression`, and if it's there, continue.
-	 */
-	int l_result2 = parser_parse_logical_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-	
-	/*
-	 *	Check for a `||`, and if so, consume the token.
-	 *	If it's not there, then it's not correctly following the second option
-	 *	of the rule, and therefore we must exit with an error.
-	 */
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LOGICAL_OR))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_ELLIPSIS))
 	{
 		l_index++;
 	}
@@ -221,47 +61,86 @@ int parser_parse_logical_or_expression(token_t *input_token_buffer, uintmax_t *i
 		return -1;
 	}
 
-	/*
-	 *	Check for a `logical-and-expression`, and if it's there, then
-	 *	continue & exit.
-	 */
-	int l_result3 = parser_parse_logical_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result3 < 0)
-	{
-		return -1;
-	}
-
-	/* ... */
 	*index = l_index;
 
 	return 0;
 }
 
-int parser_parse_logical_and_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *	As the syntax below suggests, this function will check if we're
-	 *	working with an `exclusive-or-expression`, or a `logical-and-
-	 *	expression` followed by `&&` and an `exclusive-or-expression`...
-	 *	<logical-and-expression> ::= <inclusive-or-expression>
-	 *	                           | <logical-and-expression> "&&" <inclusive-or-expression>
-	 */
-	
 	uintmax_t l_index = *index;
-	
-	int l_result0 = parser_parse_inclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_EQUAL_TO))
 	{
-		*index = l_index;
-
-		return 0;
+		l_index++;
 	}
-
-	int l_result1 = parser_parse_logical_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
+	else
 	{
 		return -1;
 	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_not_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_NOT_EQUAL_TO))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_less_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LESS_THAN_OR_EQUAL_TO))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_greater_than_or_equal_to(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_GREATER_THAN_OR_EQUAL_TO))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_logical_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
 
 	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LOGICAL_AND))
 	{
@@ -272,44 +151,16 @@ int parser_parse_logical_and_expression(token_t *input_token_buffer, uintmax_t *
 		return -1;
 	}
 
-	int l_result2 = parser_parse_inclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
 	*index = l_index;
 
 	return 0;
 }
 
-int parser_parse_inclusive_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_logical_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *  As the syntax below suggests, this function will check if we're
-	 *  working with an `exclusive-or-expression`, or an `inclusive-or-
-	 *  expression` followed by "|" and an `exclusive-or-expression`...
-	 *  <inclusive-or-expression> ::= <exclusive-or-expression>
-	 *                              | <inclusive-or-expression> "|" <exclusive-or-expression>
-	 */
-
 	uintmax_t l_index = *index;
 
-	int l_result0 = parser_parse_exclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_inclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_BITWISE_OR))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LOGICAL_OR))
 	{
 		l_index++;
 	}
@@ -318,44 +169,16 @@ int parser_parse_inclusive_or_expression(token_t *input_token_buffer, uintmax_t 
 		return -1;
 	}
 
-	int l_result2 = parser_parse_inclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
 	*index = l_index;
 
 	return 0;
 }
 
-int parser_parse_exclusive_or_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_left_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *  As the syntax below suggests, this function will check if we're
-	 *  working with an `and-expression`, or an `exclusive-or-expression`
-	 *  followed by "^" and an `and-expression`...
-	 *  <exclusive-or-expression> ::= <and-expression>
-	 *                              | <exclusive-or-expression> "^" <and-expression>
-	 */
-
 	uintmax_t l_index = *index;
 
-	int l_result0 = parser_parse_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_exclusive_or_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_BITWISE_XOR))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LEFT_SHIFT))
 	{
 		l_index++;
 	}
@@ -364,8 +187,20 @@ int parser_parse_exclusive_or_expression(token_t *input_token_buffer, uintmax_t 
 		return -1;
 	}
 
-	int l_result2 = parser_parse_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_right_shift(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_RIGHT_SHIFT))
+	{
+		l_index++;
+	}
+	else
 	{
 		return -1;
 	}
@@ -375,28 +210,153 @@ int parser_parse_exclusive_or_expression(token_t *input_token_buffer, uintmax_t 
 	return 0;
 }
 
-int parser_parse_and_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_add(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *	<and-expression> ::= <equality-expression>
-	 *	                   | <and-expression> "&" <equality-expression>
-	 */
-
 	uintmax_t l_index = *index;
 
-	int l_result0 = parser_parse_equality_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_ADD))
 	{
-		*index = l_index;
-
-		return 0;
+		l_index++;
 	}
-
-	int l_result1 = parser_parse_and_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
+	else
 	{
 		return -1;
 	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_subtract(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_SUBTRACT))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_multiply(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_MULTIPLY))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_divide(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_DIVIDE))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_assign(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_ASSIGN))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_less_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LESS_THAN))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_greater_than(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_GREATER_THAN))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_logical_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_LOGICAL_NOT))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_bitwise_and(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
 
 	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_BITWISE_AND))
 	{
@@ -407,258 +367,16 @@ int parser_parse_and_expression(token_t *input_token_buffer, uintmax_t *input_to
 		return -1;
 	}
 
-	int l_result2 = parser_parse_equality_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
 	*index = l_index;
 
 	return 0;
 }
 
-int parser_parse_equality_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_bitwise_or(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
-	/*
-	 *	<equality-expression> ::= <relational-expression>
-	 *	                        | <equality-expression> "==" <relational-expression>
-	 *	                        | <equality-expression> "!=" <relational-expression>
-	 */
-
 	uintmax_t l_index = *index;
 
-	int l_result0 = parser_parse_relational_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_equality_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && ((input_token_buffer[l_index].value.symbol == SYMBOL_EQUAL) || (input_token_buffer[l_index].value.symbol == SYMBOL_NOT_EQUAL)))
-	{
-		l_index++;
-	}
-	else
-	{
-		return -1;
-	}
-
-	int l_result2 = parser_parse_relational_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_relational_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	<relational-expression> ::= <shift-expression>
-	 *	                          | <relational-expression> "<" <shift-expression>
-	 *	                          | <relational-expression> ">" <shift-expression>
-	 *	                          | <relational-expression> "<=" <shift-expression>
-	 *	                          | <relational-expression> ">=" <shift-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_shift_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_relational_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && ((input_token_buffer[l_index].value.symbol == SYMBOL_LESS_EQUAL) || (input_token_buffer[l_index].value.symbol == SYMBOL_GREATER_EQUAL) || (input_token_buffer[l_index].value.symbol == SYMBOL_LESS_THAN) || (input_token_buffer[l_index].value.symbol == SYMBOL_GREATER_THAN)))
-	{
-		l_index++;
-	}
-	else
-	{
-		return -1;
-	}
-
-	int l_result2 = parser_parse_shift_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_shift_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	<shift-expression> ::= <additive-expression>
-	 *	                     | <shift-expression> "<<" <additive-expression>
-	 *	                     | <shift-expression> ">>" <additive-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_additive_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_shift_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && ((input_token_buffer[l_index].value.symbol == SYMBOL_LEFT_SHIFT) || (input_token_buffer[l_index].value.symbol == SYMBOL_RIGHT_SHIFT)))
-	{
-		l_index++;
-	}
-	else
-	{
-		return -1;
-	}
-
-	int l_result2 = parser_parse_additive_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_additive_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	<additive-expression> ::= <multiplicative-expression>
-	 *	                        | <additive-expression> "+" <multiplicative-expression>
-	 *	                        | <additive-expression> "-" <multiplicative-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_multiplicative_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_additive_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && ((input_token_buffer[l_index].value.symbol == SYMBOL_ADD) || (input_token_buffer[l_index].value.symbol == SYMBOL_SUB)))
-	{
-		l_index++;
-	}
-	else
-	{
-		return -1;
-	}
-
-	int l_result2 = parser_parse_multiplicative_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_multiplicative_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	<multiplicative-expression> ::= <cast-expression>
-	 *	                              | <multiplicative-expression> "*" <cast-expression>
-	 *	                              | <multiplicative-expression> "/" <cast-expression>
-	 *	                              | <multiplicative-expression> "%" <cast-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_cast_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_multiplicative_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result1 < 0)
-	{
-		return -1;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && ((input_token_buffer[l_index].value.symbol == SYMBOL_MUL) || (input_token_buffer[l_index].value.symbol == SYMBOL_DIV) || (input_token_buffer[l_index].value.symbol == SYMBOL_MOD)))
-	{
-		l_index++;
-	}
-	else
-	{
-		return -1;
-	}
-
-	int l_result2 = parser_parse_cast_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result2 < 0)
-	{
-		return -1;
-	}
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_cast_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	/*
-	 *	<cast-expression> ::= <unary-expression>
-	 *	                    | "(" <type-name> ")" <cast-expression>
-	 */
-
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_unary_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_PARENTHESIS)
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_BITWISE_OR))
 	{
 		l_index++;
 	}
@@ -672,167 +390,11 @@ int parser_parse_cast_expression(token_t *input_token_buffer, uintmax_t *input_t
 	return 0;
 }
 
-int parser_parse_unary_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	return -1;
-}
-
-int parser_parse_postfix_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	return -1;
-}
-
-int parser_parse_primary_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	return -1;
-}
-
-int parser_parse_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	return -1;
-}
-
-int parser_parse_assignment_expression(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	return -1;
-}
-
-int parser_parse_type_name(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_bitwise_not(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
-	/* ... */
-
-	*index = l_index;
-
-	return 0;
-}
-
-int parser_parse_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_type_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result0 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	int l_result1 = parser_parse_type_qualifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result1 < 0))
-	{
-		*index = l_index;
-
-		return 0;
-	}
-
-	return -1;
-}
-
-int parser_parse_type_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	
-}
-
-int parser_parse_abstract_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	
-}
-
-int parser_parse_direct_abstract_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	
-}
-
-int parser_parse_enum_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	
-}
-
-int parser_parse_struct_or_union_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	uintmax_t l_index = *index;
-
-	int l_result0 = parser_parse_struct_or_union(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result0 < 0)
-	{
-		return -1;
-	}
-
-	int l_result1 = parser_parse_identifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(!(l_result1 < 0))
-	{
-		if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_BRACE)
-		{
-			l_index++;
-
-			while(!(l_index >= *input_token_buffer_size) && !(input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACE))
-			{
-				int l_result2 = parser_parse_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-				if(l_result2 < 0)
-				{
-					return -1;
-				}
-			}
-
-			if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACE)
-			{
-				l_index++;
-			}
-			else
-			{
-				return -1;
-			}
-
-			*index = l_index;
-
-			return 0;
-		}
-
-		*index = l_index;
-
-		return 0;
-	}
-	else
-	{
-		if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_BRACE)
-		{
-			l_index++;
-
-			while(!(l_index >= *input_token_buffer_size) && !(input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACE))
-			{
-				int l_result2 = parser_parse_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-				if(l_result2 < 0)
-				{
-					return -1;
-				}
-			}
-
-			if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACE)
-			{
-				l_index++;
-			}
-			else
-			{
-				return -1;
-			}
-
-			*index = l_index;
-
-			return 0;
-		}
-
-		return -1;
-	}
-}
-
-int parser_parse_struct_or_union(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
-{
-	uintmax_t l_index = *index;
-
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_KEYWORD_LITERAL && (input_token_buffer[l_index].value.keyword == KEYWORD_STRUCT || input_token_buffer[l_index].value.keyword == KEYWORD_UNION))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_BITWISE_NOT))
 	{
 		l_index++;
 	}
@@ -846,11 +408,11 @@ int parser_parse_struct_or_union(token_t *input_token_buffer, uintmax_t *input_t
 	return 0;
 }
 
-int parser_parse_type_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_open_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_KEYWORD_LITERAL && (input_token_buffer[l_index].value.keyword == KEYWORD_CONST || input_token_buffer[l_index].value.keyword == KEYWORD_VOLATILE))
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_PARENTHESIS))
 	{
 		l_index++;
 	}
@@ -864,11 +426,191 @@ int parser_parse_type_qualifier(token_t *input_token_buffer, uintmax_t *input_to
 	return 0;
 }
 
-int parser_parse_identifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+int parser_parse_close_parenthesis(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
 	uintmax_t l_index = *index;
 
-	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_IDENTIFIER)
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_PARENTHESIS))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_open_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_BRACE))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_close_brace(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACE))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_open_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_OPEN_BRACKET))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_close_bracket(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_CLOSE_BRACKET))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_semicolon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_SEMICOLON))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_comma(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_COMMA))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_period(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_PERIOD))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_modulus(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_MODULUS))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_conditional(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_CONDITIONAL))
+	{
+		l_index++;
+	}
+	else
+	{
+		return -1;
+	}
+
+	*index = l_index;
+
+	return 0;
+}
+
+int parser_parse_colon(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	if(l_index >= *input_token_buffer_size && input_token_buffer[l_index].token_type == TOKEN_TYPE_SYMBOL_LITERAL && (input_token_buffer[l_index].value.symbol == SYMBOL_COLON))
 	{
 		l_index++;
 	}
