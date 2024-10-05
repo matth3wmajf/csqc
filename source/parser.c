@@ -123,6 +123,21 @@ int parser_parse_literal_int(token_t *input_token_buffer, uintmax_t *input_token
 int parser_parse_literal_char(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
 int parser_parse_literal_string(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
 
+/* Function prototypes for handling rules. */
+
+int parser_parse_rule_translation_unit(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_external_declaration(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_function_definition(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_declaration(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_storage_class_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_type_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_struct_or_union_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_struct_or_union(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_struct_declarator_list(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+int parser_parse_rule_struct_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index);
+
 /* Functions for handling symbols. */
 
 int parser_parse_symbol(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
@@ -1339,11 +1354,416 @@ int parser_parse_rule_external_declaration(token_t *input_token_buffer, uintmax_
 {
 	uintmax_t l_index = *index;
 
-	/* ... */
+	int l_result = parser_parse_rule_function_definition(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_result = parser_parse_rule_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_function_definition(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result;
+
+	do
+	{
+		l_result = parser_parse_rule_declaration_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	} while(l_result >= 0);
+
+	l_result = parser_parse_rule_declarator(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result < 0)
+	{
+		return -1;
+	}
+
+	do
+	{
+		l_result = parser_parse_rule_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	} while(l_result >= 0);
+
+	l_result = parser_parse_rule_compound_statement(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result < 0)
+	{
+		return -1;
+	}
 
 	*index = l_index;
-
 	return 0;
+}
+
+int parser_parse_rule_declaration_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+	int l_result = parser_parse_rule_storage_class_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_type_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_type_qualifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_storage_class_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+	int l_result = parser_parse_keyword_auto(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_register(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_static(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_extern(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_typedef(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_type_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+	int l_result = parser_parse_keyword_void(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_byte(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_signed(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_unsigned(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_struct_or_union_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_enum_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_typedef_name(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_struct_or_union_specifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result = parser_parse_rule_struct_or_union(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result < 0) return -1;
+
+	l_result = parser_parse_rule_identifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		l_result = parser_parse_symbol_open_brace(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result >= 0)
+		{
+			l_result = parser_parse_rule_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+
+			if(l_result < 0)
+			{
+				return -1;
+			}
+
+			do
+			{
+				l_result = parser_parse_rule_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			} while (l_result >= 0);
+
+			l_result = parser_parse_symbol_close_brace(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			if(l_result >= 0)
+			{
+				*index = l_index;
+				return 0;
+			}
+		}
+		else if(l_result < 0)
+		{
+			*index = l_index;
+			return 0;
+		}
+	}
+	else if(l_result < 0)
+	{
+		l_result = parser_parse_symbol_open_brace(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result >= 0)
+		{
+			l_result = parser_parse_rule_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+
+			if(l_result < 0)
+			{
+				return -1;
+			}
+
+			do
+			{
+				l_result = parser_parse_rule_struct_declaration(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			} while (l_result >= 0);
+
+			l_result = parser_parse_symbol_close_brace(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			if(l_result >= 0)
+			{
+				*index = l_index;
+				return 0;
+			}
+		}
+		else if(l_result < 0)
+		{
+			*index = l_index;
+			return 0;
+		}
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_struct_or_union(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result = parser_parse_keyword_struct(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_keyword_union(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result;
+
+	do
+	{
+		l_result = parser_parse_rule_specifier_qualifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	} while (l_result >= 0);
+
+	l_result = parser_parse_rule_struct_declarator_list(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_specifier_qualifier(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result = parser_parse_rule_type_specifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_type_qualifier(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_struct_declarator_list(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result = parser_parse_rule_struct_declarator(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		*index = l_index;
+		return 0;
+	}
+
+	l_index = *index;
+
+	l_result = parser_parse_rule_struct_declarator_list(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		l_result = parser_parse_symbol_comma(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result >= 0)
+		{
+			l_result = parser_parse_rule_struct_declarator(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			if(l_result >= 0)
+			{
+				*index = l_index;
+				return 0;
+			}
+		}
+	}
+
+	return -1;
+}
+
+int parser_parse_rule_struct_declarator(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
+{
+	uintmax_t l_index = *index;
+
+	int l_result = parser_parse_rule_declarator(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+	if(l_result >= 0)
+	{
+		l_result = parser_parse_symbol_colon(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result >= 0)
+		{
+			l_result = parser_parse_rule_constant_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+			if(l_result < 0)
+			{
+				return -1;
+			}
+
+			*index = l_index;
+			return 0;
+		}
+		else if(l_result < 0)
+		{
+			*index = l_index;
+			return 0;
+		}
+	}
+	else if(l_result < 0)
+	{
+		l_result = parser_parse_symbol_colon(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result < 0)
+		{
+			return -1;
+		}
+
+		l_result = parser_parse_constant_expression(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
+		if(l_result < 0)
+		{
+			return -1;
+		}
+
+		*index = l_index;
+		return 0;
+	}
+
+	return -1;
 }
 
 int parser_main(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size)
