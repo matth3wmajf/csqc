@@ -12,7 +12,7 @@
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
 const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "else", "enum", "extern", "for", "goto", "if", "register", "return", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
-const char *g_symbols[] = {"...", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%", "?", ":"};
+const char *g_symbols[] = {"*=", "/=", "%=", "+=", "-=", "<<=", ">>=", "&=", "^=", "|=", "->", "++", "--", "...", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%", "?", ":"};
  
 /* Analyze the inputted source code, and output an array of tokens. */
 int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
