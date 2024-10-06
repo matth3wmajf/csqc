@@ -193,17 +193,17 @@ int main(int argc, const char *argv[])
 			l_formatted_buffer = malloc(l_formatted_buffer_size);
 			sprintf(l_formatted_buffer, "\"%.*s\"", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.string8_literal);
 			break;
-		case TOKEN_TYPE_IDENTIFIER_LITERAL:
+		case TOKEN_TYPE_IDENTIFIER:
 			l_formatted_buffer_size = snprintf(NULL, 0, "%.*s", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.identifier) + 1;
 			l_formatted_buffer = malloc(l_formatted_buffer_size);
 			sprintf(l_formatted_buffer, "%.*s", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.identifier);
 			break;
-		case TOKEN_TYPE_KEYWORD_LITERAL:
+		case TOKEN_TYPE_KEYWORD:
 			l_formatted_buffer_size = snprintf(NULL, 0, "%s", g_keywords[l_token_buffer[i].value.keyword]) + 1;
 			l_formatted_buffer = malloc(l_formatted_buffer_size);
 			sprintf(l_formatted_buffer, "%s", g_keywords[l_token_buffer[i].value.keyword]);
 			break;
-		case TOKEN_TYPE_SYMBOL_LITERAL:
+		case TOKEN_TYPE_SYMBOL:
 			l_formatted_buffer_size = snprintf(NULL, 0, "%s", g_symbols[l_token_buffer[i].value.symbol]) + 1;
 			l_formatted_buffer = malloc(l_formatted_buffer_size);
 			sprintf(l_formatted_buffer, "%s", g_symbols[l_token_buffer[i].value.symbol]);

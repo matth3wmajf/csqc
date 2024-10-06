@@ -59,7 +59,7 @@ static inline bool is_typedef(token_t *token)
 /* Is the token an identifier? */
 static inline bool is_identifier(token_t *token)
 {
-	return token->token_type == (uint8_t)TOKEN_TYPE_IDENTIFIER_LITERAL;
+	return token->token_type == (uint8_t)TOKEN_TYPE_IDENTIFIER;
 }
 
 /*
@@ -68,7 +68,7 @@ static inline bool is_identifier(token_t *token)
  */
 static inline bool is_symbol(token_t *token)
 {
-	return token->token_type == (uint8_t)TOKEN_TYPE_SYMBOL_LITERAL;
+	return token->token_type == (uint8_t)TOKEN_TYPE_SYMBOL;
 }
 
 /* Is the token part of a unary or binary operator? */

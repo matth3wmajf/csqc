@@ -40,7 +40,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_KEYWORD_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_KEYWORD;
 
 				/* Add the plaintext version of the token to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_keywords[l_j];
@@ -68,7 +68,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_SYMBOL_LITERAL;
+				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_SYMBOL;
 
 				/* Add the plaintext to the buffer. */
 				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_symbols[l_j];
@@ -238,7 +238,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_IDENTIFIER_LITERAL;
+			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_IDENTIFIER;
 
 			/* Add the plaintext to the buffer. */
 			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
