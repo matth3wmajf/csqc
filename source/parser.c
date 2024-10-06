@@ -2128,7 +2128,7 @@ int parser_parse_rule_type_qualifier(token_t *input_token_buffer, uintmax_t *inp
 		return 0;
 	}
 
-	l_result = *index;
+	l_index = *index;
 
 	l_result = parser_parse_keyword_volatile(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
 	if(l_result >= 0)
@@ -4231,11 +4231,9 @@ int parser_main(token_t *input_token_buffer, uintmax_t *input_token_buffer_size,
 {
 	uintmax_t l_index = 0;
 
-	uintmax_t l_depth = 0;
-
-	while(l_index < *input_token_buffer_size)
+	if(parser_parse_rule_translation_unit(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index) != 0)
 	{
-		
+		return -1;
 	}
 
 	return 0;

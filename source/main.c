@@ -98,7 +98,9 @@ int main(int argc, const char *argv[])
 	 *	sort of error, and must therefore log an error & exit the program.
 	 *	You'll commonly see this approach to error handling here.
 	 */
-	int l_scan_status = scanner_main(g_input_file_buffer, &g_input_file_size, &l_token_buffer, &l_token_buffer_size);
+	uintmax_t l_input_file_buffer_size = (uintmax_t)g_input_file_size;
+
+	int l_scan_status = scanner_main(g_input_file_buffer, &l_input_file_buffer_size, &l_token_buffer, &l_token_buffer_size);
 	if(l_scan_status != 0)
 	{
 		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Scanning the source code's file failed!"}, {ESC_BOLD "subject" ESC_RESET, "The scanner returned an error code of `%d`."}}, 2, l_scan_status);
@@ -214,7 +216,7 @@ int main(int argc, const char *argv[])
 		l_log_entry_buffer[l_log_entry_buffer_size - 1].value = l_formatted_buffer;
 	}
 
-	loggerf(stdout, l_log_entry_buffer, l_log_entry_buffer_size);
+	loggerf(stdout, l_log_entry_buffer, (int)l_log_entry_buffer_size);
 
 	/* Free the memory allocated for the formatted values. */
 	for(size_t i = 0; i < l_log_entry_buffer_size; i++)
