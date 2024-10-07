@@ -219,7 +219,7 @@ int main(int argc, const char *argv[])
 	loggerf(stdout, l_log_entry_buffer, (int)l_log_entry_buffer_size);
 
 	/* Free the memory allocated for the formatted values. */
-	for(size_t i = 0; i < l_log_entry_buffer_size; i++)
+	for(size_t i = 1; i < l_log_entry_buffer_size; i++)
 	{
 		free(l_log_entry_buffer[i].value);
 	}

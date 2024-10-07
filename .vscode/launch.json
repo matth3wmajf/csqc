@@ -1,12 +1,14 @@
 {
+	"version": "0.2.0",
 	"configurations": [
-	{
-		"name": "Launch",
-		"type": "lldb",
-		"request": "launch",
-		"program": "${workspaceFolder}\\build\\Debug\\csqlang.exe",
-		"cwd": "${workspaceFolder}\\build",
-		"args": ["-c", "..\\example.csq"],
-	}
+		{
+			"type": "gdb",
+			"request": "launch",
+			"name": "Launch Program",
+			"target": "./build/csqlang",
+			"cwd": "${workspaceRoot}",
+			"valuesFormatting": "parseText",
+			"arguments": "-c example.csq"
+		}
 	]
 }
