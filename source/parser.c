@@ -4265,13 +4265,10 @@ int parser_parse_identifier(token_t *input_token_buffer, uintmax_t *input_token_
 
 int parser_main(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size)
 {
-	uintmax_t l_index;
+	uintmax_t l_index = 0;
 
 	int l_result = parser_parse_rule_translation_unit(input_token_buffer, input_token_buffer_size, output_object_buffer, output_object_buffer_size, &l_index);
-	if(l_result >= 0)
-	{
-		return 0;
-	}
+	if(l_result >= 0) return 0;
 	else if(l_result < 0) return -1;
 
 	return -1;

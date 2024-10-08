@@ -240,7 +240,7 @@ int main(int argc, const char *argv[])
 	int l_parse_status = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
 	if(l_parse_status >= 0)
 	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "debug" ESC_RESET, "Successfully parsed all tokens!"}}, 1, l_parse_status);
+		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "debug" ESC_RESET, "Successfully parsed all %ju tokens!"}}, 1, l_token_buffer_size);
 	}
 	else if(l_parse_status < 0)
 	{
