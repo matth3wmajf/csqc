@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include <csquared/scanner.h>
 
@@ -11,7 +12,7 @@
  *	considering the double-equals to be two separate symbols.
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
-const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "else", "enum", "extern", "for", "goto", "if", "register", "return", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
+const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "else", "enum", "extern", "for", "goto", "if", "register", "return", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
 const char *g_symbols[] = {"*=", "/=", "%=", "+=", "-=", "<<=", ">>=", "&=", "^=", "|=", "->", "++", "--", "...", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%", "?", ":"};
  
 /* Analyze the inputted source code, and output an array of tokens. */
@@ -108,6 +109,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					case '\'': l_character = '\''; break;
 					
 					/* Invalid escape sequence, terminate the scanning process. */
+					fprintf(stderr, "error: Unknown escape sequence found while scanning a character literal!\n");
 					default: return -1;
 				}
 			}
@@ -125,6 +127,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				 *	Unterminated character literal, terminate the scanning
 				 *	process.
 				 */
+				fprintf(stderr, "error: Encountered unterminated character literal!\n");
 				return -1;
 			}
 
@@ -174,6 +177,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 						default: 
 							/* Invalid escape sequence, terminate the scanning process. */
 							free(l_string_buffer);
+							fprintf(stderr, "error: Encountered an invalid escape sequence while scanning a string literal!\n");
 							return -1;
 					}
 				}
@@ -193,6 +197,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			{
 				/* Unterminated string literal, terminate the scanning process. */
 				free(l_string_buffer);
+				fprintf(stderr, "error: Encountered an unterminated string literal!\n");
 				return -1;
 			}
 
@@ -275,6 +280,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			char *l_number_literal = malloc(l_number_length + 1);
 			if(l_number_literal == NULL)
 			{
+				fprintf(stderr, "error: Memory allocation failed for storing the number literal's value in string form!\n");
 				return -1;
 			}
 
@@ -293,9 +299,10 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			/* Extract the suffix if there is one. */
 			uintmax_t l_suffix_length = l_i - l_suffix_start;
 			char *l_suffix_literal = malloc(l_suffix_length + 1);
-			if (l_suffix_literal == NULL)
+			if(l_suffix_literal == NULL)
 			{
 				free(l_number_literal);
+				fprintf(stderr, "error: Memory allocation failed for storing the suffix of the number literal!\n");
 				return -1;
 			}
 

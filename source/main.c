@@ -6,8 +6,6 @@
 #include <inttypes.h>
 
 #include <csquared/scanner.h>
-#include <csquared/logger.h>
-#include <csquared/escape.h>
 #include <csquared/parser.h>
 
 /* The input file's data. */
@@ -27,6 +25,7 @@ int main(int argc, const char *argv[])
 	/* Loop for every command-line argument. */
 	for(uintmax_t l_i = 1; l_i < (uintmax_t)argc; l_i++)
 	{
+		/* Compare the command-line argument flag(s). */
 		if(strcmp(argv[l_i], "-c") == 0 && l_i + 1 < (uintmax_t)argc)
 		{
 			g_input_file_name = (char *)argv[l_i + 1];
@@ -40,7 +39,7 @@ int main(int argc, const char *argv[])
 		else
 		{
 			/* If the command-line argument flag is unknown, then log an error & quit. */
-			loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Unknown or wrongly-typed argument!"}, {ESC_BOLD "subject" ESC_RESET, "Could not understand \"%s\"!"}}, 2, argv[l_i]);
+			fprintf(stderr, "error: Unknown command-line argument flag!\n");
 			return -1;
 		}
 	}
@@ -51,7 +50,7 @@ int main(int argc, const char *argv[])
 	 */
 	if(g_input_file_name == NULL)
 	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "The source code's filename has not been inputted!"}, {ESC_BOLD "subject" ESC_RESET, "Could not open file \"%s\"!"}}, 2, g_input_file_name);
+		fprintf(stderr, "error: Source code filename not provided!\n");
 		return -1;
 	}
 
@@ -62,7 +61,7 @@ int main(int argc, const char *argv[])
 	g_input_file_handle = fopen(g_input_file_name, "rb");
 	if(g_input_file_handle == NULL)
 	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Failed to open the source code's file!"}, {ESC_BOLD "subject" ESC_RESET, "Could not open \"%s\" for reading!"}}, 2, g_input_file_name);
+		fprintf(stderr, "error: Failed to open the source code file for reading!\n");
 		return -1;
 	}
 
@@ -100,132 +99,12 @@ int main(int argc, const char *argv[])
 	 */
 	uintmax_t l_input_file_buffer_size = (uintmax_t)g_input_file_size;
 
-	int l_scan_status = scanner_main(g_input_file_buffer, &l_input_file_buffer_size, &l_token_buffer, &l_token_buffer_size);
-	if(l_scan_status != 0)
+	int l_result = scanner_main(g_input_file_buffer, &l_input_file_buffer_size, &l_token_buffer, &l_token_buffer_size);
+	if(l_result < 0)
 	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Scanning the source code's file failed!"}, {ESC_BOLD "subject" ESC_RESET, "The scanner returned an error code of `%d`."}}, 2, l_scan_status);
+		fprintf(stderr, "error: Failed to scan the source code file's contents!\n");
 		return -1;
 	}
-
-	/* Create a buffer of log entries. */
-	log_entry_t *l_log_entry_buffer = NULL;
-	uintmax_t l_log_entry_buffer_size = 0;
-
-	/* Re-size the buffer of log entries by one. */
-	l_log_entry_buffer_size++;
-	l_log_entry_buffer = realloc(l_log_entry_buffer, l_log_entry_buffer_size * sizeof(log_entry_t));
-
-	/* Set the header of the log entry buffer. */
-	l_log_entry_buffer[l_log_entry_buffer_size - 1].key = ESC_BOLD "debug" ESC_RESET;
-	l_log_entry_buffer[l_log_entry_buffer_size - 1].value = "Successfully scanned all tokens!";
-
-	/*
-	 *	For each token in the token buffer, log it's type, and if it comes
-	 *	with a value, log the value as well.
-	 */
-	for(uintmax_t i = 0; i < l_token_buffer_size; i++)
-	{
-		/* Increase the size of the buffer of log entries by one. */
-		l_log_entry_buffer_size += 1;
-		l_log_entry_buffer = realloc(l_log_entry_buffer, l_log_entry_buffer_size * sizeof(log_entry_t));
-
-		/* The buffer to store the formatted string. */
-		char *l_formatted_buffer = NULL;
-		uintmax_t l_formatted_buffer_size = 0;
-
-		switch((uint8_t)l_token_buffer[i].token_type)
-		{
-		case TOKEN_TYPE_INT8_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%d", l_token_buffer[i].value.int8_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%d", l_token_buffer[i].value.int8_literal);
-			break;
-		case TOKEN_TYPE_INT16_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%d", l_token_buffer[i].value.int16_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%d", l_token_buffer[i].value.int16_literal);
-			break;
-		case TOKEN_TYPE_INT32_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%d", l_token_buffer[i].value.int32_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%d", l_token_buffer[i].value.int32_literal);
-			break;
-		case TOKEN_TYPE_INT64_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%lld", l_token_buffer[i].value.int64_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%lld", l_token_buffer[i].value.int64_literal);
-			break;
-		case TOKEN_TYPE_UINT8_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%u", l_token_buffer[i].value.uint8_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%u", l_token_buffer[i].value.uint8_literal);
-			break;
-		case TOKEN_TYPE_UINT16_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%u", l_token_buffer[i].value.uint16_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%u", l_token_buffer[i].value.uint16_literal);
-			break;
-		case TOKEN_TYPE_UINT32_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%u", l_token_buffer[i].value.uint32_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%u", l_token_buffer[i].value.uint32_literal);
-			break;
-		case TOKEN_TYPE_UINT64_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%llu", l_token_buffer[i].value.uint64_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%llu", l_token_buffer[i].value.uint64_literal);
-			break;
-		case TOKEN_TYPE_FLOAT32_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%f", l_token_buffer[i].value.float32_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%f", l_token_buffer[i].value.float32_literal);
-			break;
-		case TOKEN_TYPE_FLOAT64_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%lf", l_token_buffer[i].value.float64_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%lf", l_token_buffer[i].value.float64_literal);
-			break;
-		case TOKEN_TYPE_CHARACTER8_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "'%c'", l_token_buffer[i].value.character8_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "'%c'", l_token_buffer[i].value.character8_literal);
-			break;
-		case TOKEN_TYPE_STRING8_LITERAL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "\"%.*s\"", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.string8_literal) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "\"%.*s\"", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.string8_literal);
-			break;
-		case TOKEN_TYPE_IDENTIFIER:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%.*s", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.identifier) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%.*s", (int)l_token_buffer[i].value.buffer_size, l_token_buffer[i].value.identifier);
-			break;
-		case TOKEN_TYPE_KEYWORD:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%s", g_keywords[l_token_buffer[i].value.keyword]) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%s", g_keywords[l_token_buffer[i].value.keyword]);
-			break;
-		case TOKEN_TYPE_SYMBOL:
-			l_formatted_buffer_size = snprintf(NULL, 0, "%s", g_symbols[l_token_buffer[i].value.symbol]) + 1;
-			l_formatted_buffer = malloc(l_formatted_buffer_size);
-			sprintf(l_formatted_buffer, "%s", g_symbols[l_token_buffer[i].value.symbol]);
-			break;
-		}
-
-		l_log_entry_buffer[l_log_entry_buffer_size - 1].key = ESC_BOLD "value" ESC_RESET;
-		l_log_entry_buffer[l_log_entry_buffer_size - 1].value = l_formatted_buffer;
-	}
-
-	loggerf(stdout, l_log_entry_buffer, (int)l_log_entry_buffer_size);
-
-	/* Free the memory allocated for the formatted values. */
-	for(size_t i = 1; i < l_log_entry_buffer_size; i++)
-	{
-		free(l_log_entry_buffer[i].value);
-	}
-
-	/* Free the memory allocated for the token buffer. */
-	free(l_log_entry_buffer);
 
 	/*
 	 *	Create a buffer for storing the objects that make up the
@@ -237,14 +116,10 @@ int main(int argc, const char *argv[])
 	uintmax_t l_object_buffer_size = 0;
 
 	/* Digest the array of tokens into an abstract-syntax-tree. */
-	int l_parse_status = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
-	if(l_parse_status >= 0)
+	l_result = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
+	if(l_result < 0)
 	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "debug" ESC_RESET, "Successfully parsed all %ju tokens!"}}, 1, l_token_buffer_size);
-	}
-	else if(l_parse_status < 0)
-	{
-		loggerf(stderr, (log_entry_t[]){{ESC_BOLD "error" ESC_RESET, "Parsing the tokens failed!"}, {ESC_BOLD "subject" ESC_RESET, "The parser returned an error code of `%d`."}}, 2, l_parse_status);
+		fprintf(stderr, "error: Failed to parse the tokens!\n");
 		return -1;
 	}
 
