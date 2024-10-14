@@ -123,16 +123,27 @@ int main(int argc, const char *argv[])
 		return -1;
 	}
 
-	/* If the token buffer is still allocated, then de-allocate it. */
-	if(l_token_buffer != NULL)
+	/* Free the token buffer, as we no longer need it. */
+	if(l_token_buffer_size > 0)
+	{
 		free(l_token_buffer);
+		l_token_buffer = NULL;
+	}
 
-	/* If the object buffer is still allocated, then de-allocate it. */
-	if(l_object_buffer != NULL)
+	/* Free the object buffer, as we no longer need it. */
+	if(l_object_buffer_size > 0)
+	{
 		free(l_object_buffer);
+		l_object_buffer = NULL;
+	}
 
 	/* Free the source code's file's buffer, as we no longer need it. */
 	free(g_input_file_buffer);
+	g_input_file_buffer = NULL;
+
+	/* Close the source code's input file. */
+	fclose(g_input_file_handle);
+	g_input_file_handle = NULL;
 
 	return 0;
 }

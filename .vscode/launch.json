@@ -4,7 +4,7 @@
 		{
 			"type": "gdb",
 			"request": "launch",
-			"name": "Launch Program",
+			"name": "Debug",
 			"target": "./build/csqlang",
 			"cwd": "${workspaceRoot}",
 			"valuesFormatting": "parseText",
