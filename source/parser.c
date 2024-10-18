@@ -174,9 +174,9 @@ int parser_parse_identifier(token_t *input_token_buffer, uintmax_t *input_token_
 
 /* Functions for handling symbols. */
 
-#define LOG_STARTED fprintf(stderr, "debug: Parser method `%-32s` interacted! (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "started", (intmax_t)g_level);
-#define LOG_FAILURE fprintf(stderr, "debug: Parser method `%-32s` interacted! (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "failure", (intmax_t)g_level);
-#define LOG_SUCCESS fprintf(stderr, "debug: Parser method `%-32s` interacted! (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "success", (intmax_t)g_level);
+#define LOG_STARTED fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "started", (intmax_t)g_level);
+#define LOG_FAILURE fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "failure", (intmax_t)g_level);
+#define LOG_SUCCESS fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "success", (intmax_t)g_level);
 
 int parser_parse_symbol(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {

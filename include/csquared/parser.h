@@ -11,13 +11,13 @@ typedef enum
 	/*
 	 *	The vague object types, and their prefix.
 	 *	This includes the following...
-	 *	1. Constants
-	 *	2. Expressions
-	 *	3. Scopes
+	 *	1. Constant
+	 *	2. Ellipsis
+	 *	3. Equality
 	 */
-	OBJECT_PREFIX_CST = 0b00000000,
-	OBJECT_PREFIX_EXP = 0b00000001,
-	OBJECT_PREFIX_SCP = 0b00000010,
+	OBJECT_PREFIX_CONSTANT = 0b00000000,
+	OBJECT_PREFIX_ELLIPSIS = 0b00000001,
+	OBJECT_PREFIX_EQUALITY = 0b00000010,
 
 	/*
 	 *	Unary operators for expressions.
@@ -27,10 +27,10 @@ typedef enum
 	 *	3. Positive
 	 *	4. Negative
 	 */
-	OBJECT_SUBTYPE_UNARY_INC = 0b00000000,
-	OBJECT_SUBTYPE_UNARY_DEC = 0b00000001,
-	OBJECT_SUBTYPE_UNARY_POS = 0b00000010,
-	OBJECT_SUBTYPE_UNARY_NEG = 0b00000011,
+	OBJECT_SUBTYPE_UNARY_INCREMENT = 0b00000000,
+	OBJECT_SUBTYPE_UNARY_DECREMENT = 0b00000001,
+	OBJECT_SUBTYPE_UNARY_POSITIVE = 0b00000010,
+	OBJECT_SUBTYPE_UNARY_NEGATIVE = 0b00000011,
 
 	/*
 	 *	Binary operators for expressions.
@@ -42,12 +42,12 @@ typedef enum
 	 *	5. Modulo
 	 *	6. Exponent
 	 */
-	OBJECT_SUBTYPE_BINARY_ADD = 0b01000100,
-	OBJECT_SUBTYPE_BINARY_SUB = 0b01000101,
-	OBJECT_SUBTYPE_BINARY_MUL = 0b01000110,
-	OBJECT_SUBTYPE_BINARY_DIV = 0b01000111,
-	OBJECT_SUBTYPE_BINARY_MOD = 0b01001000,
-	OBJECT_SUBTYPE_BINARY_EXP = 0b01001001,
+	OBJECT_SUBTYPE_BINARY_ADDITION = 0b01000100,
+	OBJECT_SUBTYPE_BINARY_SUBTRACTION = 0b01000101,
+	OBJECT_SUBTYPE_BINARY_MULTIPLICATION = 0b01000110,
+	OBJECT_SUBTYPE_BINARY_DIVISION = 0b01000111,
+	OBJECT_SUBTYPE_BINARY_MODULO = 0b01001000,
+	OBJECT_SUBTYPE_BINARY_EXPONENT = 0b01001001,
 
 	/*
 	 *	Ternary operators for expressions.
@@ -55,7 +55,7 @@ typedef enum
 	 *	more in the future...
 	 *	1. Conditional
 	 */
-	OBJECT_SUBTYPE_TERNARY_CON = 0b10000000,
+	OBJECT_SUBTYPE_CONDITIONAL = 0b10000000,
 
 	/*
 	 *	The types of scopes out there.
@@ -65,10 +65,18 @@ typedef enum
 	 *	3. Block
 	 *	4. Prototype
 	 */
-	OBJECT_SUBTYPE_SCOPE_FUN = 0b00000000,
-	OBJECT_SUBTYPE_SCOPE_FLE = 0b00000001,
-	OBJECT_SUBTYPE_SCOPE_BLK = 0b00000010,
-	OBJECT_SUBTYPE_SCOPE_PRO = 0b00000011
+	OBJECT_SUBTYPE_SCOPE_FUNCTION = 0b00000000,
+	OBJECT_SUBTYPE_SCOPE_FILE = 0b00000001,
+	OBJECT_SUBTYPE_SCOPE_BLOCK = 0b00000010,
+	OBJECT_SUBTYPE_SCOPE_PROTOTYPE = 0b00000011,
+
+	/* The types of equality expressions. */
+	OBJECT_SUBTYPE_EQUALITY_EXPRESSION_EQUALS_TO = 0b00000000,
+	OBJECT_SUBTYPE_EQUALITY_EXPRESSION_NOT_EQUALS_TO = 0b00000001,
+	OBJECT_SUBTYPE_RELATIONAL_EXPRESSION_LESS_THAN = 0b00000010,
+	OBJECT_SUBTYPE_RELATIONAL_EXPRESSION_GREATER_THAN = 0b00000011,
+	OBJECT_SUBTYPE_RELATIONAL_EXPRESSION_LESS_THAN_OR_EQUAL_TO = 0b00000100,
+	OBJECT_SUBTYPE_RELATIONAL_eXPRESSION_GREATER_THAN_OR_EQUAL_TO = 0b00000101,
 } object_type_t;
 
 typedef struct object
@@ -114,31 +122,22 @@ typedef struct object
 				double float64_literal;
 			} value;
 		} constant;
-		
-		/* Expressions consist of identifiers of variables, or expressions. */
-		struct
-		{
-			/*
-			 *	The buffer of operands, and the size of the buffer. The buffer
-			 *	tends to be 1, 2, or 3 units in size.
-			 */
-			struct object *operand_buffer;
-			uintmax_t operand_buffer_size;
-		} expression;
 
-		/*
-		 *	Scopes, consist of the file scope, the function scope, the block
-		 *	scope, and the function prototype scope.
-		 */
-		struct
+		union
 		{
-			/*
-			 *	The buffer of child objects, which may be scopes, or pretty
-			 *	much any other type of object.
-			 */
-			struct object *child_buffer;
-			uintmax_t child_buffer_size;
-		} scope;
+			struct
+			{
+				/* The `typedef` object. */
+				struct object *type_definition_keyword_object;
+
+				/* The definition. */
+				struct object *type_definition_object;
+
+				/* The defined type names. */
+				struct object *type_name_object_buffer;
+				uintmax_t type_name_object_buffer_size;
+			} type;
+		} declaration;
 	};
 } object_t;
 
