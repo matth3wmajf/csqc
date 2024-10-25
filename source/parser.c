@@ -6,7 +6,6 @@
 
 #include <csquared/scanner.h>
 #include <csquared/parser.h>
-#include <csquared/symbol.h>
 
 /*
  *	The level, a number that indicates how deep the parser is in terms of
