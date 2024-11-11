@@ -173,9 +173,9 @@ int parser_parse_identifier(token_t *input_token_buffer, uintmax_t *input_token_
 
 /* Functions for handling symbols. */
 
-#define LOG_STARTED fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "started", (intmax_t)g_level);
-#define LOG_FAILURE fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "failure", (intmax_t)g_level);
-#define LOG_SUCCESS fprintf(stderr, "debug: Parsing rule attempt `%-32s`. (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "success", (intmax_t)g_level);
+#define LOG_STARTED fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "started", (intmax_t)g_level);
+#define LOG_FAILURE fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "failure", (intmax_t)g_level);
+#define LOG_SUCCESS fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`)!\n", &__func__[13], "success", (intmax_t)g_level);
 
 int parser_parse_symbol(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size, uintmax_t *index)
 {
@@ -594,6 +594,12 @@ int parser_parse_symbol_multiply_assign(token_t *input_token_buffer, uintmax_t *
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_MULTIPLY_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -615,6 +621,12 @@ int parser_parse_symbol_divide_assign(token_t *input_token_buffer, uintmax_t *in
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_DIVIDE_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -636,6 +648,12 @@ int parser_parse_symbol_modulo_assign(token_t *input_token_buffer, uintmax_t *in
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_MODULO_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -657,6 +675,12 @@ int parser_parse_symbol_addition_assign(token_t *input_token_buffer, uintmax_t *
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_ADDITION_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -678,6 +702,12 @@ int parser_parse_symbol_subtraction_assign(token_t *input_token_buffer, uintmax_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_SUBTRACTION_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -699,6 +729,12 @@ int parser_parse_symbol_left_shift_assign(token_t *input_token_buffer, uintmax_t
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LEFT_SHIFT_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -720,6 +756,12 @@ int parser_parse_symbol_right_shift_assign(token_t *input_token_buffer, uintmax_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_RIGHT_SHIFT_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -741,6 +783,12 @@ int parser_parse_symbol_bitwise_and_assign(token_t *input_token_buffer, uintmax_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_AND_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -762,6 +810,12 @@ int parser_parse_symbol_bitwise_xor_assign(token_t *input_token_buffer, uintmax_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_XOR_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -783,6 +837,12 @@ int parser_parse_symbol_bitwise_or_assign(token_t *input_token_buffer, uintmax_t
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_OR_ASSIGN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -804,6 +864,12 @@ int parser_parse_symbol_less_than(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LESS_THAN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -825,6 +891,12 @@ int parser_parse_symbol_greater_than(token_t *input_token_buffer, uintmax_t *inp
 
 lbl_success:
 	LOG_SUCCESS;
+	
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_GREATER_THAN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -846,6 +918,12 @@ int parser_parse_symbol_logical_not(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LOGICAL_NOT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -867,6 +945,12 @@ int parser_parse_symbol_bitwise_and(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_AND;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -888,6 +972,12 @@ int parser_parse_symbol_bitwise_or(token_t *input_token_buffer, uintmax_t *input
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_OR;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -909,6 +999,12 @@ int parser_parse_symbol_bitwise_xor(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_XOR;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -930,6 +1026,12 @@ int parser_parse_symbol_bitwise_not(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_BITWISE_NOT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -951,6 +1053,12 @@ int parser_parse_symbol_open_parenthesis(token_t *input_token_buffer, uintmax_t 
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LEFT_PARENTHESIS;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -972,6 +1080,12 @@ int parser_parse_symbol_close_parenthesis(token_t *input_token_buffer, uintmax_t
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_RIGHT_PARENTHESIS;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -993,6 +1107,12 @@ int parser_parse_symbol_open_brace(token_t *input_token_buffer, uintmax_t *input
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LEFT_BRACE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1014,6 +1134,12 @@ int parser_parse_symbol_close_brace(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_RIGHT_BRACE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1035,6 +1161,12 @@ int parser_parse_symbol_open_bracket(token_t *input_token_buffer, uintmax_t *inp
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_LEFT_BRACKET;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1056,6 +1188,12 @@ int parser_parse_symbol_close_bracket(token_t *input_token_buffer, uintmax_t *in
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_RIGHT_BRACKET;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1077,6 +1215,12 @@ int parser_parse_symbol_semicolon(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_SEMICOLON;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1098,6 +1242,12 @@ int parser_parse_symbol_comma(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_COMMA;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1119,6 +1269,12 @@ int parser_parse_symbol_period(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_PERIOD;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1140,6 +1296,12 @@ int parser_parse_symbol_modulo(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_MODULO;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1161,6 +1323,12 @@ int parser_parse_symbol_conditional(token_t *input_token_buffer, uintmax_t *inpu
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_CONDITIONAL;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1182,6 +1350,12 @@ int parser_parse_symbol_colon(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_COLON;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1203,6 +1377,12 @@ int parser_parse_symbol_increment(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_INCREMENT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1224,6 +1404,12 @@ int parser_parse_symbol_decrement(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_DECREMENT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1245,6 +1431,12 @@ int parser_parse_symbol_arrow(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_SYMBOL_ARROW;
+
 	g_level--;
 	*index = l_index;
 	return 0;
