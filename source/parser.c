@@ -1460,6 +1460,12 @@ int parser_parse_keyword(token_t *input_token_buffer, uintmax_t *input_token_buf
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1481,6 +1487,12 @@ int parser_parse_keyword_auto(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_AUTO;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1502,6 +1514,12 @@ int parser_parse_keyword_break(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_BREAK;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1523,6 +1541,12 @@ int parser_parse_keyword_case(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_CASE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1544,6 +1568,12 @@ int parser_parse_keyword_byte(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_BYTE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1565,6 +1595,12 @@ int parser_parse_keyword_const(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_CONST;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1586,6 +1622,12 @@ int parser_parse_keyword_continue(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_CONTINUE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1607,6 +1649,12 @@ int parser_parse_keyword_default(token_t *input_token_buffer, uintmax_t *input_t
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_DEFAULT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1628,6 +1676,12 @@ int parser_parse_keyword_do(token_t *input_token_buffer, uintmax_t *input_token_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_DO;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1649,6 +1703,12 @@ int parser_parse_keyword_else(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_ELSE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1670,6 +1730,12 @@ int parser_parse_keyword_enum(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_ENUM;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1691,6 +1757,12 @@ int parser_parse_keyword_extern(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_EXTERN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1712,6 +1784,12 @@ int parser_parse_keyword_for(token_t *input_token_buffer, uintmax_t *input_token
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_FOR;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1733,6 +1811,12 @@ int parser_parse_keyword_goto(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_GOTO;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1754,6 +1838,12 @@ int parser_parse_keyword_if(token_t *input_token_buffer, uintmax_t *input_token_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_IF;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1775,6 +1865,12 @@ int parser_parse_keyword_register(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_REGISTER;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1796,6 +1892,12 @@ int parser_parse_keyword_return(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_RETURN;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1817,6 +1919,12 @@ int parser_parse_keyword_signed(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_SIGNED;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1838,6 +1946,12 @@ int parser_parse_keyword_sizeof(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_SIZEOF;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1859,6 +1973,12 @@ int parser_parse_keyword_static(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_STATIC;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1880,6 +2000,12 @@ int parser_parse_keyword_struct(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_STRUCT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1901,6 +2027,12 @@ int parser_parse_keyword_switch(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_SWITCH;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1922,6 +2054,12 @@ int parser_parse_keyword_typedef(token_t *input_token_buffer, uintmax_t *input_t
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_TYPEDEF;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1943,6 +2081,12 @@ int parser_parse_keyword_union(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_UNION;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1964,6 +2108,12 @@ int parser_parse_keyword_unsigned(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_UNSIGNED;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -1985,6 +2135,12 @@ int parser_parse_keyword_void(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_VOID;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2006,6 +2162,12 @@ int parser_parse_keyword_volatile(token_t *input_token_buffer, uintmax_t *input_
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_VOLATILE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2027,6 +2189,12 @@ int parser_parse_keyword_while(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_KEYWORD_WHILE;
+
 	g_level--;
 	*index = l_index;
 	return 0;
