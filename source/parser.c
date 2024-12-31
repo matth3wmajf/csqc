@@ -2218,6 +2218,12 @@ int parser_parse_literal(token_t *input_token_buffer, uintmax_t *input_token_buf
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_TYPE_LITERAL;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2239,6 +2245,12 @@ int parser_parse_literal_float(token_t *input_token_buffer, uintmax_t *input_tok
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_LITERAL_FLOAT;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2260,6 +2272,12 @@ int parser_parse_literal_int(token_t *input_token_buffer, uintmax_t *input_token
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_LITERAL_INTEGER;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2281,6 +2299,12 @@ int parser_parse_literal_char(token_t *input_token_buffer, uintmax_t *input_toke
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_LITERAL_CHARACTER;
+
 	g_level--;
 	*index = l_index;
 	return 0;
@@ -2302,6 +2326,12 @@ int parser_parse_literal_string(token_t *input_token_buffer, uintmax_t *input_to
 
 lbl_success:
 	LOG_SUCCESS;
+
+	/* Re-size the object buffer, and append a new, but dangling object. */
+	(*output_object_buffer_size)++;
+	output_object_buffer = realloc(output_object_buffer, *output_object_buffer_size);
+	(*output_object_buffer)[(*output_object_buffer_size) - 1].object_type = OBJECT_LITERAL_STRING;
+
 	g_level--;
 	*index = l_index;
 	return 0;
