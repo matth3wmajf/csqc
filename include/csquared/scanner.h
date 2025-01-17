@@ -8,42 +8,42 @@ typedef enum {KEYWORD_AUTO, KEYWORD_BREAK, KEYWORD_CASE, KEYWORD_BYTE, KEYWORD_C
 typedef enum {SYMBOL_MULTIPLY_ASSIGN, SYMBOL_DIVIDE_ASSIGN, SYMBOL_MODULO_ASSIGN, SYMBOL_ADDITION_ASSIGN, SYMBOL_SUBTRACTION_ASSIGN, SYMBOL_LEFT_SHIFT_ASSIGN, SYMBOL_RIGHT_SHIFT_ASSIGN, SYMBOL_BITWISE_AND_ASSIGN, SYMBOL_BITWISE_XOR_ASSIGN, SYMBOL_BITWISE_OR_ASSIGN, SYMBOL_ARROW, SYMBOL_INCREMENT, SYMBOL_DECREMENT, SYMBOL_ELLIPSIS, SYMBOL_EQUAL_TO, SYMBOL_NOT_EQUAL_TO, SYMBOL_LESS_THAN_OR_EQUAL_TO, SYMBOL_GREATER_THAN_OR_EQUAL_TO, SYMBOL_LOGICAL_AND, SYMBOL_LOGICAL_OR, SYMBOL_LEFT_SHIFT, SYMBOL_RIGHT_SHIFT, SYMBOL_ADD, SYMBOL_SUBTRACT, SYMBOL_MULTIPLY, SYMBOL_DIVIDE, SYMBOL_ASSIGN, SYMBOL_LESS_THAN, SYMBOL_GREATER_THAN, SYMBOL_LOGICAL_NOT, SYMBOL_BITWISE_AND, SYMBOL_BITWISE_OR, SYMBOL_BITWISE_XOR, SYMBOL_BITWISE_NOT, SYMBOL_OPEN_PARENTHESIS, SYMBOL_CLOSE_PARENTHESIS, SYMBOL_OPEN_BRACE, SYMBOL_CLOSE_BRACE, SYMBOL_OPEN_BRACKET, SYMBOL_CLOSE_BRACKET, SYMBOL_SEMICOLON, SYMBOL_COMMA, SYMBOL_PERIOD, SYMBOL_MODULO, SYMBOL_CONDITIONAL, SYMBOL_COLON} symbol_t;
 
 /* The plaintext buffers for tokens & symbols. */
-extern const char *g_keywords[];
-extern const char *g_symbols[];
+extern const char *pg_keywords[];
+extern const char *pg_symbols[];
 
 /* Is the character whitespace? */
-static inline bool is_whitespace(char character)
+static inline bool is_whitespace(char t_character)
 {
-	return character == ' ' || character == '\t' || character == '\f' || character == '\v' || character == '\n' || character == '\r';
+	return t_character == ' ' || t_character == '\t' || t_character == '\f' || t_character == '\v' || t_character == '\n' || t_character == '\r';
 }
 
 /* Is the character a letter? */
-static inline bool is_alphabet(char character)
+static inline bool is_alphabet(char t_character)
 {
-	return (character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z');
+	return (t_character >= 'a' && t_character <= 'z') || (t_character >= 'A' && t_character <= 'Z');
 }
 
 /* Is the character alphanumeric? */
-static inline bool is_alphanumeric(char character)
+static inline bool is_alphanumeric(char t_character)
 {
-	return (character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z') || (character >= '0' && character <= '9');
+	return (t_character >= 'a' && t_character <= 'z') || (t_character >= 'A' && t_character <= 'Z') || (t_character >= '0' && t_character <= '9');
 }
 
 /* Is the character a digit? */
-static inline bool is_digit(char character)
+static inline bool is_digit(char t_character)
 {
-	return character >= '0' && character <= '9';
+	return t_character >= '0' && t_character <= '9';
 }
 
-static inline bool is_numeric(char character)
+static inline bool is_numeric(char t_character)
 {
-	return is_digit(character) || character == '.';
+	return is_digit(t_character) || t_character == '.';
 }
 
 /* Is the character a valid identifier character? */
-static inline bool is_valid_identifier_character(char character)
+static inline bool is_valid_identifier_character(char t_character)
 {
-	return is_alphanumeric(character) || character == '_';
+	return is_alphanumeric(t_character) || t_character == '_';
 }
 
 /*
@@ -123,11 +123,11 @@ typedef struct
 	 *	size as one byte by using bitfields, as it's one of the only ways
 	 *	to do so.
 	 */
-	token_type_t token_type : 8;
+	token_type_t t_token_type : 8;
 
 	/* The buffer storing our token in plaintext, and it's size. */
-	char *plaintext_buffer;
-	uintmax_t plaintext_buffer_size;
+	char *pt_plaintext_buffer;
+	uintmax_t t_plaintext_buffer_size;
 
 	/* The buffer storing our token in tokenized form, and it's size. */
 	struct
@@ -135,41 +135,41 @@ typedef struct
 		union
 		{
 			/* Character literal(s). */
-			char character8_literal;
+			char t_character8_literal;
 
 			/* String literal(s). */
-			char *string8_literal;
+			char *pt_string8_literal;
 
 			/* Identifier. */
-			char *identifier;
+			char *pt_identifier;
 
 			/* Keyword. */
-			keyword_t keyword;
+			keyword_t t_keyword;
 
 			/* Symbol. */
-			symbol_t symbol;
+			symbol_t t_symbol;
 
 			/*
 			 *	Integer types, both signed & unsigned, includes the 8-bit,
 			 *	16-bit, 32-bit, and 64-bit sizes.
 			 */
-			int8_t int8_literal;
-			int16_t int16_literal;
-			int32_t int32_literal;
-			int64_t int64_literal;
-			uint8_t uint8_literal;
-			uint16_t uint16_literal;
-			uint32_t uint32_literal;
-			uint64_t uint64_literal;
+			int8_t t_int8_literal;
+			int16_t t_int16_literal;
+			int32_t t_int32_literal;
+			int64_t t_int64_literal;
+			uint8_t t_uint8_literal;
+			uint16_t t_uint16_literal;
+			uint32_t t_uint32_literal;
+			uint64_t t_uint64_literal;
 
 			/* Floating-point types, both 32-bit & 64-bit float literals. */
-			float float32_literal;
-			double float64_literal;
+			float t_float32_literal;
+			double t_float64_literal;
 		};
 
 		/* Only applies to string literals & identifiers. */
-		uintmax_t buffer_size;
-	} value;
+		uintmax_t t_buffer_size;
+	} t_value;
 } token_t;
 
-int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size);
+int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer_size, token_t **ppt_output_token_buffer, uintmax_t *pt_output_token_buffer_size);

@@ -20,20 +20,20 @@ FILE *g_output_file_handle = NULL;
 intmax_t g_output_file_size = -1;
 char *g_output_file_buffer = NULL;
 
-int main(int argc, const char *argv[])
+int main(int t_argc, const char *pt_argv[])
 {
 	/* Loop for every command-line argument. */
-	for(uintmax_t l_i = 1; l_i < (uintmax_t)argc; l_i++)
+	for(uintmax_t l_i = 1; l_i < (uintmax_t)t_argc; l_i++)
 	{
 		/* Compare the command-line argument flag(s). */
-		if(strcmp(argv[l_i], "-c") == 0 && l_i + 1 < (uintmax_t)argc)
+		if(strcmp(pt_argv[l_i], "-c") == 0 && l_i + 1 < (uintmax_t)t_argc)
 		{
-			g_input_file_name = (char *)argv[l_i + 1];
+			g_input_file_name = (char *)pt_argv[l_i + 1];
 			l_i++;
 		}
-		else if(strcmp(argv[l_i], "-S") == 0 && l_i + 1 < (uintmax_t)argc)
+		else if(strcmp(pt_argv[l_i], "-S") == 0 && l_i + 1 < (uintmax_t)t_argc)
 		{
-			g_output_file_name = (char *)argv[l_i + 1];
+			g_output_file_name = (char *)pt_argv[l_i + 1];
 			l_i++;
 		}
 		else

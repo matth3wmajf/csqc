@@ -12,46 +12,46 @@
  *	considering the double-equals to be two separate symbols.
  *	This same logic applies to most other symbols, such as `<` and `<<`.
  */
-const char *g_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "else", "enum", "extern", "for", "goto", "if", "register", "return", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
-const char *g_symbols[] = {"*=", "/=", "%=", "+=", "-=", "<<=", ">>=", "&=", "^=", "|=", "->", "++", "--", "...", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%", "?", ":"};
+const char *pg_keywords[] = {"auto", "break", "case", "byte", "const", "continue", "default", "do", "else", "enum", "extern", "for", "goto", "if", "register", "return", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "signed", "void", "volatile", "while"};
+const char *pg_symbols[] = {"*=", "/=", "%=", "+=", "-=", "<<=", ">>=", "&=", "^=", "|=", "->", "++", "--", "...", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "+", "-", "*", "/", "=", "<", ">", "!", "&", "|", "^", "~", "(", ")", "{", "}", "[", "]", ";", ",", ".", "%", "?", ":"};
  
 /* Analyze the inputted source code, and output an array of tokens. */
-int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size, token_t **output_token_buffer, uintmax_t *output_token_buffer_size)
+int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer_size, token_t **ppt_output_token_buffer, uintmax_t *pt_output_token_buffer_size)
 {
 	uintmax_t l_i = 0;
 
-	while(l_i < *input_source_buffer_size)
+	while(l_i < *pt_input_source_buffer_size)
 	{
 		/* Skip whitespace. */
-		if(is_whitespace(input_source_buffer[l_i]))
+		if(is_whitespace(pt_input_source_buffer[l_i]))
 		{
 			l_i++;
 			continue;
 		}
 
 		/* Check for keywords. */
-		for(uintmax_t l_j = 0; l_j < sizeof(g_keywords) / sizeof(g_keywords[0]); l_j++)
+		for(uintmax_t l_j = 0; l_j < sizeof(pg_keywords) / sizeof(pg_keywords[0]); l_j++)
 		{
-			char l_delimiter = input_source_buffer[l_i + strlen(g_keywords[l_j])];
+			char l_delimiter = pt_input_source_buffer[l_i + strlen(pg_keywords[l_j])];
 
-			if(l_i + strlen(g_keywords[l_j]) <= *input_source_buffer_size && strncmp(g_keywords[l_j], input_source_buffer + l_i, strlen(g_keywords[l_j])) == 0 && (l_i + strlen(g_keywords[l_j]) == *input_source_buffer_size || !is_valid_identifier_character(input_source_buffer[l_i + strlen(g_keywords[l_j])])))
+			if(l_i + strlen(pg_keywords[l_j]) <= *pt_input_source_buffer_size && strncmp(pg_keywords[l_j], pt_input_source_buffer + l_i, strlen(pg_keywords[l_j])) == 0 && (l_i + strlen(pg_keywords[l_j]) == *pt_input_source_buffer_size || !is_valid_identifier_character(pt_input_source_buffer[l_i + strlen(pg_keywords[l_j])])))
 			{
 				/* Resize the buffer of scanned tokens. */
-				(*output_token_buffer_size)++;
-				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+				(*pt_output_token_buffer_size)++;
+				*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = TOKEN_TYPE_KEYWORD;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = TOKEN_TYPE_KEYWORD;
 
 				/* Add the plaintext version of the token to the buffer. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_keywords[l_j];
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = strlen(g_keywords[l_j]);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = (char *)pg_keywords[l_j];
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = strlen(pg_keywords[l_j]);
 
 				/* Add the token to the buffer. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.keyword = l_j;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_keyword = l_j;
 
 				/* Skip over the keyword. */
-				l_i += strlen(g_keywords[l_j]);
+				l_i += strlen(pg_keywords[l_j]);
 
 				/* Break out of the loop. */
 				continue;
@@ -59,27 +59,27 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 		}
 
 		/* Check for symbols. */
-		for(uintmax_t l_j = 0; l_j < sizeof(g_symbols) / sizeof(g_symbols[0]); l_j++)
+		for(uintmax_t l_j = 0; l_j < sizeof(pg_symbols) / sizeof(pg_symbols[0]); l_j++)
 		{
-			if(l_i + strlen(g_symbols[l_j]) <= *input_source_buffer_size && 
-			strncmp(g_symbols[l_j], input_source_buffer + l_i, strlen(g_symbols[l_j])) == 0)
+			if(l_i + strlen(pg_symbols[l_j]) <= *pt_input_source_buffer_size && 
+			strncmp(pg_symbols[l_j], pt_input_source_buffer + l_i, strlen(pg_symbols[l_j])) == 0)
 			{
 				/* Resize the buffer of scanned tokens. */
-				(*output_token_buffer_size)++;
-				*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+				(*pt_output_token_buffer_size)++;
+				*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 				/* Set the token type. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_SYMBOL;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_SYMBOL;
 
 				/* Add the plaintext to the buffer. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = (char *)g_symbols[l_j];
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = strlen(g_symbols[l_j]);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = (char *)pg_symbols[l_j];
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = strlen(pg_symbols[l_j]);
 
 				/* Add the token to the buffer. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.symbol = l_j;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_symbol = l_j;
 
 				/* Skip over the symbol. */
-				l_i += strlen(g_symbols[l_j]);
+				l_i += strlen(pg_symbols[l_j]);
 
 				/* Break out of the loop. */
 				break;
@@ -87,20 +87,20 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 		}
 
 		/* Handle character literals. */
-		if(input_source_buffer[l_i] == '\'')
+		if(pt_input_source_buffer[l_i] == '\'')
 		{
 			/* Move past the opening single quote. */
 			l_i++;
 			char l_character;
 
 			/* Backslash detected! */
-			if(input_source_buffer[l_i] == '\\')
+			if(pt_input_source_buffer[l_i] == '\\')
 			{
 				/* Move past the backslash. */
 				l_i++;
 				
 				/* Handle escape sequences. */
-				switch (input_source_buffer[l_i])
+				switch (pt_input_source_buffer[l_i])
 				{
 					case 'n': l_character = '\n'; break;
 					case 't': l_character = '\t'; break;
@@ -115,13 +115,13 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			}
 			else
 			{
-				l_character = input_source_buffer[l_i];
+				l_character = pt_input_source_buffer[l_i];
 			}
 
 			/* Move to the closing quote. */
 			l_i++;
 
-			if (input_source_buffer[l_i] != '\'')
+			if (pt_input_source_buffer[l_i] != '\'')
 			{
 				/*
 				 *	Unterminated character literal, terminate the scanning
@@ -132,26 +132,26 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			}
 
 			/* Resize the buffer of scanned tokens. */
-			(*output_token_buffer_size)++;
-			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+			(*pt_output_token_buffer_size)++;
+			*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_CHARACTER8_LITERAL;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_CHARACTER8_LITERAL;
 
 			/* Add the plaintext to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = malloc(sizeof(char));
-			*(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_character;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = sizeof(char);
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = malloc(sizeof(char));
+			*(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = l_character;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = sizeof(char);
 
 			/* Add the token to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.character8_literal = l_character;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_character8_literal = l_character;
 
 			/* Move past the closing quote. */
 			l_i++;
 		}
 
 		/* Handle string literals. */
-		if(input_source_buffer[l_i] == '"')
+		if(pt_input_source_buffer[l_i] == '"')
 		{
 			/* Move past the opening quote. */
 			l_i++;
@@ -160,14 +160,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			char *l_string_buffer = NULL;
 			uintmax_t l_string_length = 0;
 
-			while(input_source_buffer[l_i] != '"' && input_source_buffer[l_i] != '\0')
+			while(pt_input_source_buffer[l_i] != '"' && pt_input_source_buffer[l_i] != '\0')
 			{
 				char l_character;
-				if(input_source_buffer[l_i] == '\\')
+				if(pt_input_source_buffer[l_i] == '\\')
 				{
 					/* Handle escape sequences. */
 					l_i++;
-					switch (input_source_buffer[l_i])
+					switch (pt_input_source_buffer[l_i])
 					{
 						case 'n': l_character = '\n'; break;
 						case 't': l_character = '\t'; break;
@@ -183,7 +183,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				}
 				else
 				{
-					l_character = input_source_buffer[l_i];
+					l_character = pt_input_source_buffer[l_i];
 				}
 
 				/* Append the character to the string buffer. */
@@ -193,7 +193,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				l_i++;
 			}
 
-			if (input_source_buffer[l_i] != '"')
+			if (pt_input_source_buffer[l_i] != '"')
 			{
 				/* Unterminated string literal, terminate the scanning process. */
 				free(l_string_buffer);
@@ -202,26 +202,26 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			}
 
 			/* Resize the buffer of scanned tokens. */
-			(*output_token_buffer_size)++;
-			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+			(*pt_output_token_buffer_size)++;
+			*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_STRING8_LITERAL;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_STRING8_LITERAL;
 
 			/* Add the plaintext to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_string_buffer;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_string_length;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = l_string_buffer;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = l_string_length;
 
 			/* Add the token to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.string8_literal = l_string_buffer;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_string_length;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.pt_string8_literal = l_string_buffer;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_buffer_size = l_string_length;
 
 			/* Move past the closing quote. */
 			l_i++;
 		}
 
 		/* Handle identifiers. */
-		if(is_alphabet(input_source_buffer[l_i]) || input_source_buffer[l_i] == '_')
+		if(is_alphabet(pt_input_source_buffer[l_i]) || pt_input_source_buffer[l_i] == '_')
 		{
 			/* Store the start of the identifier's name in memory. */
 			uintmax_t l_start = l_i;
@@ -230,7 +230,7 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			 *	Keep adding characters to the identifier's name until a
 			 *	non-identifier character is encountered.
 			 */
-			while (l_i < *input_source_buffer_size && is_valid_identifier_character(input_source_buffer[l_i]))
+			while (l_i < *pt_input_source_buffer_size && is_valid_identifier_character(pt_input_source_buffer[l_i]))
 			{
 				l_i++;
 			}
@@ -239,23 +239,23 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			uintmax_t l_length = l_i - l_start;
 
 			/* Resize the buffer of scanned tokens. */
-			(*output_token_buffer_size)++;
-			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+			(*pt_output_token_buffer_size)++;
+			*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 			/* Set the token type. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_IDENTIFIER;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_IDENTIFIER;
 
 			/* Add the plaintext to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = input_source_buffer + l_start;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_length;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = pt_input_source_buffer + l_start;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = l_length;
 
 			/* Add the token to the buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.identifier = input_source_buffer + l_start;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].value.buffer_size = l_length;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.pt_identifier = pt_input_source_buffer + l_start;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_buffer_size = l_length;
 		}
 
 		/* Handle numbers. */
-		if(is_digit(input_source_buffer[l_i]) || (input_source_buffer[l_i] == '.' && is_digit(input_source_buffer[l_i + 1])))
+		if(is_digit(pt_input_source_buffer[l_i]) || (pt_input_source_buffer[l_i] == '.' && is_digit(pt_input_source_buffer[l_i + 1])))
 		{
 			/* Store the start of the number in memory. */
 			uintmax_t l_start = l_i;
@@ -264,9 +264,9 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			bool l_is_floating_point = false;
 
 			/* Parse the integer or floating point part. */
-			while(l_i < *input_source_buffer_size && (is_digit(input_source_buffer[l_i]) || input_source_buffer[l_i] == '.'))
+			while(l_i < *pt_input_source_buffer_size && (is_digit(pt_input_source_buffer[l_i]) || pt_input_source_buffer[l_i] == '.'))
 			{
-				if(input_source_buffer[l_i] == '.')
+				if(pt_input_source_buffer[l_i] == '.')
 				{
 					/* If there's a dot, mark it as a floating-point number. */
 					l_is_floating_point = true;
@@ -284,14 +284,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				return -1;
 			}
 
-			memcpy(l_number_literal, input_source_buffer + l_start, l_number_length);
+			memcpy(l_number_literal, pt_input_source_buffer + l_start, l_number_length);
 			l_number_literal[l_number_length] = '\0';
 
 			/* Now process any suffixes. */
 			uintmax_t l_suffix_start = l_i;
 
 			/* Check for integer suffixes (U, L, LL, UL, etc.) or floating-point suffixes (f, l). */
-			while(l_i < *input_source_buffer_size && (is_alphabet(input_source_buffer[l_i])))
+			while(l_i < *pt_input_source_buffer_size && (is_alphabet(pt_input_source_buffer[l_i])))
 			{
 				l_i++;
 			}
@@ -306,25 +306,25 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				return -1;
 			}
 
-			memcpy(l_suffix_literal, input_source_buffer + l_suffix_start, l_suffix_length);
+			memcpy(l_suffix_literal, pt_input_source_buffer + l_suffix_start, l_suffix_length);
 			l_suffix_literal[l_suffix_length] = '\0';
 
 			/* Resize the buffer of scanned tokens. */
-			(*output_token_buffer_size)++;
-			*output_token_buffer = realloc(*output_token_buffer, *output_token_buffer_size * sizeof(token_t));
+			(*pt_output_token_buffer_size)++;
+			*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 			/* Add the plaintext (number + suffix) to the token's buffer. */
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer = l_number_literal;
-			(*output_token_buffer)[(*output_token_buffer_size) - 1].plaintext_buffer_size = l_number_length + l_suffix_length;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = l_number_literal;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = l_number_length + l_suffix_length;
 
 			/* Set the vague token type. */
 			if(l_is_floating_point)
 			{
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL;
 			}
 			else if(!l_is_floating_point)
 			{
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
 			}
 
 			
@@ -341,14 +341,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 				if((l_suffix_literal[l_j] == 'f' || l_suffix_literal[l_j] == 'F') && l_is_floating_point)
 				{
 					/* It's a 32-bit float literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_FLOAT & 0x0F);
+					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_FLOAT & 0x0F);
 
 					l_j++;
 				}
 				else if((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && l_is_floating_point)
 				{
 					/* It's a 64-bit long double literal. */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_DOUBLE & 0x0F);
+					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_DOUBLE & 0x0F);
 
 					l_j++;
 				}
@@ -360,9 +360,9 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 *	We must also preserve it's signedness, just like
 					 *	the long literal's handling above has done so.
 					 */
-					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b00001000;
+					uint8_t l_existing_signedness = (*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type & 0b00001000;
 
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4); 
+					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4); 
 
 					l_j += 2;
 				}
@@ -375,12 +375,12 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 *	We must also preserve it's signedness, instead of
 					 *	overriding it.
 					 */
-					uint8_t l_existing_signedness = (*output_token_buffer)[(*output_token_buffer_size) - 1].token_type & 0b1;
+					uint8_t l_existing_signedness = (*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type & 0b1;
 
 					if(sizeof(long) == 8)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4);
+						(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT64 << 4);
 					else if(sizeof(long) == 4)
-						(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT32 << 4);
+						(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (TOKEN_PREFIX_INTEGER_LITERAL << 1) | (l_existing_signedness << 3) | (TOKEN_SUBTYPE_INT32 << 4);
 
 					l_j++;
 				}
@@ -392,14 +392,14 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 					 *  Therefore, only change it's signedness attribute, but
 					 *  nothing else.
 					 */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type |= (1 << 4);
+					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type |= (1 << 4);
 
 					l_j++;
 				}
 				else if ((l_suffix_literal[l_j] == 's' || l_suffix_literal[l_j] == 'S') && !l_is_floating_point)
 				{
 					/* Same goes to this... */
-					(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type &= ~(1 << 4);
+					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type &= ~(1 << 4);
 
 					l_j++;
 				}
@@ -415,46 +415,46 @@ int scanner_main(char *input_source_buffer, uintmax_t *input_source_buffer_size,
 			if(l_suffix_length == 0 && l_is_floating_point)
 			{
 				/* It's an unknown floating point literal. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL;
 			}
 			else if(l_suffix_length == 0 && !l_is_floating_point)
 			{
 				/* It's an unknown integer literal. */
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)TOKEN_TYPE_INT32_LITERAL;
 			}
 
 			/* Now, time to set the literal's value based on the precise type. */
-			switch((uint8_t)(*output_token_buffer)[(*output_token_buffer_size) - 1].token_type)
+			switch((uint8_t)(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type)
 			{
 			case (uint8_t)TOKEN_TYPE_INT8_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int8_literal = (int8_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int8_literal = (int8_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT8_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint8_literal = (uint8_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint8_literal = (uint8_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT16_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int16_literal = (int16_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int16_literal = (int16_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT16_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint16_literal = (uint16_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint16_literal = (uint16_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT32_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int32_literal = (int32_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int32_literal = (int32_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT32_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint32_literal = (uint32_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint32_literal = (uint32_t)strtol(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT64_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.int64_literal = (int64_t)strtoll(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int64_literal = (int64_t)strtoll(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT64_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float32_literal = (float)strtof(l_number_literal, NULL);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float32_literal = (float)strtof(l_number_literal, NULL);
 				break;
 			case (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL:
-				(*output_token_buffer)[(*output_token_buffer_size) - 1].value.float64_literal = (double)strtod(l_number_literal, NULL);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float64_literal = (double)strtod(l_number_literal, NULL);
 				break;
 			}
 

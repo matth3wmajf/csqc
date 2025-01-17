@@ -300,7 +300,7 @@ typedef struct object
 	 *	The object type, made up of vague types (prefixes) and specifiers
 	 *	(suffixes).
 	 */
-	object_type_t object_type : 12;
+	object_type_t t_object_type : 12;
 
 	union
 	{
@@ -320,22 +320,22 @@ typedef struct object
 				 *	Integer types, both signed & unsigned, includes the 8-bit,
 				 *	16-bit, 32-bit, and 64-bit sizes.
 				 */
-				int8_t int8_literal;
-				int16_t int16_literal;
-				int32_t int32_literal;
-				int64_t int64_literal;
-				uint8_t uint8_literal;
-				uint16_t uint16_literal;
-				uint32_t uint32_literal;
-				uint64_t uint64_literal;
+				int8_t t_int8_literal;
+				int16_t t_int16_literal;
+				int32_t t_int32_literal;
+				int64_t t_int64_literal;
+				uint8_t t_uint8_literal;
+				uint16_t t_uint16_literal;
+				uint32_t t_uint32_literal;
+				uint64_t t_uint64_literal;
 
 				/*
 				 *	Floating-point types, both 32-bit & 64-bit float literals.
 				 */
-				float float32_literal;
-				double float64_literal;
-			} value;
-		} constant;
+				float t_float32_literal;
+				double t_float64_literal;
+			} t_value;
+		} t_constant;
 
 		/* Expressions... */
 		union
@@ -349,60 +349,60 @@ typedef struct object
 					MULTIPLICATIVE_EXPRESSION_TYPE_MULTIPLY,
 					MULTIPLICATIVE_EXPRESSION_TYPE_DIVIDE,
 					MULTIPLICATIVE_EXPRESSION_TYPE_MODULO,
-				} operator;
+				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} multiplicative;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_multiplicative;
 
 			/* Bitwise XOR expressions... */
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} xor;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_xor;
 
 			/* Bitwise OR expressions... */
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} or;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_or;
 
 			/* Conditional expressions... */
 			struct
 			{
 				/* The buffer here should always be three units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} conditional;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_conditional;
 
 			/* Logical AND expressions... */
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} logical_and;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_logical_and;
 
 			/* Logical OR expressions... */
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} logical_or;
+				struct object *pt_operand_buffer;
+				uintmax_t pt_operand_buffer_size;
+			} pt_logical_or;
 
 			/* Bitwise AND expressions... */
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} and;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_and;
 
 			/* Assignment expressions... */
 			struct
@@ -421,12 +421,12 @@ typedef struct object
 					ASSIGNMENT_EXPRESSION_TYPE_DIVIDE,
 					ASSIGNMENT_EXPRESSION_TYPE_MODULO,
 					ASSIGNMENT_EXPRESSION_TYPE_ADD
-				} operator;
+				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} assignment;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_assignment;
 
 			/* Assignment expressions... */
 			struct
@@ -438,20 +438,20 @@ typedef struct object
 					RELATIONAL_EXPRESSION_TYPE_BIGGER_THAN,
 					RELATIONAL_EXPRESSION_TYPE_LESS_THAN_OR_EQUAL_TO,
 					RELATIONAL_EXPRESSION_TYPE_BIGGER_THAN_OR_EQUAL_TO
-				} operator;
+				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} relational;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_relational;
 
 			/* Constant expressions... */
 			struct
 			{
 				/* The buffer here can be pretty much any size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} constant;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_constant;
 
 			/* Equality expressions... */
 			struct
@@ -461,12 +461,12 @@ typedef struct object
 				{
 					EQUALITY_EXPRESSION_TYPE_EQUAL_TO,
 					EQUALITY_EXPRESSION_TYPE_NOT_EQUAL_TO
-				} operator;
+				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} equality;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_equality;
 
 			/* Additive expressions... */
 			struct
@@ -476,12 +476,12 @@ typedef struct object
 				{
 					ADDITIVE_EXPRESSION_TYPE_ADD,
 					ADDITIVE_EXPRESSION_TYPE_SUBTRACT
-				} operator;
+				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} additive;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_additive;
 
 			/* Postfix expressions... */
 			struct
@@ -495,12 +495,12 @@ typedef struct object
 					POSTFIX_EXPRESSION_TYPE_DECREMENT,
 					POSTFIX_EXPRESSION_TYPE_ARRAY,
 					POSTFIX_EXPRESSION_TYPE_CALL,
-				} operator;
+				} t_operator;
 
 				/* ... */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} postfix;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_postfix;
 
 			/* Shift expressions... */
 			struct
@@ -510,12 +510,12 @@ typedef struct object
 				{
 					SHIFT_EXPRESSION_TYPE_RIGHT_SHIFT,
 					SHIFT_EXPRESSION_TYPE_LEFT_SHIFT
-				} operator;
+				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} shift;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_shift;
 
 			/* Unary expressions... */
 			struct
@@ -532,12 +532,12 @@ typedef struct object
 					UNARY_EXPRESSION_TYPE_POSITIVE,
 					UNARY_EXPRESSION_TYPE_NEGATIVE,
 					UNARY_EXPRESSION_TYPE_SIZEOF
-				} operator;
+				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} unary;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_unary;
 
 			/* Cast expressions... */
 			struct
@@ -546,11 +546,11 @@ typedef struct object
 				 *	The buffer here must consist of the type name, and another
 				 *	cast expression or unary expression.
 				 */
-				struct object *operand_buffer;
-				uintmax_t operand_buffer_size;
-			} cast;
-		} expression;
+				struct object *pt_operand_buffer;
+				uintmax_t t_operand_buffer_size;
+			} t_cast;
+		} t_expression;
 	};
 } object_t;
 
-int parser_main(token_t *input_token_buffer, uintmax_t *input_token_buffer_size, object_t **output_object_buffer, uintmax_t *output_object_buffer_size);
+int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size);
