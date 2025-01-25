@@ -1,3 +1,0 @@
-# The *C²* compiler...
-## Introduction
-This repository consists of the compiler for the C² programming language, an experimental & work-in-progress programming language I've recently been developing since around August or September of 2024.

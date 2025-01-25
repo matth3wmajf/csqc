@@ -115,12 +115,23 @@ int main(int t_argc, const char *pt_argv[])
 	object_t *l_object_buffer = NULL;
 	uintmax_t l_object_buffer_size = 0;
 
+	/* Create a buffer of name(s), also known as a symbol table. */
+	name_t *pl_name_buffer = NULL;
+	uintmax_t l_name_buffer_size = 0;
+
 	/* Digest the array of tokens into an abstract-syntax-tree. */
 	l_result = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
 	if(l_result < 0)
 	{
 		fprintf(stderr, "error: Failed to parse the tokens!\n");
 		return -1;
+	}
+
+	/* Free the symbol table if it's allocated, we no longer need it. */
+	if(pl_name_buffer != NULL)
+	{
+		free(pl_name_buffer);
+		pl_name_buffer = NULL;
 	}
 
 	/* Free the token buffer, as we no longer need it. */

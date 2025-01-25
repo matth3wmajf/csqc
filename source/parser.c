@@ -15,161 +15,161 @@ intmax_t g_level;
 
 /* Function prototypes for handling symbols. */
 
-int parser_parse_symbol(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_ellipsis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_not_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_less_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_greater_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_logical_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_logical_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_left_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_right_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_add(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_subtract(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_multiply(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_divide(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_multiply_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_divide_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_modulo_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_addition_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_subtraction_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_left_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_right_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_and_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_xor_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_or_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_less_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_greater_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_logical_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_xor(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_bitwise_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_open_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_close_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_open_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_close_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_open_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_close_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_semicolon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_comma(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_period(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_modulo(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_conditional(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_colon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_increment(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_decrement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_symbol_arrow(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_ellipsis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_not_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_less_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_greater_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_logical_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_logical_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_left_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_right_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_add(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_subtract(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_multiply(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_divide(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_multiply_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_divide_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_modulo_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_addition_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_subtraction_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_left_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_right_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_and_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_xor_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_or_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_less_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_greater_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_logical_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_xor(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_bitwise_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_open_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_close_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_open_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_close_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_open_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_close_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_semicolon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_comma(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_period(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_modulo(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_conditional(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_colon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_increment(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_decrement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_symbol_arrow(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
 
 /* Function prototypes for handling keywords. */
 
-int parser_parse_keyword(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_auto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_break(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_case(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_byte(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_const(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_continue(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_default(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_do(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_else(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_enum(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_extern(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_for(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_goto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_if(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_register(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_return(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_signed(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_sizeof(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_static(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_struct(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_switch(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_typedef(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_unsigned(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_void(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_volatile(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_keyword_while(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_auto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_break(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_case(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_byte(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_const(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_continue(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_default(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_do(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_else(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_enum(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_extern(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_for(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_goto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_if(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_register(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_return(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_signed(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_sizeof(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_static(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_struct(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_switch(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_typedef(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_unsigned(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_void(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_volatile(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_keyword_while(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
 
 /* Function prototypes for handling literals. */
 
-int parser_parse_literal(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_literal_float(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_literal_int(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_literal_char(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_literal_string(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
+int parser_parse_literal(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_literal_float(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_literal_int(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_literal_char(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_literal_string(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
 
 /* Function prototypes for handling rules. */
 
-int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_external_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_declaration_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_storage_class_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_type_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_struct_or_union_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_struct_or_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_struct_declarator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_pointer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_type_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_constant_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_conditional_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_logical_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_logical_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_inclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_exclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_equality_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_relational_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_shift_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_additive_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_multiplicative_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_cast_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_unary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_postfix_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_primary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_constant(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_assignment_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_assignment_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_unary_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_type_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_parameter_type_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_parameter_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_parameter_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_direct_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_direct_abstract_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_enum_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_enumerator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_enumerator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_init_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_initializer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_initializer_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_compound_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_expression_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_selection_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
-int parser_parse_rule_jump_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_external_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_declaration_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_storage_class_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_type_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_struct_or_union_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_struct_or_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_struct_declarator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_pointer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_type_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_constant_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_conditional_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_logical_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_logical_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_inclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_exclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_equality_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_relational_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_shift_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_additive_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_multiplicative_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_cast_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_unary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_postfix_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_primary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_constant(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_assignment_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_assignment_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_unary_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_type_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_parameter_type_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_parameter_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_parameter_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_direct_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_direct_abstract_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_enum_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_enumerator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_enumerator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_init_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_initializer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_initializer_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_compound_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_expression_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_selection_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
+int parser_parse_rule_jump_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
 
 /* Function prototype for handling identifiers. */
 
-int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index);
+int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index);
 
 /* The macros for printing parse-level details. */
 
@@ -177,7 +177,7 @@ int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_
 #define LOG_FAILURE fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`).\n", &__func__[13], "failure", (intmax_t)g_level);
 #define LOG_SUCCESS fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`).\n", &__func__[13], "success", (intmax_t)g_level);
 
-int parser_parse_symbol(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -207,7 +207,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_ellipsis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_ellipsis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -237,7 +237,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -267,7 +267,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_not_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_not_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -297,7 +297,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_less_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_less_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -327,7 +327,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_greater_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_greater_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -357,7 +357,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_logical_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_logical_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -387,7 +387,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_logical_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_logical_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -417,7 +417,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_left_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_left_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -447,7 +447,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_right_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_right_shift(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -477,7 +477,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_add(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_add(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -507,7 +507,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_subtract(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_subtract(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -537,7 +537,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_multiply(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_multiply(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -567,7 +567,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_divide(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_divide(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -597,7 +597,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -627,7 +627,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_multiply_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_multiply_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -657,7 +657,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_divide_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_divide_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -687,7 +687,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_modulo_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_modulo_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -717,7 +717,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_addition_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_addition_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -747,7 +747,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_subtraction_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_subtraction_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -777,7 +777,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_left_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_left_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -807,7 +807,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_right_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_right_shift_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -837,7 +837,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_and_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_and_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -867,7 +867,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_xor_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_xor_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -897,7 +897,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_or_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_or_assign(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -927,7 +927,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_less_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_less_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -957,7 +957,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_greater_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_greater_than(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -987,7 +987,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_logical_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_logical_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1017,7 +1017,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1047,7 +1047,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1077,7 +1077,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_xor(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_xor(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1107,7 +1107,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_bitwise_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_bitwise_not(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1137,7 +1137,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_open_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_open_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1167,7 +1167,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_close_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_close_parenthesis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1197,7 +1197,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_open_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_open_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1227,7 +1227,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_close_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_close_brace(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1257,7 +1257,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_open_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_open_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1287,7 +1287,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_close_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_close_bracket(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1317,7 +1317,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_semicolon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_semicolon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1347,7 +1347,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_comma(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_comma(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1377,7 +1377,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_period(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_period(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1407,7 +1407,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_modulo(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_modulo(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1437,7 +1437,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_conditional(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_conditional(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1467,7 +1467,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_colon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_colon(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1497,7 +1497,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_increment(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_increment(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1527,7 +1527,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_decrement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_decrement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1557,7 +1557,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_symbol_arrow(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_symbol_arrow(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1589,7 +1589,7 @@ j_failure:
 
 /* Functions for handling keywords. */
 
-int parser_parse_keyword(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1619,7 +1619,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_auto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_auto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1649,7 +1649,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_break(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_break(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1679,7 +1679,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_case(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_case(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1709,7 +1709,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_byte(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_byte(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1739,7 +1739,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_const(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_const(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1769,7 +1769,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_continue(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_continue(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1799,7 +1799,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_default(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_default(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1829,7 +1829,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_do(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_do(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1859,7 +1859,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_else(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_else(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1889,7 +1889,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_enum(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_enum(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1919,7 +1919,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_extern(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_extern(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1949,7 +1949,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_for(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_for(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -1979,7 +1979,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_goto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_goto(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2009,7 +2009,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_if(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_if(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2039,7 +2039,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_register(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_register(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2069,7 +2069,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_return(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_return(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2099,7 +2099,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_signed(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_signed(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2129,7 +2129,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_sizeof(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_sizeof(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2159,7 +2159,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_static(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_static(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2189,7 +2189,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_struct(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_struct(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2219,7 +2219,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_switch(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_switch(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2249,7 +2249,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_typedef(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_typedef(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2279,7 +2279,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2309,7 +2309,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_unsigned(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_unsigned(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2339,7 +2339,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_void(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_void(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2369,7 +2369,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_volatile(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_volatile(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2399,7 +2399,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_keyword_while(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_keyword_while(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2431,7 +2431,7 @@ j_failure:
 
 /* Functions for handling literals. */
 
-int parser_parse_literal(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_literal(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2461,7 +2461,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_literal_float(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_literal_float(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2491,7 +2491,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_literal_int(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_literal_int(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2521,7 +2521,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_literal_char(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_literal_char(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2551,7 +2551,7 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_literal_string(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_literal_string(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2583,7 +2583,7 @@ j_failure:
 
 /* Functions for handling rules. */
 
-int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2594,7 +2594,7 @@ int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t
 
 	do
 	{
-		l_result = parser_parse_rule_external_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_external_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	} while(l_result >= 0);
 
 j_success:
@@ -2613,18 +2613,18 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_external_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_external_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_function_definition(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_function_definition(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -2649,7 +2649,7 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2660,18 +2660,18 @@ int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintma
 
 	do
 	{
-		l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	} while(l_result >= 0);
 
-	l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result < 0) goto j_failure;
 
 	do
 	{
-		l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	} while(l_result >= 0);
 
-	l_result = parser_parse_rule_compound_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	l_result = parser_parse_rule_compound_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result < 0) goto j_failure;
 
 j_success:
@@ -2694,21 +2694,21 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_rule_declaration_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_declaration_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
-	int l_result = parser_parse_rule_storage_class_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_storage_class_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_type_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_type_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -2734,29 +2734,29 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_storage_class_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_storage_class_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
-	int l_result = parser_parse_keyword_auto(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_auto(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_register(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_register(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_keyword_static(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_keyword_static(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_keyword_extern(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_keyword_extern(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_keyword_typedef(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_keyword_typedef(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -2784,37 +2784,37 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_type_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_type_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
-	int l_result = parser_parse_keyword_void(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_void(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_byte(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_byte(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_keyword_signed(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_keyword_signed(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_keyword_unsigned(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_keyword_unsigned(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_rule_struct_or_union_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_struct_or_union_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_rule_enum_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_enum_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0)
 						{
-							l_result = parser_parse_rule_typedef_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_rule_typedef_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0) goto j_failure;
 						}
@@ -2844,49 +2844,49 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_struct_or_union_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_struct_or_union_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_struct_or_union(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_struct_or_union(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result < 0) goto j_failure;
 
-	l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result < 0) goto j_failure;
 
 			do
 			{
-				l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			} while (l_result >= 0);
 
-			l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 		}
 		else if(l_result < 0) goto j_success;
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result < 0) goto j_failure;
 
 			do
 			{
-				l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_struct_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			} while (l_result >= 0);
 
-			l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 		}
 		else if(l_result < 0) goto j_success;
@@ -2912,18 +2912,18 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_struct_or_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_struct_or_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_struct(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_struct(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_union(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_union(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -2948,7 +2948,7 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -2959,10 +2959,10 @@ int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax
 
 	do
 	{
-		l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	} while(l_result >= 0);
 
-	l_result = parser_parse_rule_struct_declarator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	l_result = parser_parse_rule_struct_declarator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 
 j_failure:
@@ -2985,18 +2985,18 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_type_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_type_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -3021,24 +3021,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_struct_declarator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_struct_declarator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_struct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_struct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_struct_declarator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_struct_declarator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_struct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_struct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3067,20 +3067,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result < 0) goto j_failure;
 
 			goto j_success;
@@ -3089,10 +3089,10 @@ int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result < 0) goto j_failure;
 
-		l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result < 0) goto j_failure;
 
 		goto j_success;
@@ -3118,16 +3118,16 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-	int l_result = parser_parse_rule_direct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_direct_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result < 0) goto j_failure;
 
 j_success:
@@ -3150,22 +3150,22 @@ j_failure:
 	return -1;
 }
 
-int parser_parse_rule_pointer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_pointer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
 		do
 		{
-			l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_type_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
-		parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
 		goto j_success;
 	}
@@ -3191,18 +3191,18 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_type_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_type_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_const(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_const(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_volatile(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_volatile(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -3227,24 +3227,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3252,7 +3252,7 @@ int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_rule_direct_abstract_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_direct_abstract_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -3278,22 +3278,22 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	LOG_STARTED;
 	g_level++;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-		l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -3301,16 +3301,16 @@ int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uin
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_parameter_type_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_parameter_type_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3320,13 +3320,13 @@ int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uin
 			{
 				do
 				{
-					l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				} while(l_result >= 0);
 
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_direct_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3356,14 +3356,14 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_constant_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_constant_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 
 j_failure:
@@ -3386,26 +3386,26 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_conditional_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_conditional_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_logical_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_logical_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_conditional(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_conditional(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3437,24 +3437,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_logical_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_logical_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_logical_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_logical_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_logical_or(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_logical_or(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3483,24 +3483,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_logical_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_logical_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_logical_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_logical_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_logical_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3529,24 +3529,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_inclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_inclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_inclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_bitwise_or(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_bitwise_or(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3575,24 +3575,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_exclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_exclusive_or_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_exclusive_or_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_bitwise_xor(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_bitwise_xor(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3621,24 +3621,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_and_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_and_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_bitwise_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_bitwise_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -3667,33 +3667,33 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_equality_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_equality_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_equality_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_not_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_not_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3723,51 +3723,51 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_relational_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_relational_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_relational_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_less_than(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_less_than(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_greater_than(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_greater_than(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_symbol_less_than_or_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_less_than_or_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_symbol_greater_than_or_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_greater_than_or_equal_to(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0) goto j_failure;
 						}
@@ -3799,33 +3799,33 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_shift_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_shift_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_shift_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_left_shift(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_left_shift(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_right_shift(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_right_shift(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3854,33 +3854,33 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_additive_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_additive_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_additive_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_add(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_add(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_subtract(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_subtract(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -3910,42 +3910,42 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_multiplicative_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_multiplicative_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_multiplicative_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_divide(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_divide(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_symbol_modulo(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_modulo(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -3976,27 +3976,27 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_cast_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_cast_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_type_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_type_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -4027,50 +4027,50 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_unary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_unary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_postfix_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_postfix_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_increment(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_increment(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_symbol_decrement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_decrement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_rule_unary_operator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_unary_operator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_cast_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_keyword_sizeof(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_keyword_sizeof(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0)
 							{
-								l_result = parser_parse_rule_type_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_rule_type_name(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0) goto j_failure;
 							}
@@ -4103,69 +4103,69 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_postfix_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_postfix_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_primary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_primary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_postfix_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_postfix_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
 						do
 						{
-							l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						} while(l_result >= 0);
 
-						l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_symbol_period(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_period(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0) goto j_failure;
 						}
 						else if(l_result < 0)
 						{
-							l_result = parser_parse_symbol_arrow(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_symbol_arrow(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0)
 							{
-								l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0) goto j_failure;
 							}
 							else if(l_result < 0)
 							{
-								l_result = parser_parse_symbol_increment(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_symbol_increment(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0)
 								{
-									l_result = parser_parse_symbol_decrement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+									l_result = parser_parse_symbol_decrement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 									if(l_result >= 0) goto j_success;
 									else if(l_result < 0) goto j_failure;
 								}
@@ -4198,32 +4198,32 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_primary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_primary_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_constant(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_constant(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_literal_string(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_literal_string(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -4254,22 +4254,22 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_constant(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_constant(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_literal_int(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_literal_int(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_literal_char(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_literal_char(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_literal_float(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_literal_float(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 			
@@ -4300,24 +4300,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -4346,24 +4346,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_assignment_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_assignment_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_conditional_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_unary_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_assignment_operator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_assignment_operator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -4392,54 +4392,54 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_assignment_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_assignment_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_multiply_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_multiply_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_symbol_divide_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_divide_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_modulo_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_modulo_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_symbol_addition_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_addition_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_symbol_subtraction_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_subtraction_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0)
 						{
-							l_result = parser_parse_symbol_left_shift_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_symbol_left_shift_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0)
 							{
-								l_result = parser_parse_symbol_right_shift_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_symbol_right_shift_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0)
 								{
-									l_result = parser_parse_symbol_bitwise_and_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+									l_result = parser_parse_symbol_bitwise_and_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 									if(l_result >= 0) goto j_success;
 									else if(l_result < 0)
 									{
-										l_result = parser_parse_symbol_bitwise_xor_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+										l_result = parser_parse_symbol_bitwise_xor_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 										if(l_result >= 0) goto j_success;
 										else if(l_result < 0)
 										{
-											l_result = parser_parse_symbol_bitwise_or_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+											l_result = parser_parse_symbol_bitwise_or_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 											if(l_result >= 0) goto j_success;
 											else if(l_result < 0) goto j_failure;
 										}
@@ -4473,34 +4473,34 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_unary_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_unary_operator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_bitwise_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_bitwise_and(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_multiply(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_symbol_add(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_add(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_symbol_subtract(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_subtract(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_symbol_bitwise_not(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_bitwise_not(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_symbol_logical_not(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_logical_not(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -4529,22 +4529,22 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_type_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_type_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
 		do
 		{
-			l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_specifier_qualifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
-		parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
 		goto j_success;
 	}
@@ -4570,20 +4570,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_parameter_type_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_parameter_type_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_parameter_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_parameter_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_ellipsis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_ellipsis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -4611,24 +4611,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_parameter_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_parameter_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_parameter_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_parameter_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_parameter_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_parameter_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_parameter_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_parameter_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -4657,26 +4657,26 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_parameter_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_parameter_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
 		do
 		{
-			l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
-		l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_success;
 		}
@@ -4703,23 +4703,23 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_pointer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_rule_direct_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_direct_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_success;
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_direct_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_direct_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -4744,20 +4744,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_direct_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_direct_abstract_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_abstract_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result >= 0) goto j_failure;
 		}
@@ -4765,10 +4765,10 @@ int parser_parse_rule_direct_abstract_declarator(token_t *pt_input_token_buffer,
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_direct_abstract_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_direct_abstract_declarator_tail(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -4795,30 +4795,30 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_direct_abstract_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_direct_abstract_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_open_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-		l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_close_bracket(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			parser_parse_rule_parameter_type_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			parser_parse_rule_parameter_type_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			
-			l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -4845,26 +4845,26 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_enum_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_enum_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_enum(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_enum(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -4874,13 +4874,13 @@ int parser_parse_rule_enum_specifier(token_t *pt_input_token_buffer, uintmax_t *
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -4911,24 +4911,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_enumerator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_enumerator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_enumerator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_enumerator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_enumerator_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_enumerator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_enumerator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -4957,20 +4957,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_enumerator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_enumerator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -4998,14 +4998,14 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0) goto j_failure;
 
@@ -5029,30 +5029,30 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
 		do
 		{
-			l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_declaration_specifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
 		int l_init_declarator_count = 0;
 
 		do
 		{
-			l_result = parser_parse_rule_init_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_init_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) l_init_declarator_count++;
 		} while(l_result >= 0);
 
-		l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -5078,20 +5078,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_init_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_init_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_declarator(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_assign(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -5119,31 +5119,31 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_initializer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_initializer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_assignment_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -5175,24 +5175,24 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_initializer_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_initializer_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_initializer_list(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_comma(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_initializer(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
@@ -5221,27 +5221,27 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_compound_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_compound_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_open_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
 		do
 		{
-			l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_declaration(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
 		do
 		{
-			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		} while(l_result >= 0);
 
-		l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_close_brace(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0) goto j_failure;
 	}
@@ -5267,34 +5267,34 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_rule_labeled_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_labeled_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_rule_expression_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_rule_expression_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0) goto j_success;
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_rule_compound_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_compound_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_rule_selection_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_selection_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0)
 				{
-					l_result = parser_parse_rule_iteration_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_iteration_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0)
 					{
-						l_result = parser_parse_rule_jump_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_jump_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -5323,20 +5323,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -5344,16 +5344,16 @@ int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_case(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_case(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_constant_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -5363,13 +5363,13 @@ int parser_parse_rule_labeled_statement(token_t *pt_input_token_buffer, uintmax_
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_keyword_default(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_keyword_default(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_colon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -5399,16 +5399,16 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_expression_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_expression_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-	int l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0) goto j_success;
 	else if(l_result < 0) goto j_failure;
 
@@ -5432,32 +5432,32 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_selection_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_selection_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_if(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_if(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_keyword_else(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_keyword_else(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0) goto j_success;
 							else if(l_result < 0) goto j_failure;
 						}
@@ -5473,19 +5473,19 @@ int parser_parse_rule_selection_statement(token_t *pt_input_token_buffer, uintma
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_switch(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_switch(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0) goto j_success;
 						else if(l_result < 0) goto j_failure;
 					}
@@ -5518,26 +5518,26 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_while(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_while(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -5549,25 +5549,25 @@ int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintma
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_do(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_do(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_keyword_while(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_keyword_while(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0)
 							{
-								l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0) goto j_failure;
 							}
@@ -5583,28 +5583,28 @@ int parser_parse_rule_iteration_statement(token_t *pt_input_token_buffer, uintma
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_keyword_for(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_keyword_for(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_open_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-					l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0)
 					{
-						parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-						l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+						l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 						if(l_result >= 0)
 						{
-							parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							
-							l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+							l_result = parser_parse_symbol_close_parenthesis(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 							if(l_result >= 0)
 							{
-								l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+								l_result = parser_parse_rule_statement(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 								if(l_result >= 0) goto j_success;
 								else if(l_result < 0) goto j_failure;
 							}
@@ -5640,20 +5640,20 @@ j_success:
 	return 0;
 }
 
-int parser_parse_rule_jump_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_rule_jump_statement(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
 
 	uintmax_t l_index = *pt_index;
 
-	int l_result = parser_parse_keyword_goto(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_keyword_goto(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
@@ -5661,30 +5661,30 @@ int parser_parse_rule_jump_statement(token_t *pt_input_token_buffer, uintmax_t *
 	}
 	else if(l_result < 0)
 	{
-		l_result = parser_parse_keyword_continue(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+		l_result = parser_parse_keyword_continue(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 		if(l_result >= 0)
 		{
-			l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 		}
 		else if(l_result < 0)
 		{
-			l_result = parser_parse_keyword_break(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+			l_result = parser_parse_keyword_break(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 			if(l_result >= 0)
 			{
-				l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0) goto j_success;
 				else if(l_result < 0) goto j_failure;
 			}
 			else if(l_result < 0)
 			{
-				l_result = parser_parse_keyword_return(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+				l_result = parser_parse_keyword_return(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 				if(l_result >= 0)
 				{
-					parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					parser_parse_rule_expression(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-					l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+					l_result = parser_parse_symbol_semicolon(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 					if(l_result >= 0) goto j_success;
 					else if(l_result < 0) goto j_failure;
 				}
@@ -5715,7 +5715,7 @@ j_success:
 
 /* Function for handling identifiers. */
 
-int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, uintmax_t *pt_index)
+int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
 	LOG_STARTED;
@@ -5745,14 +5745,16 @@ j_success:
 	return 0;
 }
 
-int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size)
+int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size)
 {
 	/* Set the recursion level to zero. */
 	g_level = -1;
 
+	/* Set the index to zero. */
 	uintmax_t l_index = 0;
 
-	int l_result = parser_parse_rule_translation_unit(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, &l_index);
+	int l_result = parser_parse_rule_translation_unit(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
+
 	if(l_result >= 0) return 0;
 	else if(l_result < 0) return -1;
 

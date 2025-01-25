@@ -5,7 +5,7 @@
 			"type": "gdb",
 			"request": "launch",
 			"name": "Debug",
-			"target": "./build/csqlang",
+			"target": "./build/csqc",
 			"cwd": "${workspaceRoot}",
 			"valuesFormatting": "parseText",
 			"arguments": "-c example.csq"

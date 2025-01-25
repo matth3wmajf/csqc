@@ -353,8 +353,7 @@ typedef enum
 	OBJECT_TYPE_RULE_JUMP_STATEMENT = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_RULE_JUMP_STATEMENT,
 
 	/* The object type for identifier(s). */
-	OBJECT_TYPE_IDENTIFIER = (OBJECT_TYPE_PREFIX_UNKNOWN << 8) | OBJECT_TYPE_SUFFIX_IDENTIFIER,
-
+	OBJECT_TYPE_IDENTIFIER = (OBJECT_TYPE_PREFIX_UNKNOWN << 8) | OBJECT_TYPE_SUFFIX_IDENTIFIER
 } object_type_t;
 
 typedef struct object
@@ -415,7 +414,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_multiplicative;
 
@@ -423,7 +422,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_xor;
 
@@ -431,7 +430,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_or;
 
@@ -439,7 +438,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be three units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_conditional;
 
@@ -447,7 +446,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_logical_and;
 
@@ -455,7 +454,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t pt_operand_buffer_size;
 			} pt_logical_or;
 
@@ -463,7 +462,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_and;
 
@@ -487,7 +486,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_assignment;
 
@@ -504,7 +503,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here should always be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_relational;
 
@@ -512,7 +511,7 @@ typedef struct object
 			struct
 			{
 				/* The buffer here can be pretty much any size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_constant;
 
@@ -527,7 +526,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_equality;
 
@@ -542,7 +541,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_additive;
 
@@ -561,7 +560,7 @@ typedef struct object
 				} t_operator;
 
 				/* ... */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_postfix;
 
@@ -576,7 +575,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_shift;
 
@@ -598,7 +597,7 @@ typedef struct object
 				} t_operator;
 
 				/* The buffer here must be two units in size. */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_unary;
 
@@ -609,11 +608,29 @@ typedef struct object
 				 *	The buffer here must consist of the type name, and another
 				 *	cast expression or unary expression.
 				 */
-				struct object *pt_operand_buffer;
+				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_cast;
 		} t_expression;
 	};
 } object_t;
 
-int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size);
+typedef struct
+{
+	/* The type of the name. */
+	enum
+	{
+		NAME_TYPE_UNKNOWN,
+		NAME_TYPE_VARIABLE,
+		NAME_TYPE_FUNCTION,
+		NAME_TYPE_CONSTANT
+	} t_type;
+
+	/* The identifier of the scope that the name is found in. */
+	uintmax_t t_scope_identifier;
+
+	/* The name itself. */
+	char *pt_name;
+} name_t;
+
+int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size);
