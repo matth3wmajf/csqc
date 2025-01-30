@@ -76,7 +76,6 @@ int main(int t_argc, const char *pt_argv[])
 	 */
 	g_input_file_buffer = malloc(g_input_file_size);
 	fread(g_input_file_buffer, 1, g_input_file_size, g_input_file_handle);
-	fclose(g_input_file_handle);
 
 	/*
 	 *	Create a buffer which will contain our tokens.

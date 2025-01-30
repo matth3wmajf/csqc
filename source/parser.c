@@ -5834,6 +5834,174 @@ j_success:
 		case OBJECT_TYPE_SYMBOL_ASSIGN:
 			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_assign");
 			break;
+		case OBJECT_TYPE_SYMBOL_MULTIPLY_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_multiply_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_DIVIDE_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_divide_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_MODULO_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_modulo_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_ADDITION_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_addition_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_SUBTRACTION_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_subtraction_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_LEFT_SHIFT_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_left_shift_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_RIGHT_SHIFT_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_right_shift_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_AND_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_and_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_XOR_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_xor_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_OR_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_or_assign");
+			break;
+		case OBJECT_TYPE_SYMBOL_LESS_THAN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_less_than");
+			break;
+		case OBJECT_TYPE_SYMBOL_GREATER_THAN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_greater_than");
+			break;
+		case OBJECT_TYPE_SYMBOL_LOGICAL_NOT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_logical_not");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_AND:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_and");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_OR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_or");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_XOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_xor");
+			break;
+		case OBJECT_TYPE_SYMBOL_BITWISE_NOT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_bitwise_not");
+			break;
+		case OBJECT_TYPE_SYMBOL_LEFT_PARENTHESIS:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_left_parenthesis");
+			break;
+		case OBJECT_TYPE_SYMBOL_RIGHT_PARENTHESIS:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_right_parenthesis");
+			break;
+		case OBJECT_TYPE_SYMBOL_LEFT_BRACE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_left_brace");
+			break;
+		case OBJECT_TYPE_SYMBOL_RIGHT_BRACE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_right_brace");
+			break;
+		case OBJECT_TYPE_SYMBOL_LEFT_BRACKET:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_left_bracket");
+			break;
+		case OBJECT_TYPE_SYMBOL_RIGHT_BRACKET:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_right_bracket");
+			break;
+		case OBJECT_TYPE_SYMBOL_COMMA:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_comma");
+			break;
+		case OBJECT_TYPE_SYMBOL_PERIOD:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_period");
+			break;
+		case OBJECT_TYPE_SYMBOL_MODULO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_modulo");
+			break;
+		case OBJECT_TYPE_SYMBOL_SEMICOLON:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_semicolon");
+			break;
+		case OBJECT_TYPE_SYMBOL_COLON:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_colon");
+			break;
+		case OBJECT_TYPE_SYMBOL_INCREMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_increment");
+			break;
+		case OBJECT_TYPE_SYMBOL_DECREMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_decrement");
+			break;
+		case OBJECT_TYPE_SYMBOL_ARROW:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_arrow");
+			break;
+		case OBJECT_TYPE_SYMBOL_CONDITIONAL:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_conditional");
+			break;
+		case OBJECT_TYPE_KEYWORD:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword");
+			break;
+		case OBJECT_TYPE_KEYWORD_AUTO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_auto");
+			break;
+		case OBJECT_TYPE_KEYWORD_BREAK:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_break");
+			break;
+		case OBJECT_TYPE_KEYWORD_CASE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_case");
+			break;
+		case OBJECT_TYPE_KEYWORD_BYTE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_byte");
+			break;
+		case OBJECT_TYPE_KEYWORD_CONST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_const");
+			break;
+		case OBJECT_TYPE_KEYWORD_CONTINUE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_continue");
+			break;
+		case OBJECT_TYPE_KEYWORD_DEFAULT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_default");
+			break;
+		case OBJECT_TYPE_KEYWORD_DO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_do");
+			break;
+		case OBJECT_TYPE_KEYWORD_ELSE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_else");
+			break;
+		case OBJECT_TYPE_KEYWORD_ENUM:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_enum");
+			break;
+		case OBJECT_TYPE_KEYWORD_EXTERN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_extern");
+			break;
+		case OBJECT_TYPE_KEYWORD_FOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_for");
+			break;
+		case OBJECT_TYPE_KEYWORD_GOTO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_goto");
+			break;
+		case OBJECT_TYPE_KEYWORD_IF:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_if");
+			break;
+		case OBJECT_TYPE_KEYWORD_REGISTER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_register");
+			break;
+		case OBJECT_TYPE_KEYWORD_RETURN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_return");
+			break;
+		case OBJECT_TYPE_KEYWORD_SIGNED:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_signed");
+			break;
+		case OBJECT_TYPE_KEYWORD_UNSIGNED:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_unsigned");
+			break;
+		case OBJECT_TYPE_KEYWORD_VOID:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_void");
+			break;
+		case OBJECT_TYPE_KEYWORD_VOLATILE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_volatile");
+			break;
+		case OBJECT_TYPE_KEYWORD_WHILE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "keyword_while");
+			break;
+		case OBJECT_TYPE_LITERAL:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal");
+			break;
+		case OBJECT_TYPE_LITERAL_CHARACTER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal_character");
+			break;
 		/* Implement the handling later, I'm too drowsy to continue. */
 		}
 	}
