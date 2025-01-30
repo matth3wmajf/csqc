@@ -5006,7 +5006,21 @@ int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt
 	uintmax_t l_index = *pt_index;
 
 	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
-	if(l_result >= 0) goto j_success;
+	if(l_result >= 0)
+	{
+		/*
+		 *	To resolve ambiguity, we must use a symbol table to store identifiers
+		 *	that are custom-defined types.
+		 *	Therefore, we search the symbol table for the identifier.
+		 */
+		for(uintmax_t l_i = 0; l_i < *pt_name_buffer_size; l_i++)
+		{
+			if(strcmp(pt_input_token_buffer[l_index].t_value.pt_identifier, (*ppt_name_buffer)[l_i].pt_name) == 0) goto j_success;
+		}
+
+		/* If it isn't found in the symbol table, we assume it isn't valid. */
+		goto j_failure;
+	}
 	else if(l_result < 0) goto j_failure;
 
 j_failure:
@@ -5755,8 +5769,74 @@ int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer
 
 	int l_result = parser_parse_rule_translation_unit(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 
-	if(l_result >= 0) return 0;
-	else if(l_result < 0) return -1;
+	if(l_result >= 0) goto j_success;
+	else if(l_result < 0) goto j_failure;
 
+j_failure:
 	return -1;
+j_success:
+	/* Print the object(s). */
+
+	fprintf(stderr, "debug: Iterating through the object buffer.\n");
+
+	for(uintmax_t l_i = 0; l_i < (*pt_output_object_buffer_size); l_i++)
+	{
+		object_t *pt_object = &(*ppt_output_object_buffer)[l_i];
+		
+		/* Handle the right printing statement for the current object. */
+		switch(pt_object->t_object_type)
+		{
+		default:
+			fprintf(stderr, "debug: Iteration %ju, unknown object type.\n", l_i);
+			break;
+		case OBJECT_TYPE_SYMBOL:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol");
+			break;
+		case OBJECT_TYPE_SYMBOL_ELLIPSIS:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_ellipsis");
+			break;
+		case OBJECT_TYPE_SYMBOL_EQUAL_TO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_equal_to");
+			break;
+		case OBJECT_TYPE_SYMBOL_NOT_EQUAL_TO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_not_equal_to");
+			break;
+		case OBJECT_TYPE_SYMBOL_LESS_THAN_OR_EQUAL_TO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_less_than_or_equal_to");
+			break;
+		case OBJECT_TYPE_SYMBOL_GREATER_THAN_OR_EQUAL_TO:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_greater_than_or_equal_to");
+			break;
+		case OBJECT_TYPE_SYMBOL_LOGICAL_AND:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_logical_and");
+			break;
+		case OBJECT_TYPE_SYMBOL_LOGICAL_OR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_logical_or");
+			break;
+		case OBJECT_TYPE_SYMBOL_LEFT_SHIFT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_left_shift");
+			break;
+		case OBJECT_TYPE_SYMBOL_RIGHT_SHIFT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_right_shift");
+			break;
+		case OBJECT_TYPE_SYMBOL_ADD:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_add");
+			break;
+		case OBJECT_TYPE_SYMBOL_SUBTRACT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_subtract");
+			break;
+		case OBJECT_TYPE_SYMBOL_DIVIDE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_divide");
+			break;
+		case OBJECT_TYPE_SYMBOL_MULTIPLY:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_multiply");
+			break;
+		case OBJECT_TYPE_SYMBOL_ASSIGN:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "symbol_assign");
+			break;
+		/* Implement the handling later, I'm too drowsy to continue. */
+		}
+	}
+
+	return 0;
 }

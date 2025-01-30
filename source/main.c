@@ -120,7 +120,7 @@ int main(int t_argc, const char *pt_argv[])
 	uintmax_t l_name_buffer_size = 0;
 
 	/* Digest the array of tokens into an abstract-syntax-tree. */
-	l_result = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size);
+	l_result = parser_main(l_token_buffer, &l_token_buffer_size, &l_object_buffer, &l_object_buffer_size, &pl_name_buffer, &l_name_buffer_size);
 	if(l_result < 0)
 	{
 		fprintf(stderr, "error: Failed to parse the tokens!\n");
