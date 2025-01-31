@@ -6002,7 +6002,195 @@ j_success:
 		case OBJECT_TYPE_LITERAL_CHARACTER:
 			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal_character");
 			break;
-		/* Implement the handling later, I'm too drowsy to continue. */
+		case OBJECT_TYPE_LITERAL_STRING:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal_string");
+			break;
+		case OBJECT_TYPE_LITERAL_INTEGER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal_integer");
+			break;
+		case OBJECT_TYPE_LITERAL_FLOAT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "literal_float");
+			break;
+		case OBJECT_TYPE_RULE:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule");
+			break;
+		case OBJECT_TYPE_RULE_TRANSLATION_UNIT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_translation_unit");
+			break;
+		case OBJECT_TYPE_RULE_EXTERNAL_DECLARATION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_external_declaration");
+			break;
+		case OBJECT_TYPE_RULE_FUNCTION_DEFINITION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_function_definition");
+			break;
+		case OBJECT_TYPE_RULE_DECLARATION_SPECIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_declaration_specifier");
+			break;
+		case OBJECT_TYPE_RULE_STORAGE_CLASS_SPECIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_storage_class_specifier");
+			break;
+		case OBJECT_TYPE_RULE_TYPE_SPECIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_type_specifier");
+			break;
+		case OBJECT_TYPE_RULE_STRUCT_OR_UNION_SPECIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_struct_or_union_specifier");
+			break;
+		case OBJECT_TYPE_RULE_STRUCT_OR_UNION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_struct_or_union");
+			break;
+		case OBJECT_TYPE_RULE_STRUCT_DECLARATION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_struct_declaration");
+			break;
+		case OBJECT_TYPE_RULE_SPECIFIER_QUALIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_specifier_qualifier");
+			break;
+		case OBJECT_TYPE_RULE_STRUCT_DECLARATOR_LIST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_struct_declarator_list");
+			break;
+		case OBJECT_TYPE_RULE_STRUCT_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_struct_declarator");
+			break;
+		case OBJECT_TYPE_RULE_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_declarator");
+			break;
+		case OBJECT_TYPE_RULE_POINTER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_pointer");
+			break;
+		case OBJECT_TYPE_RULE_TYPE_QUALIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_type_qualifier");
+			break;
+		case OBJECT_TYPE_RULE_DIRECT_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_direct_declarator");
+			break;
+		case OBJECT_TYPE_RULE_DIRECT_DECLARATOR_TAIL:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_direct_declarator_tail");
+			break;
+		case OBJECT_TYPE_RULE_CONSTANT_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_constant_expression");
+			break;
+		case OBJECT_TYPE_RULE_LOGICAL_OR_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_logical_or_expression");
+			break;
+		case OBJECT_TYPE_RULE_LOGICAL_AND_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_logical_and_expression");
+			break;
+		case OBJECT_TYPE_RULE_INCLUSIVE_OR_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_inclusive_or_expression");
+			break;
+		case OBJECT_TYPE_RULE_AND_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_and_expression");
+			break;
+		case OBJECT_TYPE_RULE_EQUALITY_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_equality_expression");
+			break;
+		case OBJECT_TYPE_RULE_RELATIONAL_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_relational_expression");
+			break;
+		case OBJECT_TYPE_RULE_SHIFT_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_shift_expression");
+			break;
+		case OBJECT_TYPE_RULE_ADDITIVE_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_additive_expression");
+			break;
+		case OBJECT_TYPE_RULE_MULTIPLICATIVE_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_multiplicative_expression");
+			break;
+		case OBJECT_TYPE_RULE_CAST_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_cast_expression");
+			break;
+		case OBJECT_TYPE_RULE_UNARY_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_unary_expression");
+			break;
+		case OBJECT_TYPE_RULE_POSTFIX_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_postfix_expression");
+			break;
+		case OBJECT_TYPE_RULE_PRIMARY_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_primary_expression");
+			break;
+		case OBJECT_TYPE_RULE_CONSTANT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_constant");
+			break;
+		case OBJECT_TYPE_RULE_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_expression");
+			break;
+		case OBJECT_TYPE_RULE_ASSIGNMENT_EXPRESSION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_assignment_expression");
+			break;
+		case OBJECT_TYPE_RULE_ASSIGNMENT_OPERATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_assignment_operator");
+			break;
+		case OBJECT_TYPE_RULE_UNARY_OPERATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_unary_operator");
+			break;
+		case OBJECT_TYPE_RULE_TYPE_NAME:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_type_name");
+			break;
+		case OBJECT_TYPE_RULE_PARAMETER_TYPE_LIST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_parameter_type_list");
+			break;
+		case OBJECT_TYPE_RULE_PARAMETER_LIST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_parameter_list");
+			break;
+		case OBJECT_TYPE_RULE_PARAMETER_DECLARATION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_parameter_declaration");
+			break;
+		case OBJECT_TYPE_RULE_ABSTRACT_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_abstract_declarator");
+			break;
+		case OBJECT_TYPE_RULE_DIRECT_ABSTRACT_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_direct_abstract_declarator");
+			break;
+		case OBJECT_TYPE_RULE_DIRECT_ABSTRACT_DECLARATOR_TAIL:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_direct_abstract_declarator_tail");
+			break;
+		case OBJECT_TYPE_RULE_ENUM_SPECIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_enum_specifier");
+			break;
+		case OBJECT_TYPE_RULE_ENUMERATOR_LIST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_enumerator_list");
+			break;
+		case OBJECT_TYPE_RULE_ENUMERATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_enumerator");
+			break;
+		case OBJECT_TYPE_RULE_TYPEDEF_NAME:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_typedef_name");
+			break;
+		case OBJECT_TYPE_RULE_DECLARATION:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_declaration");
+			break;
+		case OBJECT_TYPE_RULE_INIT_DECLARATOR:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_init_declarator");
+			break;
+		case OBJECT_TYPE_RULE_INITIALIZER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_initializer");
+			break;
+		case OBJECT_TYPE_RULE_INITIALIZER_LIST:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_initializer_list");
+			break;
+		case OBJECT_TYPE_RULE_COMPOUND_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_compound_statement");
+			break;
+		case OBJECT_TYPE_RULE_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_statement");
+			break;
+		case OBJECT_TYPE_RULE_LABELED_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_labeled_statement");
+			break;
+		case OBJECT_TYPE_RULE_EXPRESSION_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_expression_statement");
+			break;
+		case OBJECT_TYPE_RULE_SELECTION_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_selection_statement");
+			break;
+		case OBJECT_TYPE_RULE_ITERATION_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_iteration_statement");
+			break;
+		case OBJECT_TYPE_RULE_JUMP_STATEMENT:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_jump_statement");
+			break;
+		case OBJECT_TYPE_IDENTIFIER:
+			fprintf(stderr, "debug: Iteration %ju, object type `%-32s`.\n", l_i, "rule_identifier");
+			break;
 		}
 	}
 
