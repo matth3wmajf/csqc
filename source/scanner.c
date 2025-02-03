@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <csquared/scanner.h>
+#include <csqc/scanner.h>
 
 /*
  *	The keywords, the symbols, and their respective enumerations.
@@ -277,15 +277,15 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 
 			/* Store the number literal without the suffix first. */
 			uintmax_t l_number_length = l_i - l_start;
-			char *l_number_literal = malloc(l_number_length + 1);
-			if(l_number_literal == NULL)
+			char *pl_number_literal = malloc(l_number_length + 1);
+			if(pl_number_literal == NULL)
 			{
 				fprintf(stderr, "error: Memory allocation failed for storing the number literal's value in string form!\n");
 				return -1;
 			}
 
-			memcpy(l_number_literal, pt_input_source_buffer + l_start, l_number_length);
-			l_number_literal[l_number_length] = '\0';
+			memcpy(pl_number_literal, pt_input_source_buffer + l_start, l_number_length);
+			pl_number_literal[l_number_length] = '\0';
 
 			/* Now process any suffixes. */
 			uintmax_t l_suffix_start = l_i;
@@ -298,23 +298,23 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 
 			/* Extract the suffix if there is one. */
 			uintmax_t l_suffix_length = l_i - l_suffix_start;
-			char *l_suffix_literal = malloc(l_suffix_length + 1);
-			if(l_suffix_literal == NULL)
+			char *pl_suffix_literal = malloc(l_suffix_length + 1);
+			if(pl_suffix_literal == NULL)
 			{
-				free(l_number_literal);
+				free(pl_number_literal);
 				fprintf(stderr, "error: Memory allocation failed for storing the suffix of the number literal!\n");
 				return -1;
 			}
 
-			memcpy(l_suffix_literal, pt_input_source_buffer + l_suffix_start, l_suffix_length);
-			l_suffix_literal[l_suffix_length] = '\0';
+			memcpy(pl_suffix_literal, pt_input_source_buffer + l_suffix_start, l_suffix_length);
+			pl_suffix_literal[l_suffix_length] = '\0';
 
 			/* Resize the buffer of scanned tokens. */
 			(*pt_output_token_buffer_size)++;
 			*ppt_output_token_buffer = realloc(*ppt_output_token_buffer, *pt_output_token_buffer_size * sizeof(token_t));
 
 			/* Add the plaintext (number + suffix) to the token's buffer. */
-			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = l_number_literal;
+			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].pt_plaintext_buffer = pl_number_literal;
 			(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_plaintext_buffer_size = l_number_length + l_suffix_length;
 
 			/* Set the vague token type. */
@@ -338,21 +338,21 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 
 			while(l_j < l_suffix_length)
 			{
-				if((l_suffix_literal[l_j] == 'f' || l_suffix_literal[l_j] == 'F') && l_is_floating_point)
+				if((pl_suffix_literal[l_j] == 'f' || pl_suffix_literal[l_j] == 'F') && l_is_floating_point)
 				{
 					/* It's a 32-bit float literal. */
 					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_FLOAT & 0x0F);
 
 					l_j++;
 				}
-				else if((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && l_is_floating_point)
+				else if((pl_suffix_literal[l_j] == 'l' || pl_suffix_literal[l_j] == 'L') && l_is_floating_point)
 				{
 					/* It's a 64-bit long double literal. */
 					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type = (uint8_t)(TOKEN_PREFIX_FLOAT_LITERAL << 4) | (TOKEN_SUBTYPE_DOUBLE & 0x0F);
 
 					l_j++;
 				}
-				else if(((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && (l_suffix_literal[l_j + 1] == 'l' || l_suffix_literal[l_j + 1] == 'L')) && !l_is_floating_point)
+				else if(((pl_suffix_literal[l_j] == 'l' || pl_suffix_literal[l_j] == 'L') && (pl_suffix_literal[l_j + 1] == 'l' || pl_suffix_literal[l_j + 1] == 'L')) && !l_is_floating_point)
 				{
 					/*
 					 *	We're dealing with a long long literal, which is
@@ -366,7 +366,7 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 
 					l_j += 2;
 				}
-				else if ((l_suffix_literal[l_j] == 'l' || l_suffix_literal[l_j] == 'L') && !l_is_floating_point)
+				else if ((pl_suffix_literal[l_j] == 'l' || pl_suffix_literal[l_j] == 'L') && !l_is_floating_point)
 				{
 					/*
 					 *	It's a long literal, however we're not sure yet if
@@ -385,7 +385,7 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 					l_j++;
 				}
 				
-				else if((l_suffix_literal[l_j] == 'u' || l_suffix_literal[l_j] == 'U') && !l_is_floating_point)
+				else if((pl_suffix_literal[l_j] == 'u' || pl_suffix_literal[l_j] == 'U') && !l_is_floating_point)
 				{
 					/*
 					 *  Suffix contains a `u`, so it must be unsigned.
@@ -396,7 +396,7 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 
 					l_j++;
 				}
-				else if ((l_suffix_literal[l_j] == 's' || l_suffix_literal[l_j] == 'S') && !l_is_floating_point)
+				else if ((pl_suffix_literal[l_j] == 's' || pl_suffix_literal[l_j] == 'S') && !l_is_floating_point)
 				{
 					/* Same goes to this... */
 					(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type &= ~(1 << 4);
@@ -427,42 +427,42 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 			switch((uint8_t)(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_token_type)
 			{
 			case (uint8_t)TOKEN_TYPE_INT8_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int8_literal = (int8_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int8_literal = (int8_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT8_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint8_literal = (uint8_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint8_literal = (uint8_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT16_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int16_literal = (int16_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int16_literal = (int16_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT16_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint16_literal = (uint16_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint16_literal = (uint16_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT32_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int32_literal = (int32_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int32_literal = (int32_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT32_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint32_literal = (uint32_t)strtol(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint32_literal = (uint32_t)strtol(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_INT64_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int64_literal = (int64_t)strtoll(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_int64_literal = (int64_t)strtoll(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_UINT64_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint64_literal = (uint64_t)strtoull(l_number_literal, NULL, 10);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_uint64_literal = (uint64_t)strtoull(pl_number_literal, NULL, 10);
 				break;
 			case (uint8_t)TOKEN_TYPE_FLOAT32_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float32_literal = (float)strtof(l_number_literal, NULL);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float32_literal = (float)strtof(pl_number_literal, NULL);
 				break;
 			case (uint8_t)TOKEN_TYPE_FLOAT64_LITERAL:
-				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float64_literal = (double)strtod(l_number_literal, NULL);
+				(*ppt_output_token_buffer)[(*pt_output_token_buffer_size) - 1].t_value.t_float64_literal = (double)strtod(pl_number_literal, NULL);
 				break;
 			}
 
 			/* Free the suffix literal memory. */
-			free(l_suffix_literal);
+			free(pl_suffix_literal);
 
 			/* Move past the number and suffix. */
-			free(l_number_literal);
+			free(pl_number_literal);
 		}
 	}
 

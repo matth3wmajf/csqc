@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <csquared/scanner.h>
-#include <csquared/parser.h>
+#include <csqc/scanner.h>
+#include <csqc/parser.h>
 
 /*
  *	The level, a number that indicates how deep the parser is in terms of
@@ -2583,6 +2583,13 @@ j_failure:
 
 /* Functions for handling rules. */
 
+/*
+ *	The translation unit rule, which serves as the root of the entire code.
+ *	Translation units can be made up of multiple external declaration(s), or
+ *	nothing at all, as seen in the following grammar specification...
+ *
+ *	<translation_unit> ::= {<external_declaration>}*
+ */
 int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2600,11 +2607,12 @@ int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the object representing the translation unit as a rule, into
+	 *	the object buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_TRANSLATION_UNIT;
 
@@ -2613,6 +2621,13 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The external declaration rule, which trickles down as either a declaration
+ *	rule, or a function definition rule, as seen in the following grammar
+ *	specification...
+ *
+ *	<external_declaration> ::= <function_definition>
+ */
 int parser_parse_rule_external_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2636,11 +2651,12 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the external declaration rule as an object, to the object
+	 *	buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_EXTERNAL_DECLARATION;
 
@@ -2649,6 +2665,16 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The function definition rule, which is much more complicated than the
+ *	previous rules.
+ *	This rule consists of a larger sequence of rules, those being one or more
+ *	optional declaration specifiers, a declarator specifier, one or more
+ *	declarations, and a compound statement, as seen in the following grammar
+ *	specification...
+ *
+ *	<function_definition> ::= {<declaration_specifier>}* <declarator> {<declaration>}* <compound_statement>
+ */
 int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2677,11 +2703,12 @@ int parser_parse_rule_function_definition(token_t *pt_input_token_buffer, uintma
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the function definition rule as an object, to the object
+	 *	buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_FUNCTION_DEFINITION;
 
@@ -2694,6 +2721,15 @@ j_failure:
 	return -1;
 }
 
+/*
+ *	The declaration specifier rule, which trickles down to either a storage
+ *	class specifier rule, a type specifier rule, or a type qualifier rule, as
+ *	seen in the following grammar specification...
+ *
+ *	<declaration_specifier> ::= <storage_class_specifier>
+ *	                          | <type_specifier>
+ *	                          | <type_qualifier>
+ */
 int parser_parse_rule_declaration_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2721,11 +2757,12 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the declaration specifier rule as an object, to the object
+	 *	buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DECLARATION_SPECIFIER;
 
@@ -2734,6 +2771,17 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The storage class specifier rule, which simply consists of the `auto`,
+ *	`register`, `static`, `extern`, and `typedef` keywords, as seen in the
+ *	following grammar specification...
+ *
+ *	<storage_class_specifier> ::= "auto"
+ *	                            | "register"
+ *	                            | "static"
+ *	                            | "extern"
+ *	                            | "typedef"
+ */
 int parser_parse_rule_storage_class_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2771,11 +2819,12 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the storage class specifier rule as an object, to the object
+	 *	buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STORAGE_CLASS_SPECIFIER;
 
@@ -2784,6 +2833,20 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The type specifier rule, which trickles down to a `void`, `byte`,
+ *	`signed`, or `unsigned` keyword, or a struct or union specifier, an enum
+ *	specifier, or a typedef name, as seen in the following grammar
+ *	specification...
+ *
+ *	<type_specifier> ::= "void"
+ *	                   | "byte"
+ *	                   | "signed"
+ *	                   | "unsigned"
+ *	                   | <struct_or_union_specifier>
+ *	                   | <enum_specifier>
+ *	                   | <typedef_name>
+ */
 int parser_parse_rule_type_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2831,11 +2894,9 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/* Append the type specifier rule as an object, to the object buffer. */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_TYPE_SPECIFIER;
 
@@ -2844,6 +2905,16 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The struct or union specifier rule, which this time is a much more complex
+ *	rule. It represents a definition of a struct or union.
+ *	Because this rule is a bit more complex, we'll simply provide it's
+ *	grammar specification with some examples instead explaining it in detail...
+ *
+ *	<struct_or_union_specifier> ::= <struct_or_union> <identifier> "{" {<struct_declaration>}+ "}"
+ *	                              | <struct_or_union> "{" {<struct_declaration>}+ "}"
+ *	                              | <struct_or_union> <identifier>
+ */
 int parser_parse_rule_struct_or_union_specifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2899,11 +2970,12 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/*
+	 *	Append the struct or union specifier rule as an object, to the object
+	 *	buffer.
+	 */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STRUCT_OR_UNION_SPECIFIER;
 
@@ -2912,6 +2984,13 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The struct or union rule, which is a simple rule trickling down to two
+ *	keywords, those being `struct` or `union`, as seen in the following
+ *	grammar specification...
+ *
+ *	<struct_or_union> ::= "struct" | "union"
+ */
 int parser_parse_rule_struct_or_union(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2935,11 +3014,9 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+	/* Append the struct or union rule as an object, to the object buffer. */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STRUCT_OR_UNION;
 
@@ -2948,6 +3025,13 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The struct declaration rule, which consists of an optional specifier
+ *	qualifier, or multiple specifier qualifiers, followed by a mandatory
+ *	struct declarator list, as seen in the following grammar specification...
+ *
+ *	<struct_declaration> ::= {<specifier_qualifier>}* <struct_declarator_list>
+ */
 int parser_parse_rule_struct_declaration(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -2975,8 +3059,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STRUCT_DECLARATION;
 
@@ -2985,6 +3067,13 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The specifier qualifier rule, which simply trickles down to either a type
+ *	specifier, or a type qualifier, as seen in the following grammar
+ *	specification...
+ *
+ *	<specifier_qualifier> ::= <type_specifier> | <type_qualifier>
+ */
 int parser_parse_rule_specifier_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3011,8 +3100,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_SPECIFIER_QUALIFIER;
 
@@ -3021,6 +3108,14 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The struct declarator list rule, which trickles down to either a struct
+ *	declarator, or another struct declarator list, a comma, and a struct
+ *	declarator, as seen in the following grammar specification...
+ *
+ *	<struct_declarator_list> ::= <struct_declarator>
+ *	                           | <struct_declarator_list> "," <struct_declarator>
+ */
 int parser_parse_rule_struct_declarator_list(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3057,8 +3152,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STRUCT_DECLARATOR_LIST;
 
@@ -3067,6 +3160,14 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The struct declarator rule, which is slightly more complicated, but is
+ *	seen in the following grammar specification...
+ *
+ *	<struct_declarator> ::= <declarator>
+ *	                      | <declarator> ":" <constant_expression>
+ *	                      | ":" <constant_expression>
+ */
 int parser_parse_rule_struct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3108,8 +3209,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STRUCT_DECLARATOR;
 
@@ -3118,6 +3217,12 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The declarator rule, which consists of an optional pointer and a mandatory
+ *	direct declarator, as seen in the following grammar specification...
+ *
+ *	<declarator> ::= {<pointer>}? <direct_declarator>
+ */
 int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3136,8 +3241,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DECLARATOR;
 
@@ -3150,6 +3253,13 @@ j_failure:
 	return -1;
 }
 
+/*
+ *	The pointer rule, which trickles down to a mandatory asterisk symbol,
+ *	optional or multiple type qualifier(s), and another optional pointer, as
+ *	seen in the following grammar specification...
+ *
+ *	<pointer> ::= "*" {<type_qualifier>}* {<pointer>}?
+ */
 int parser_parse_rule_pointer(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3181,8 +3291,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_POINTER;
 
@@ -3191,6 +3299,12 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The type qualifier rule, which simply trickles down to either a `const` or
+ *	`volatile` keyword, as seen in the following grammar specification...
+ *
+ *	<type_qualifier> ::= "const" | "volatile"
+ */
 int parser_parse_rule_type_qualifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3217,8 +3331,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_TYPE_QUALIFIER;
 
@@ -3227,6 +3339,20 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The direct declarator rule, which is much more complex, and is seen in the
+ *	following grammar specification as...
+ *
+ *	<direct_declarator> ::= <identifier>
+ *	                      | "(" <declarator> ")"
+ *	                      | <direct_declarator> "[" {<constant_expression>}? "]"
+ *	                      | <direct_declarator> "(" <parameter_type_list> ")"
+ *	                      | <direct_declarator> "(" {<identifier>}* ")"
+ *
+ *	I didn't describe this rule in detail because it's too complex, and I
+ *	believe it's better & more easily represented by the backus-naur form
+ *	representation of the grammar.
+ */
 int parser_parse_rule_direct_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3268,8 +3394,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DIRECT_DECLARATOR;
 
@@ -3278,6 +3402,11 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The direct declarator tail rule, which is a rule added for compatibility
+ *	in order for our recursive-descent parser to work with the direct
+ *	declarator rule.
+ */
 int parser_parse_rule_direct_declarator_tail(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	LOG_STARTED;
@@ -3346,8 +3475,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DIRECT_DECLARATOR_TAIL;
 
@@ -5761,6 +5888,8 @@ j_success:
 
 int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size)
 {
+	fprintf(stderr, "debug: Parsing the tokens...\n");
+
 	/* Set the recursion level to zero. */
 	g_level = -1;
 
@@ -5777,7 +5906,7 @@ j_failure:
 j_success:
 	/* Print the object(s). */
 
-	fprintf(stderr, "debug: Iterating through the object buffer.\n");
+	fprintf(stderr, "debug: Iterating through the object buffer...\n");
 
 	for(uintmax_t l_i = 0; l_i < (*pt_output_object_buffer_size); l_i++)
 	{
