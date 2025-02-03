@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include <csquared/scanner.h>
+#include <csqc/scanner.h>
 
 /* The object type enum. */
 typedef enum

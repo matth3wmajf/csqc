@@ -5,8 +5,8 @@
 #include <malloc.h>
 #include <inttypes.h>
 
-#include <csquared/scanner.h>
-#include <csquared/parser.h>
+#include <csqc/scanner.h>
+#include <csqc/parser.h>
 
 /* The input file's data. */
 char *g_input_file_name = NULL;
