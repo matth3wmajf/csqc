@@ -177,123 +177,201 @@ int parser_parse_identifier(token_t *pt_input_token_buffer, uintmax_t *pt_input_
 #define LOG_FAILURE fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`).\n", &__func__[13], "failure", (intmax_t)g_level);
 #define LOG_SUCCESS fprintf(stderr, "debug: Status for parsing rule `%-32s` (status: `%-7s`, level: `%jd`).\n", &__func__[13], "success", (intmax_t)g_level);
 
+/* Functions for handling symbols. */
+
 int parser_parse_symbol(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 	
-	/* Re-size the object buffer. */
+/* Re-size the object buffer. */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* Define a pointer to the new object we're working with. */
+/* Define a pointer to the new object we're working with. */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_ellipsis(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_ELLIPSIS)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_ELLIPSIS;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_EQUAL_TO)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_EQUAL_TO;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+	
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_not_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_NOT_EQUAL_TO)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_NOT_EQUAL_TO;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
@@ -3483,6 +3561,13 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The constant expression rule, which is a rule that falls back into the
+ *	conditional expression rule, as seen in the following syntax specification
+ *	as...
+ *
+ *	<constant_expression> ::= <conditional_expression>
+ */
 int parser_parse_rule_constant_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3503,8 +3588,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_CONSTANT_EXPRESSION;
 
@@ -3513,6 +3596,15 @@ j_success:
 	return 0;
 }
 
+/*
+ *	The conditional expression rule, which is a rule that either trickles down
+ *	into a ternary expression that performs a comparison, or falls back
+ *	directly into a logical OR expression. It is seen in the following syntax
+ *	specification as...
+ *
+ *	<conditional_expression> ::= <logical_or_expression>
+ *	                           | <logical_or_expression> "?" <expression> ":" <conditional_expression>
+ */
 int parser_parse_rule_conditional_expression(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
 	g_level++;
@@ -3554,8 +3646,6 @@ j_success:
 	/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
-
-	/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_CONDITIONAL_EXPRESSION;
 
