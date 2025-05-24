@@ -2,12 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 
 project(csqc)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED True)
-set(CMAKE_BUILD_TYPE Debug)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/source/*.c")
+file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/*.c)
 
 add_executable(csqc ${SOURCES})
+
+set_target_properties(csqc PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON C_EXTENSIONS OFF)

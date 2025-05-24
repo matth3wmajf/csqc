@@ -1,3 +1,15 @@
+/*
+ *	                         .d8888b.    o    .d8888b.                         
+ *	                        d88P  Y88b  d8b  d88P  Y88b                        
+ *	                        888    888 d888b        888                        
+ *	                        888       d8P"Y8b     .d88P                        
+ *	                        888               .od888P"                         
+ *	                        888    888       d88P"                             
+ *	                        Y88b  d88P       888"                              
+ *	                         "Y8888P"        888888888                         
+ *	 Copyright (C) 2024-2025, Matthew E. Majfud-Wilinski. All Rights Reserved. 
+ */
+
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -377,121 +389,197 @@ j_failure:
 
 int parser_parse_symbol_less_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_LESS_THAN_OR_EQUAL_TO)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LESS_THAN_OR_EQUAL_TO;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_greater_than_or_equal_to(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+	
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_GREATER_THAN_OR_EQUAL_TO)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_GREATER_THAN_OR_EQUAL_TO;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_logical_and(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_LOGICAL_AND)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LOGICAL_AND;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
 int parser_parse_symbol_logical_or(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size, uintmax_t *pt_index)
 {
+/* ... */
 	g_level++;
+
+/* ... */
 	LOG_STARTED;
 
+/* ... */
 	uintmax_t l_index = *pt_index;
 
+/* ... */
 	if(l_index < *pt_input_token_buffer_size && pt_input_token_buffer[l_index].t_token_type == TOKEN_TYPE_SYMBOL && (pt_input_token_buffer[l_index].t_value.t_symbol == SYMBOL_LOGICAL_OR)) l_index++;
 	else goto j_failure;
 
+/* ... */
 j_success:
+/* ... */
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LOGICAL_OR;
 
+/* ... */
 	g_level--;
+
+/* ... */
 	*pt_index = l_index;
+
+/* ... */
 	return 0;
+
+/* ... */
 j_failure:
+/* ... */
 	LOG_FAILURE;
+
+/* ... */
 	g_level--;
+
+/* ... */
 	return -1;
 }
 
@@ -508,11 +596,11 @@ int parser_parse_symbol_left_shift(token_t *pt_input_token_buffer, uintmax_t *pt
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LEFT_SHIFT;
 
@@ -538,11 +626,11 @@ int parser_parse_symbol_right_shift(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_RIGHT_SHIFT;
 
@@ -568,11 +656,11 @@ int parser_parse_symbol_add(token_t *pt_input_token_buffer, uintmax_t *pt_input_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_ADD;
 
@@ -598,11 +686,11 @@ int parser_parse_symbol_subtract(token_t *pt_input_token_buffer, uintmax_t *pt_i
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_SUBTRACT;
 
@@ -628,11 +716,11 @@ int parser_parse_symbol_multiply(token_t *pt_input_token_buffer, uintmax_t *pt_i
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_MULTIPLY;
 
@@ -658,11 +746,11 @@ int parser_parse_symbol_divide(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_DIVIDE;
 
@@ -688,11 +776,11 @@ int parser_parse_symbol_assign(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_ASSIGN;
 
@@ -718,11 +806,11 @@ int parser_parse_symbol_multiply_assign(token_t *pt_input_token_buffer, uintmax_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_MULTIPLY_ASSIGN;
 
@@ -748,11 +836,11 @@ int parser_parse_symbol_divide_assign(token_t *pt_input_token_buffer, uintmax_t 
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_DIVIDE_ASSIGN;
 
@@ -778,11 +866,11 @@ int parser_parse_symbol_modulo_assign(token_t *pt_input_token_buffer, uintmax_t 
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_MODULO_ASSIGN;
 
@@ -808,11 +896,11 @@ int parser_parse_symbol_addition_assign(token_t *pt_input_token_buffer, uintmax_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_ADDITION_ASSIGN;
 
@@ -838,11 +926,11 @@ int parser_parse_symbol_subtraction_assign(token_t *pt_input_token_buffer, uintm
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_SUBTRACTION_ASSIGN;
 
@@ -868,11 +956,11 @@ int parser_parse_symbol_left_shift_assign(token_t *pt_input_token_buffer, uintma
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LEFT_SHIFT_ASSIGN;
 
@@ -898,11 +986,11 @@ int parser_parse_symbol_right_shift_assign(token_t *pt_input_token_buffer, uintm
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_RIGHT_SHIFT_ASSIGN;
 
@@ -928,11 +1016,11 @@ int parser_parse_symbol_bitwise_and_assign(token_t *pt_input_token_buffer, uintm
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_AND_ASSIGN;
 
@@ -958,11 +1046,11 @@ int parser_parse_symbol_bitwise_xor_assign(token_t *pt_input_token_buffer, uintm
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_XOR_ASSIGN;
 
@@ -988,11 +1076,11 @@ int parser_parse_symbol_bitwise_or_assign(token_t *pt_input_token_buffer, uintma
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_OR_ASSIGN;
 
@@ -1018,11 +1106,11 @@ int parser_parse_symbol_less_than(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LESS_THAN;
 
@@ -1048,11 +1136,11 @@ int parser_parse_symbol_greater_than(token_t *pt_input_token_buffer, uintmax_t *
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_GREATER_THAN;
 
@@ -1078,11 +1166,11 @@ int parser_parse_symbol_logical_not(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LOGICAL_NOT;
 
@@ -1108,11 +1196,11 @@ int parser_parse_symbol_bitwise_and(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_AND;
 
@@ -1138,11 +1226,11 @@ int parser_parse_symbol_bitwise_or(token_t *pt_input_token_buffer, uintmax_t *pt
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_OR;
 
@@ -1168,11 +1256,11 @@ int parser_parse_symbol_bitwise_xor(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_XOR;
 
@@ -1198,11 +1286,11 @@ int parser_parse_symbol_bitwise_not(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_BITWISE_NOT;
 
@@ -1228,11 +1316,11 @@ int parser_parse_symbol_open_parenthesis(token_t *pt_input_token_buffer, uintmax
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LEFT_PARENTHESIS;
 
@@ -1258,11 +1346,11 @@ int parser_parse_symbol_close_parenthesis(token_t *pt_input_token_buffer, uintma
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_RIGHT_PARENTHESIS;
 
@@ -1288,11 +1376,11 @@ int parser_parse_symbol_open_brace(token_t *pt_input_token_buffer, uintmax_t *pt
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LEFT_BRACE;
 
@@ -1318,11 +1406,11 @@ int parser_parse_symbol_close_brace(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_RIGHT_BRACE;
 
@@ -1348,11 +1436,11 @@ int parser_parse_symbol_open_bracket(token_t *pt_input_token_buffer, uintmax_t *
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_LEFT_BRACKET;
 
@@ -1378,11 +1466,11 @@ int parser_parse_symbol_close_bracket(token_t *pt_input_token_buffer, uintmax_t 
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_RIGHT_BRACKET;
 
@@ -1408,11 +1496,11 @@ int parser_parse_symbol_semicolon(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_SEMICOLON;
 
@@ -1438,11 +1526,11 @@ int parser_parse_symbol_comma(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_COMMA;
 
@@ -1468,11 +1556,11 @@ int parser_parse_symbol_period(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_PERIOD;
 
@@ -1498,11 +1586,11 @@ int parser_parse_symbol_modulo(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_MODULO;
 
@@ -1528,11 +1616,11 @@ int parser_parse_symbol_conditional(token_t *pt_input_token_buffer, uintmax_t *p
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_CONDITIONAL;
 
@@ -1558,11 +1646,11 @@ int parser_parse_symbol_colon(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_COLON;
 
@@ -1588,11 +1676,11 @@ int parser_parse_symbol_increment(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_INCREMENT;
 
@@ -1618,11 +1706,11 @@ int parser_parse_symbol_decrement(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_DECREMENT;
 
@@ -1648,11 +1736,11 @@ int parser_parse_symbol_arrow(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_SYMBOL_ARROW;
 
@@ -1680,11 +1768,11 @@ int parser_parse_keyword(token_t *pt_input_token_buffer, uintmax_t *pt_input_tok
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD;
 
@@ -1710,11 +1798,11 @@ int parser_parse_keyword_auto(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_AUTO;
 
@@ -1740,11 +1828,11 @@ int parser_parse_keyword_break(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_BREAK;
 
@@ -1770,11 +1858,11 @@ int parser_parse_keyword_case(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_CASE;
 
@@ -1800,11 +1888,11 @@ int parser_parse_keyword_byte(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_BYTE;
 
@@ -1830,11 +1918,11 @@ int parser_parse_keyword_const(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 	
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_CONST;
 
@@ -1860,11 +1948,11 @@ int parser_parse_keyword_continue(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_CONTINUE;
 
@@ -1890,11 +1978,11 @@ int parser_parse_keyword_default(token_t *pt_input_token_buffer, uintmax_t *pt_i
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_DEFAULT;
 
@@ -1920,11 +2008,11 @@ int parser_parse_keyword_do(token_t *pt_input_token_buffer, uintmax_t *pt_input_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_DO;
 
@@ -1950,11 +2038,11 @@ int parser_parse_keyword_else(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_ELSE;
 
@@ -1980,11 +2068,11 @@ int parser_parse_keyword_enum(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_ENUM;
 
@@ -2010,11 +2098,11 @@ int parser_parse_keyword_extern(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_EXTERN;
 
@@ -2040,11 +2128,11 @@ int parser_parse_keyword_for(token_t *pt_input_token_buffer, uintmax_t *pt_input
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_FOR;
 
@@ -2070,11 +2158,11 @@ int parser_parse_keyword_goto(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_GOTO;
 
@@ -2100,11 +2188,11 @@ int parser_parse_keyword_if(token_t *pt_input_token_buffer, uintmax_t *pt_input_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_IF;
 
@@ -2130,11 +2218,11 @@ int parser_parse_keyword_register(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_REGISTER;
 
@@ -2160,11 +2248,11 @@ int parser_parse_keyword_return(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_RETURN;
 
@@ -2190,11 +2278,11 @@ int parser_parse_keyword_signed(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_SIGNED;
 
@@ -2220,11 +2308,11 @@ int parser_parse_keyword_sizeof(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_SIZEOF;
 
@@ -2250,11 +2338,11 @@ int parser_parse_keyword_static(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_STATIC;
 
@@ -2280,11 +2368,11 @@ int parser_parse_keyword_struct(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_STRUCT;
 
@@ -2310,11 +2398,11 @@ int parser_parse_keyword_switch(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_SWITCH;
 
@@ -2340,11 +2428,11 @@ int parser_parse_keyword_typedef(token_t *pt_input_token_buffer, uintmax_t *pt_i
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_TYPEDEF;
 
@@ -2370,11 +2458,11 @@ int parser_parse_keyword_union(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_UNION;
 
@@ -2400,11 +2488,11 @@ int parser_parse_keyword_unsigned(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_UNSIGNED;
 
@@ -2430,11 +2518,11 @@ int parser_parse_keyword_void(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_VOID;
 
@@ -2460,11 +2548,11 @@ int parser_parse_keyword_volatile(token_t *pt_input_token_buffer, uintmax_t *pt_
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_VOLATILE;
 
@@ -2490,11 +2578,11 @@ int parser_parse_keyword_while(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_KEYWORD_WHILE;
 
@@ -2522,11 +2610,11 @@ int parser_parse_literal(token_t *pt_input_token_buffer, uintmax_t *pt_input_tok
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_LITERAL;
 
@@ -2552,11 +2640,11 @@ int parser_parse_literal_float(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_LITERAL_FLOAT;
 
@@ -2582,11 +2670,11 @@ int parser_parse_literal_int(token_t *pt_input_token_buffer, uintmax_t *pt_input
 j_success:
 	LOG_SUCCESS;
 	
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_LITERAL_INTEGER;
 
@@ -2612,11 +2700,11 @@ int parser_parse_literal_char(token_t *pt_input_token_buffer, uintmax_t *pt_inpu
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_LITERAL_CHARACTER;
 
@@ -2642,11 +2730,11 @@ int parser_parse_literal_string(token_t *pt_input_token_buffer, uintmax_t *pt_in
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_LITERAL_STRING;
 
@@ -2685,10 +2773,10 @@ int parser_parse_rule_translation_unit(token_t *pt_input_token_buffer, uintmax_t
 j_success:
 	LOG_SUCCESS;
 
-	/*
-	 *	Append the object representing the translation unit as a rule, into
-	 *	the object buffer.
-	 */
+/*
+ *	Append the object representing the translation unit as a rule, into the
+ *	object buffer.
+ */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3048,10 +3136,10 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/*
-	 *	Append the struct or union specifier rule as an object, to the object
-	 *	buffer.
-	 */
+/*
+ *	Append the struct or union specifier rule as an object, to the object
+ *	buffer.
+ */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3064,8 +3152,8 @@ j_success:
 
 /*
  *	The struct or union rule, which is a simple rule trickling down to two
- *	keywords, those being `struct` or `union`, as seen in the following
- *	grammar specification...
+ *	keywords, those being `struct` or `union`, as seen in the following grammar
+ *	specification...
  *
  *	<struct_or_union> ::= "struct" | "union"
  */
@@ -3092,7 +3180,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* Append the struct or union rule as an object, to the object buffer. */
+/* Append the struct or union rule as an object, to the object buffer. */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3134,7 +3222,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3175,7 +3263,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3227,7 +3315,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3284,7 +3372,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3316,7 +3404,7 @@ int parser_parse_rule_declarator(token_t *pt_input_token_buffer, uintmax_t *pt_i
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3366,7 +3454,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3406,7 +3494,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3469,7 +3557,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3550,7 +3638,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3585,7 +3673,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3643,7 +3731,7 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
@@ -3687,11 +3775,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_LOGICAL_OR_EXPRESSION;
 
@@ -3733,11 +3821,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_LOGICAL_AND_EXPRESSION;
 	
@@ -3779,11 +3867,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_INCLUSIVE_OR_EXPRESSION;
 
@@ -3825,11 +3913,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_EXCLUSIVE_OR_EXPRESSION;
 
@@ -3871,11 +3959,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_AND_EXPRESSION;
 
@@ -3927,11 +4015,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_EQUALITY_EXPRESSION;
 
@@ -4003,11 +4091,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_RELATIONAL_EXPRESSION;
 
@@ -4058,11 +4146,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_SHIFT_EXPRESSION;
 
@@ -4114,11 +4202,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ADDITIVE_EXPRESSION;
 
@@ -4180,11 +4268,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_MULTIPLICATIVE_EXPRESSION;
 
@@ -4231,11 +4319,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_CAST_EXPRESSION;
 
@@ -4307,11 +4395,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_UNARY_EXPRESSION;
 
@@ -4402,11 +4490,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_POSTFIX_EXPRESSION;
 
@@ -4458,11 +4546,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_PRIMARY_EXPRESSION;
 
@@ -4490,10 +4578,10 @@ int parser_parse_rule_constant(token_t *pt_input_token_buffer, uintmax_t *pt_inp
 			if(l_result >= 0) goto j_success;
 			else if(l_result < 0) goto j_failure;
 			
-			/*
-			 *	Let's support enumeration constants, but only when we know how
-			 *	to detect them...
-			 */
+/*
+ *	Let's support enumeration constants, but only when we know how
+ *	to detect them...
+ */
 		}
 	}
 
@@ -4504,11 +4592,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_CONSTANT;
 
@@ -4550,11 +4638,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_EXPRESSION;
 
@@ -4596,11 +4684,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ASSIGNMENT_EXPRESSION;
 
@@ -4677,11 +4765,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ASSIGNMENT_OPERATOR;
 
@@ -4733,11 +4821,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_UNARY_OPERATOR;
 
@@ -4774,11 +4862,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_TYPE_NAME;
 
@@ -4815,11 +4903,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_PARAMETER_TYPE_LIST;
 
@@ -4861,11 +4949,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_PARAMETER_LIST;
 
@@ -4907,11 +4995,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_PARAMETER_DECLARATION;
 
@@ -4948,11 +5036,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ABSTRACT_DECLARATOR;
 
@@ -4999,11 +5087,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_PARAMETER_TYPE_LIST;
 
@@ -5049,11 +5137,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DIRECT_ABSTRACT_DECLARATOR_TAIL;
 
@@ -5115,11 +5203,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ENUM_SPECIFIER;
 
@@ -5161,11 +5249,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ENUMERATOR_LIST;
 
@@ -5202,11 +5290,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ENUMERATOR;
 
@@ -5225,17 +5313,17 @@ int parser_parse_rule_typedef_name(token_t *pt_input_token_buffer, uintmax_t *pt
 	int l_result = parser_parse_identifier(pt_input_token_buffer, pt_input_token_buffer_size, ppt_output_object_buffer, pt_output_object_buffer_size, ppt_name_buffer, pt_name_buffer_size, &l_index);
 	if(l_result >= 0)
 	{
-		/*
-		 *	To resolve ambiguity, we must use a symbol table to store identifiers
-		 *	that are custom-defined types.
-		 *	Therefore, we search the symbol table for the identifier.
-		 */
+/*
+ *	To resolve ambiguity, we must use a symbol table to store identifiers
+ *	that are custom-defined types.
+ *	Therefore, we search the symbol table for the identifier.
+ */
 		for(uintmax_t l_i = 0; l_i < *pt_name_buffer_size; l_i++)
 		{
 			if(strcmp(pt_input_token_buffer[l_index].t_value.pt_identifier, (*ppt_name_buffer)[l_i].pt_name) == 0) goto j_success;
 		}
 
-		/* If it isn't found in the symbol table, we assume it isn't valid. */
+/* If it isn't found in the symbol table, we assume it isn't valid. */
 		goto j_failure;
 	}
 	else if(l_result < 0) goto j_failure;
@@ -5247,11 +5335,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_TYPEDEF_NAME;
 
@@ -5296,11 +5384,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_DECLARATION;
 
@@ -5337,11 +5425,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_INIT_DECLARATOR;
 
@@ -5393,11 +5481,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_INITIALIZER;
 
@@ -5439,11 +5527,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_INITIALIZER_LIST;
 
@@ -5485,11 +5573,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_COMPOUND_STATEMENT;
 
@@ -5541,11 +5629,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_STATEMENT;
 
@@ -5617,11 +5705,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_LABELED_STATEMENT;
 
@@ -5650,11 +5738,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_EXPRESSION_STATEMENT;
 
@@ -5736,11 +5824,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_SELECTION_STATEMENT;
 
@@ -5858,11 +5946,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_ITERATION_STATEMENT;
 
@@ -5931,11 +6019,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_RULE_JUMP_STATEMENT;
 
@@ -5963,11 +6051,11 @@ j_failure:
 j_success:
 	LOG_SUCCESS;
 
-	/* ... */
+/* ... */
 	(*pt_output_object_buffer_size)++;
 	*ppt_output_object_buffer = realloc(*ppt_output_object_buffer, *pt_output_object_buffer_size * sizeof(object_t));
 
-	/* ... */
+/* ... */
 	object_t *pt_object = &(*ppt_output_object_buffer)[*pt_output_object_buffer_size - 1];
 	pt_object->t_object_type = OBJECT_TYPE_IDENTIFIER;
 

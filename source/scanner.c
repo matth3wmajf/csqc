@@ -1,3 +1,15 @@
+/*
+ *	                         .d8888b.    o    .d8888b.                         
+ *	                        d88P  Y88b  d8b  d88P  Y88b                        
+ *	                        888    888 d888b        888                        
+ *	                        888       d8P"Y8b     .d88P                        
+ *	                        888               .od888P"                         
+ *	                        888    888       d88P"                             
+ *	                        Y88b  d88P       888"                              
+ *	                         "Y8888P"        888888888                         
+ *	 Copyright (C) 2024-2025, Matthew E. Majfud-Wilinski. All Rights Reserved. 
+ */
+
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -230,7 +242,7 @@ int scanner_main(char *pt_input_source_buffer, uintmax_t *pt_input_source_buffer
 			 *	Keep adding characters to the identifier's name until a
 			 *	non-identifier character is encountered.
 			 */
-			while (l_i < *pt_input_source_buffer_size && is_valid_identifier_character(pt_input_source_buffer[l_i]))
+			while(l_i < *pt_input_source_buffer_size && is_valid_identifier_character(pt_input_source_buffer[l_i]))
 			{
 				l_i++;
 			}
