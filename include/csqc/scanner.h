@@ -26,35 +26,41 @@ extern const char *pg_symbols[];
 /* Is the character whitespace? */
 static inline bool is_whitespace(char t_character)
 {
+/* ... */
 	return t_character == ' ' || t_character == '\t' || t_character == '\f' || t_character == '\v' || t_character == '\n' || t_character == '\r';
 }
 
 /* Is the character a letter? */
 static inline bool is_alphabet(char t_character)
 {
+/* ... */
 	return (t_character >= 'a' && t_character <= 'z') || (t_character >= 'A' && t_character <= 'Z');
 }
 
 /* Is the character alphanumeric? */
 static inline bool is_alphanumeric(char t_character)
 {
+/* ... */
 	return (t_character >= 'a' && t_character <= 'z') || (t_character >= 'A' && t_character <= 'Z') || (t_character >= '0' && t_character <= '9');
 }
 
 /* Is the character a digit? */
 static inline bool is_digit(char t_character)
 {
+/* ... */
 	return t_character >= '0' && t_character <= '9';
 }
 
 static inline bool is_numeric(char t_character)
 {
+/* ... */
 	return is_digit(t_character) || t_character == '.';
 }
 
 /* Is the character a valid identifier character? */
 static inline bool is_valid_identifier_character(char t_character)
 {
+/* ... */
 	return is_alphanumeric(t_character) || t_character == '_';
 }
 
@@ -65,7 +71,7 @@ static inline bool is_valid_identifier_character(char t_character)
  */
 typedef enum
 {
-	/* Vague token types, used as prefix(es). */
+/* Vague token types, used as prefix(es). */
 	TOKEN_PREFIX_CHARACTER_LITERAL = 0b0001,
 	TOKEN_PREFIX_INTEGER_LITERAL = 0b0010,
 	TOKEN_PREFIX_FLOAT_LITERAL = 0b0011,
@@ -74,42 +80,42 @@ typedef enum
 	TOKEN_PREFIX_KEYWORD = 0b0110,
 	TOKEN_PREFIX_SYMBOL = 0b0111,
 
-	/* Are the integers signed or unsigned? */
+/* Are the integers signed or unsigned? */
 	TOKEN_SUBTYPE_SIGNED = 0b0,
 	TOKEN_SUBTYPE_UNSIGNED = 0b1,
 
-	/*
-	 *	What are the available sizes for integers?
-	 *	There is 8-bit, 16-bit, 32-bit, and 64-bit support for integers.
-	 */
+/*
+ *	What are the available sizes for integers?
+ *	There is 8-bit, 16-bit, 32-bit, and 64-bit support for integers.
+ */
 	TOKEN_SUBTYPE_INT8 = 0b000,
 	TOKEN_SUBTYPE_INT16 = 0b010,
 	TOKEN_SUBTYPE_INT32 = 0b100,
 	TOKEN_SUBTYPE_INT64 = 0b110,
 
-	/*
-	 *	What are the available sizes for characters?
-	 *	We've got 8-bit characters, commonly known as characters, and then
-	 *	wide characters, which tend to be 16-bit or 32-bit.
-	 *	For now, we will only implement the 8-bit character, however we
-	 *	may support the wide characters in the future.
-	 */
+/*
+ *	What are the available sizes for characters?
+ *	We've got 8-bit characters, commonly known as characters, and then wide
+ *	characters, which tend to be 16-bit or 32-bit.
+ *	For now, we will only implement the 8-bit character, however we may support
+ *	the wide characters in the future.
+ */
 	TOKEN_SUBTYPE_CHAR = 0b0000,
 	TOKEN_SUBTYPE_WCHAR = 0b0001,
 
-	/* Same goes for strings. */
+/* Same goes for strings. */
 	TOKEN_SUBTYPE_STRING = 0b0000,
 	TOKEN_SUBTYPE_WSTRING = 0b0001,
 
-	/* Floating point sub-types. Floats are 32-bit, and doubles are 64-bit. */
+/* Floating point sub-types. Floats are 32-bit, and doubles are 64-bit. */
 	TOKEN_SUBTYPE_FLOAT = 0b0000,
 	TOKEN_SUBTYPE_DOUBLE = 0b0001,
 
-	/*
-	 *	The very-specific types.
-	 *	Some of them actually don't even need any suffix(es) or subtypes, such
-	 *	as identifiers, keywords, and symbols.
-	 */
+/*
+ *	The very-specific types.
+ *	Some of them actually don't even need any suffix(es) or subtypes, such as
+ *	identifiers, keywords, and symbols.
+ */
 	TOKEN_TYPE_INT8_LITERAL = (TOKEN_PREFIX_INTEGER_LITERAL << 4) | ((TOKEN_SUBTYPE_SIGNED & 0x01) << 3) | (TOKEN_SUBTYPE_INT8 & 0x07),
 	TOKEN_TYPE_INT16_LITERAL = (TOKEN_PREFIX_INTEGER_LITERAL << 4) | ((TOKEN_SUBTYPE_SIGNED & 0x01) << 3) | (TOKEN_SUBTYPE_INT16 & 0x07),
 	TOKEN_TYPE_INT32_LITERAL = (TOKEN_PREFIX_INTEGER_LITERAL << 4) | ((TOKEN_SUBTYPE_SIGNED & 0x01) << 3) | (TOKEN_SUBTYPE_INT32 & 0x07),
@@ -129,42 +135,41 @@ typedef enum
 
 typedef struct
 {
-	/*
-	 *	The type of token.
-	 *	The token type is expected to be a single byte, so we clarify it's
-	 *	size as one byte by using bitfields, as it's one of the only ways
-	 *	to do so.
-	 */
+/*
+ *	The type of token.
+ *	The token type is expected to be a single byte, so we clarify it's size as
+ *	one byte by using bitfields, as it's one of the only ways to do so.
+ */
 	token_type_t t_token_type : 8;
 
-	/* The buffer storing our token in plaintext, and it's size. */
+/* The buffer storing our token in plaintext, and it's size. */
 	char *pt_plaintext_buffer;
 	uintmax_t t_plaintext_buffer_size;
 
-	/* The buffer storing our token in tokenized form, and it's size. */
+/* The buffer storing our token in tokenized form, and it's size. */
 	struct
 	{
 		union
 		{
-			/* Character literal(s). */
+/* Character literal(s). */
 			char t_character8_literal;
 
-			/* String literal(s). */
+/* String literal(s). */
 			char *pt_string8_literal;
 
-			/* Identifier. */
+/* Identifier. */
 			char *pt_identifier;
 
-			/* Keyword. */
+/* Keyword. */
 			keyword_t t_keyword;
 
-			/* Symbol. */
+/* Symbol. */
 			symbol_t t_symbol;
 
-			/*
-			 *	Integer types, both signed & unsigned, includes the 8-bit,
-			 *	16-bit, 32-bit, and 64-bit sizes.
-			 */
+/*
+ *	Integer types, both signed & unsigned, includes the 8-bit, 16-bit, 32-bit,
+ *	and 64-bit sizes.
+ */
 			int8_t t_int8_literal;
 			int16_t t_int16_literal;
 			int32_t t_int32_literal;
@@ -174,12 +179,12 @@ typedef struct
 			uint32_t t_uint32_literal;
 			uint64_t t_uint64_literal;
 
-			/* Floating-point types, both 32-bit & 64-bit float literals. */
+/* Floating-point types, both 32-bit & 64-bit float literals. */
 			float t_float32_literal;
 			double t_float64_literal;
 		};
 
-		/* Only applies to string literals & identifiers. */
+/* Only applies to string literals & identifiers. */
 		uintmax_t t_buffer_size;
 	} t_value;
 } token_t;

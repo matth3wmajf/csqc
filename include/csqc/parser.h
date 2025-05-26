@@ -21,10 +21,10 @@
 /* The object type enum. */
 typedef enum
 {
-	/*
-	 *	The prefix types, they express the different vague types of objects we
-	 *	can have.
-	 */
+/*
+ *	The prefix types, they express the different vague types of objects we can
+ *	have.
+ */
 	OBJECT_TYPE_PREFIX_DECLARATION = 0x3,
 	OBJECT_TYPE_PREFIX_EXPRESSION = 0x2,
 	OBJECT_TYPE_PREFIX_LITERAL = 0x1,
@@ -33,14 +33,14 @@ typedef enum
 	OBJECT_TYPE_PREFIX_KEYWORD = 0x5,
 	OBJECT_TYPE_PREFIX_RULE = 0x6,
 
-	/* The unknown suffix type. */
+/* The unknown suffix type. */
 	OBJECT_TYPE_SUFFIX_UNKNOWN = 0x00,
 
-	/*
-	 *	The suffix type(s) for expressions.
-	 *	The `object_type_t` type has now become a 12-bit type due to the need
-	 *	of more number combinations for expressions.
-	 */
+/*
+ *	The suffix type(s) for expressions.
+ *	The `object_type_t` type has now become a 12-bit type due to the need of
+ *	more number combinations for expressions.
+ */
 	OBJECT_TYPE_SUFFIX_MULTIPLICATIVE_EXPRESSION = 0x08,
 	OBJECT_TYPE_SUFFIX_EXCLUSIVE_OR_EXPRESSION = 0x0E,
 	OBJECT_TYPE_SUFFIX_INCLUSIVE_OR_EXPRESSION = 0x0F,
@@ -60,13 +60,13 @@ typedef enum
 	OBJECT_TYPE_SUFFIX_AND_EXPRESSION = 0x0D,
 	OBJECT_TYPE_SUFFIX_EXPRESSION = 0x01,
 
-	/* The sufffix type(s) for declarations. */
+/* The sufffix type(s) for declarations. */
 	OBJECT_TYPE_SUFFIX_EXTERNAL_DECLARATION = 0x01,
 	OBJECT_TYPE_SUFFIX_STRUCT_DECLARATION = 0x02,
 	OBJECT_TYPE_SUFFIX_PARAMETER_DECLARATION = 0x03,
 	OBJECT_TYPE_SUFFIX_DECLARATION = 0x04,
 
-	/* The suffix type(s) for symbols. */
+/* The suffix type(s) for symbols. */
 	OBJECT_TYPE_SUFFIX_ELLIPSIS_SYMBOL = 0x01,
 	OBJECT_TYPE_SUFFIX_EQUAL_TO_SYMBOL = 0x02,
 	OBJECT_TYPE_SUFFIX_NOT_EQUAL_TO_SYMBOL = 0x03,
@@ -114,7 +114,7 @@ typedef enum
 	OBJECT_TYPE_SUFFIX_DECREMENT_SYMBOL = 0x2D,
 	OBJECT_TYPE_SUFFIX_ARROW_SYMBOL = 0x2E,
 
-	/* The suffix type(s) for keywords. */
+/* The suffix type(s) for keywords. */
 	OBJECT_TYPE_SUFFIX_AUTO_KEYWORD = 0x01,
 	OBJECT_TYPE_SUFFIX_BREAK_KEYWORD = 0x02,
 	OBJECT_TYPE_SUFFIX_CASE_KEYWORD = 0x03,
@@ -143,13 +143,13 @@ typedef enum
 	OBJECT_TYPE_SUFFIX_VOLATILE_KEYWORD = 0x1A,
 	OBJECT_TYPE_SUFFIX_WHILE_KEYWORD = 0x1B,
 
-	/* The suffix type(s) for literals. */
+/* The suffix type(s) for literals. */
 	OBJECT_TYPE_SUFFIX_FLOAT_LITERAL = 0x01,
 	OBJECT_TYPE_SUFFIX_INTEGER_LITERAL = 0x02,
 	OBJECT_TYPE_SUFFIX_CHARACTER_LITERAL = 0x03,
 	OBJECT_TYPE_SUFFIX_STRING_LITERAL = 0x04,
 
-	/* The suffix type(s) for rules. */
+/* The suffix type(s) for rules. */
 	OBJECT_TYPE_SUFFIX_RULE = 0x01,
 	OBJECT_TYPE_SUFFIX_RULE_TRANSLATION_UNIT = 0x02,
 	OBJECT_TYPE_SUFFIX_RULE_EXTERNAL_DECLARATION = 0x03,
@@ -212,10 +212,10 @@ typedef enum
 	OBJECT_TYPE_SUFFIX_RULE_ITERATION_STATEMENT = 0x3C,
 	OBJECT_TYPE_SUFFIX_RULE_JUMP_STATEMENT = 0x3D,
 
-	/* The suffix type for identifier(s). */
+/* The suffix type for identifier(s). */
 	OBJECT_TYPE_SUFFIX_IDENTIFIER = 0x01,
 
-	/* The different symbol type(s). */
+/* The different symbol type(s). */
 	OBJECT_TYPE_SYMBOL = (OBJECT_TYPE_PREFIX_SYMBOL << 8) | OBJECT_TYPE_SUFFIX_UNKNOWN,
 	OBJECT_TYPE_SYMBOL_ELLIPSIS = (OBJECT_TYPE_PREFIX_SYMBOL << 8) | OBJECT_TYPE_SUFFIX_ELLIPSIS_SYMBOL,
 	OBJECT_TYPE_SYMBOL_EQUAL_TO = (OBJECT_TYPE_PREFIX_SYMBOL << 8) | OBJECT_TYPE_SUFFIX_EQUAL_TO_SYMBOL,
@@ -264,7 +264,7 @@ typedef enum
 	OBJECT_TYPE_SYMBOL_ARROW = (OBJECT_TYPE_PREFIX_SYMBOL << 8) | OBJECT_TYPE_SUFFIX_ARROW_SYMBOL,
 	OBJECT_TYPE_SYMBOL_CONDITIONAL = (OBJECT_TYPE_PREFIX_SYMBOL << 8) | OBJECT_TYPE_SUFFIX_CONDITIONAL_SYMBOL,
 
-	/* The different keyword type(s). */
+/* The different keyword type(s). */
 	OBJECT_TYPE_KEYWORD = (OBJECT_TYPE_PREFIX_KEYWORD << 8) | OBJECT_TYPE_SUFFIX_UNKNOWN,
 	OBJECT_TYPE_KEYWORD_AUTO = (OBJECT_TYPE_PREFIX_KEYWORD << 8) | OBJECT_TYPE_SUFFIX_AUTO_KEYWORD,
 	OBJECT_TYPE_KEYWORD_BREAK = (OBJECT_TYPE_PREFIX_KEYWORD << 8) | OBJECT_TYPE_SUFFIX_BREAK_KEYWORD,
@@ -294,14 +294,14 @@ typedef enum
 	OBJECT_TYPE_KEYWORD_VOLATILE = (OBJECT_TYPE_PREFIX_KEYWORD << 8) | OBJECT_TYPE_SUFFIX_VOLATILE_KEYWORD,
 	OBJECT_TYPE_KEYWORD_WHILE = (OBJECT_TYPE_PREFIX_KEYWORD << 8) | OBJECT_TYPE_SUFFIX_WHILE_KEYWORD,
 
-	/* The different literal type(s). */
+/* The different literal type(s). */
 	OBJECT_TYPE_LITERAL = (OBJECT_TYPE_PREFIX_LITERAL << 8) | OBJECT_TYPE_SUFFIX_UNKNOWN,
 	OBJECT_TYPE_LITERAL_CHARACTER = (OBJECT_TYPE_PREFIX_LITERAL << 8) | OBJECT_TYPE_SUFFIX_CHARACTER_LITERAL,
 	OBJECT_TYPE_LITERAL_STRING = (OBJECT_TYPE_PREFIX_LITERAL << 8) | OBJECT_TYPE_SUFFIX_STRING_LITERAL,
 	OBJECT_TYPE_LITERAL_INTEGER = (OBJECT_TYPE_PREFIX_LITERAL << 8) | OBJECT_TYPE_SUFFIX_INTEGER_LITERAL,
 	OBJECT_TYPE_LITERAL_FLOAT = (OBJECT_TYPE_PREFIX_LITERAL << 8) | OBJECT_TYPE_SUFFIX_FLOAT_LITERAL,
 	
-	/* The different rule type(s). */
+/* The different rule type(s). */
 	OBJECT_TYPE_RULE = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_UNKNOWN,
 	OBJECT_TYPE_RULE_TRANSLATION_UNIT = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_RULE_TRANSLATION_UNIT,
 	OBJECT_TYPE_RULE_EXTERNAL_DECLARATION = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_RULE_EXTERNAL_DECLARATION,
@@ -364,36 +364,36 @@ typedef enum
 	OBJECT_TYPE_RULE_ITERATION_STATEMENT = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_RULE_ITERATION_STATEMENT,
 	OBJECT_TYPE_RULE_JUMP_STATEMENT = (OBJECT_TYPE_PREFIX_RULE << 8) | OBJECT_TYPE_SUFFIX_RULE_JUMP_STATEMENT,
 
-	/* The object type for identifier(s). */
+/* The object type for identifier(s). */
 	OBJECT_TYPE_IDENTIFIER = (OBJECT_TYPE_PREFIX_UNKNOWN << 8) | OBJECT_TYPE_SUFFIX_IDENTIFIER
 } object_type_t;
 
 typedef struct object
 {
-	/*
-	 *	The object type, made up of vague types (prefixes) and specifiers
-	 *	(suffixes).
-	 */
+/*
+ *	The object type, made up of vague types (prefixes) and specifiers
+ *	(suffixes).
+ */
 	object_type_t t_object_type;
 
 	union
 	{
-		/*
-		 *	Constants can be either literals, or identifiers of constants. But
-		 *	for now, we only support literals.
-		 */
+/*
+ *	Constants can be either literals, or identifiers of constants. But for now,
+ *	we only support literals.
+ */
 		struct
 		{
-			/*
-			 *	This union should be identical to the union for storing
-			 *	numerical literals found in the scanner's header file.
-			 */
+/*
+ *	This union should be identical to the union for storing numerical literals
+ *	found in the scanner's header file.
+ */
 			union
 			{
-				/*
-				 *	Integer types, both signed & unsigned, includes the 8-bit,
-				 *	16-bit, 32-bit, and 64-bit sizes.
-				 */
+/*
+ *	Integer types, both signed & unsigned, includes the 8-bit, 16-bit, 32-bit,
+ *	and 64-bit sizes.
+ */
 				int8_t t_int8_literal;
 				int16_t t_int16_literal;
 				int32_t t_int32_literal;
@@ -403,21 +403,19 @@ typedef struct object
 				uint32_t t_uint32_literal;
 				uint64_t t_uint64_literal;
 
-				/*
-				 *	Floating-point types, both 32-bit & 64-bit float literals.
-				 */
+/* Floating-point types, both 32-bit & 64-bit float literals. */
 				float t_float32_literal;
 				double t_float64_literal;
 			} t_value;
 		} t_constant;
 
-		/* Expressions... */
+/* Expressions... */
 		union
 		{
-			/* Multiplicative expressions... */
+/* Multiplicative expressions... */
 			struct
 			{
-				/* The operator for the multiplicative expression. */
+/* The operator for the multiplicative expression. */
 				enum
 				{
 					MULTIPLICATIVE_EXPRESSION_TYPE_MULTIPLY,
@@ -425,63 +423,63 @@ typedef struct object
 					MULTIPLICATIVE_EXPRESSION_TYPE_MODULO,
 				} t_operator;
 
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_multiplicative;
 
-			/* Bitwise XOR expressions... */
+/* Bitwise XOR expressions... */
 			struct
 			{
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_xor;
 
-			/* Bitwise OR expressions... */
+/* Bitwise OR expressions... */
 			struct
 			{
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_or;
 
-			/* Conditional expressions... */
+/* Conditional expressions... */
 			struct
 			{
-				/* The buffer here should always be three units in size. */
+/* The buffer here should always be three units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_conditional;
 
-			/* Logical AND expressions... */
+/* Logical AND expressions... */
 			struct
 			{
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_logical_and;
 
-			/* Logical OR expressions... */
+/* Logical OR expressions... */
 			struct
 			{
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t pt_operand_buffer_size;
 			} pt_logical_or;
 
-			/* Bitwise AND expressions... */
+/* Bitwise AND expressions... */
 			struct
 			{
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_and;
 
-			/* Assignment expressions... */
+/* Assignment expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					ASSIGNMENT_EXPRESSION_TYPE_RIGHT_SHIFT,
@@ -497,15 +495,15 @@ typedef struct object
 					ASSIGNMENT_EXPRESSION_TYPE_ADD
 				} t_operator;
 
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_assignment;
 
-			/* Assignment expressions... */
+/* Assignment expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					RELATIONAL_EXPRESSION_TYPE_LESS_THAN,
@@ -514,53 +512,53 @@ typedef struct object
 					RELATIONAL_EXPRESSION_TYPE_BIGGER_THAN_OR_EQUAL_TO
 				} t_operator;
 
-				/* The buffer here should always be two units in size. */
+/* The buffer here should always be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_relational;
 
-			/* Constant expressions... */
+/* Constant expressions... */
 			struct
 			{
-				/* The buffer here can be pretty much any size. */
+/* The buffer here can be pretty much any size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_constant;
 
-			/* Equality expressions... */
+/* Equality expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					EQUALITY_EXPRESSION_TYPE_EQUAL_TO,
 					EQUALITY_EXPRESSION_TYPE_NOT_EQUAL_TO
 				} t_operator;
 
-				/* The buffer here must be two units in size. */
+/* The buffer here must be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_equality;
 
-			/* Additive expressions... */
+/* Additive expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					ADDITIVE_EXPRESSION_TYPE_ADD,
 					ADDITIVE_EXPRESSION_TYPE_SUBTRACT
 				} t_operator;
 
-				/* The buffer here must be two units in size. */
+/* The buffer here must be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_additive;
 
-			/* Postfix expressions... */
+/* Postfix expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					POSTFIX_EXPRESSION_TYPE_INDIRECT_ACCESS,
@@ -571,30 +569,30 @@ typedef struct object
 					POSTFIX_EXPRESSION_TYPE_CALL,
 				} t_operator;
 
-				/* ... */
+/* ... */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_postfix;
 
-			/* Shift expressions... */
+/* Shift expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					SHIFT_EXPRESSION_TYPE_RIGHT_SHIFT,
 					SHIFT_EXPRESSION_TYPE_LEFT_SHIFT
 				} t_operator;
 
-				/* The buffer here must be two units in size. */
+/* The buffer here must be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_shift;
 
-			/* Unary expressions... */
+/* Unary expressions... */
 			struct
 			{
-				/* The operator for assignment expressions. */
+/* The operator for assignment expressions. */
 				enum
 				{
 					UNARY_EXPRESSION_TYPE_LOGICAL_NOT,
@@ -608,7 +606,7 @@ typedef struct object
 					UNARY_EXPRESSION_TYPE_SIZEOF
 				} t_operator;
 
-				/* The buffer here must be two units in size. */
+/* The buffer here must be two units in size. */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_unary;
@@ -616,10 +614,10 @@ typedef struct object
 			/* Cast expressions... */
 			struct
 			{
-				/*
-				 *	The buffer here must consist of the type name, and another
-				 *	cast expression or unary expression.
-				 */
+/*
+ *	The buffer here must consist of the type name, and another cast expression
+ *	or unary expression.
+ */
 				struct object **ppt_operand_buffer;
 				uintmax_t t_operand_buffer_size;
 			} t_cast;
@@ -629,7 +627,7 @@ typedef struct object
 
 typedef struct
 {
-	/* The type of the name. */
+/* The type of the name. */
 	enum
 	{
 		NAME_TYPE_UNKNOWN,
@@ -639,11 +637,12 @@ typedef struct
 		NAME_TYPE_TYPEDEF
 	} t_type;
 
-	/* The identifier of the scope that the name is found in. */
+/* The identifier of the scope that the name is found in. */
 	uintmax_t t_scope_identifier;
 
-	/* The name itself. */
+/* The name itself. */
 	char *pt_name;
 } name_t;
 
+/* ... */
 int parser_main(token_t *pt_input_token_buffer, uintmax_t *pt_input_token_buffer_size, object_t **ppt_output_object_buffer, uintmax_t *pt_output_object_buffer_size, name_t **ppt_name_buffer, uintmax_t *pt_name_buffer_size);
